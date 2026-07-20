@@ -1,0 +1,82 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/kondukto-aspm-openapi.yml
+docs: https://docs.kondukto.io/reference/starting-with-kondukto-api
+token_docs: https://docs.kondukto.io/reference/get-api-token-via-ui
+notes: >-
+  Invicti ASPM (Kondukto) authenticates the public REST API v2 with a single long-lived, user-scoped
+  API token sent in a custom X-Cookie request header. There is no OAuth 2.0, OpenID Connect or
+  mutual-TLS surface on the public API, so no scopes/ artifact applies: authorization is enforced by
+  the token owner's role and team membership rather than by token scopes. SSO (Okta, Azure AD SAML
+  2.0, Google Workspace SAML 2.0) governs interactive user sign-in to the platform, not API calls.
+summary:
+  types: [apiKey]
+  api_key_in: [header]
+  api_key_names: [X-Cookie]
+  oauth2_flows: []
+  scoped: false
+  authorization_model: role-and-team based (see user permission matrix)
+schemes:
+- name: apiToken
+  type: apiKey
+  in: header
+  parameter_name: X-Cookie
+  description: >-
+    Kondukto-issued Personal Access Token. Every authenticated request to the Kondukto API must
+    include the X-Cookie header carrying the token value.
+  sources: [openapi/kondukto-aspm-openapi.yml]
+  provisioning:
+    method: ui
+    steps:
+    - Log in to Invicti ASPM.
+    - Go to Integrations > Personal Access Token (labelled API Tokens in newer releases).
+    - Select Generate Token and copy the value.
+    warning: The token is displayed only once and cannot be retrieved again.
+    docs: https://docs.kondukto.io/reference/get-api-token-via-ui
+  rotation:
+    policy_published: false
+    note: No documented expiry or automated rotation policy for API tokens.
+  used_by:
+  - client: KDT CLI
+    mechanism: INVICTI_ASPM_TOKEN environment variable, --token flag, or token key in $HOME/.kdt.yaml
+    legacy_mechanism: KONDUKTO_TOKEN (deprecated, still supported)
+unauthenticated_operations:
+- operationId: health-check
+  path: /api/v2/health/check/
+  note: Published with an empty security requirement in the provider's own OpenAPI definition.
+failure_responses:
+- status: 401
+  body: '{"error": "failed to authorize"}'
+  meaning: Missing, malformed or revoked token.
+- status: 403
+  body: '{"message": "forbidden operation"}'
+  meaning: Valid token whose owner lacks permission for the resource.
+webhook_authentication:
+  outbound:
+    description: >-
+      Outbound webhooks support user-defined custom HTTP headers plus a "Secure" mode toggle
+      configured per webhook in Integrations > Webhooks.
+    docs: https://docs.kondukto.io/docs/webhook-integration-capturing-audit-log-events
+  issue_manager:
+    description: >-
+      Kondukto authenticates itself to a customer-hosted webhook issue manager with a shared secret
+      in the X-Kondukto-Secret header; a missing header returns 403 "missing secret key".
+    header: X-Kondukto-Secret
+    docs: https://docs.kondukto.io/docs/integrating-with-webhooks
+sso:
+  applies_to: interactive platform sign-in only, not the REST API
+  providers:
+  - name: Okta
+    docs: https://docs.kondukto.io/docs/okta
+  - name: Azure AD (SAML 2.0)
+    docs: https://docs.kondukto.io/docs/saml-20-azure-ad-integration
+  - name: Google Workspace (SAML 2.0)
+    docs: https://docs.kondukto.io/docs/saml-20-google-workspace-integration
+  discovery_endpoint: https://docs.kondukto.io/reference/get-active-auth-managers
+authorization:
+  model: role and team based
+  docs: https://docs.kondukto.io/docs/user-permission-matrix
+  roles_docs: https://docs.kondukto.io/docs/roles
+related:
+  conventions: conventions/kondukto-conventions.yml
+  errors: errors/kondukto-problem-types.yml
