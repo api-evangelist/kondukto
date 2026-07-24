@@ -1,0 +1,532 @@
+openapi: 3.1.0
+info:
+  title: Invicti ASPM (Kondukto) REST API v2 Authorization Managers Products API
+  version: '2.0'
+  description: Public REST API v2 for the Invicti ASPM platform (formerly Kondukto), an Application Security Posture Management platform that centralizes SAST, DAST, SCA, container and pentest findings from more than eighty scanners. The API manages projects, products, teams, labels, scans and vulnerabilities, and is the same public API the open-source KDT command-line client uses. Assembled by API Evangelist from the per-operation OpenAPI 3.1 definitions Kondukto publishes on each page of its API reference.
+  contact:
+    name: Kondukto Support
+    email: support@kondukto.io
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  x-origin:
+  - format: openapi
+    version: '3.1'
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+servers:
+- url: https://{hostname}
+  description: 'Invicti ASPM deployment host. The platform is deployed per customer (self-hosted or dedicated tenant), so there is no single shared public endpoint: set this to your own instance, the same value KDT reads from INVICTI_ASPM_HOST. The provider''s own published definitions leave this variable with the literal placeholder default "hostname"; api.kondukto.io is used here as a real, provider-owned default. It resolves but answers 403 to unauthenticated requests.'
+  variables:
+    hostname:
+      default: api.kondukto.io
+      description: Hostname of your Invicti ASPM instance.
+security:
+- apiToken: []
+tags:
+- name: Products
+paths:
+  /api/v2/products/:
+    post:
+      summary: Create a Product
+      description: This endpoint lets you create a new product. The product name should be unique and should not contain any spaces.
+      operationId: create-a-product
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              properties:
+                name:
+                  type: string
+                  description: Name of the product
+                projects:
+                  type: array
+                  items:
+                    properties:
+                      id:
+                        type: string
+                        description: ID of the project
+                    required:
+                    - id
+                    type: object
+                default_team:
+                  type: object
+                  required:
+                  - id
+                  properties:
+                    id:
+                      type: string
+                      description: ID of the default team
+                business_unit_tags:
+                  type: array
+                  items:
+                    properties:
+                      id:
+                        type: string
+                        description: ID of the business unit tag
+                    required:
+                    - id
+                    type: object
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"product\": {\n        \"id\": \"{productID}\",\n        \"name\": \"{productName}\",\n        \"projects_count\": {projectCount},\n        \"business_unit_tags\": [\n            {\n                \"id\": \"{businessUnitTagID}\",\n                \"name\": \"{businessUnitTagName}\",\n                \"color\": \"{businessUnitTagColor}\"\n            }\n        ],\n        \"default_team\": {\n            \"id\": \"{defaultTeamID}\"\n        },\n        \"projects\": [\n            {\n                \"id\": \"{projectID}\",\n                \"name\": \"{projectName}\"\n            },\n            {\n                \"id\": \"{projectID}\",\n                \"name\": \"{projectName}\"\n            }\n        ],\n        \"links\": {\n            \"html\": \"http://{hostname}/products/view/{productID}/details/appsec\"\n        }\n    }\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: invalid request data
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid request data
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: forbidden operation
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: forbidden operation
+      deprecated: false
+      tags:
+      - Products
+    get:
+      summary: Get Products
+      description: Returns the list of products.
+      operationId: get-products
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+          default: Token
+      - name: limit
+        in: query
+        description: How many records will return
+        schema:
+          type: string
+      - name: start
+        in: query
+        description: Offset for pagination
+        schema:
+          type: string
+      - name: name
+        in: query
+        description: Product name to filter. Works as "contains"
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    limit: 30
+                    start: 0
+                    total: 2
+                    products:
+                    - id: '{productID}'
+                      name: '{productName}'
+                      projects_count: 2
+                      links:
+                        html: http://localhost/products/view/{productID}/details/appsec
+                    - id: '{productID}'
+                      name: '{productName}'
+                      projects_count: 3
+                      links:
+                        html: http://localhost/products/view/{productID}/details/appsec
+              schema:
+                type: object
+                properties:
+                  limit:
+                    type: integer
+                    example: 30
+                    default: 0
+                  start:
+                    type: integer
+                    example: 0
+                    default: 0
+                  total:
+                    type: integer
+                    example: 2
+                    default: 0
+                  products:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: '{productID}'
+                        name:
+                          type: string
+                          example: '{productName}'
+                        projects_count:
+                          type: integer
+                          example: 2
+                          default: 0
+                        links:
+                          type: object
+                          properties:
+                            html:
+                              type: string
+                              example: http://localhost/products/view/{productID}/details/appsec
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: invalid request data
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid request data
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+      deprecated: false
+      tags:
+      - Products
+  /api/v2/products/{productID}:
+    patch:
+      summary: Update a Product
+      description: Overwrites the projects of a product by the given values.
+      operationId: update-a-product
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      - name: productID
+        in: path
+        description: Product ID
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the product
+                projects:
+                  type: array
+                  items:
+                    properties:
+                      id:
+                        type: string
+                        description: ID of the project
+                    required:
+                    - id
+                    type: object
+                default_team:
+                  type: object
+                  required:
+                  - id
+                  properties:
+                    id:
+                      type: string
+                      description: ID of the default team
+                business_unit_tags:
+                  type: array
+                  items:
+                    properties:
+                      id:
+                        type: string
+                        description: ID of the business unit tag
+                    required:
+                    - id
+                    type: object
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"product\": {\n        \"id\": \"{productID}\",\n        \"name\": \"{productName}\",\n        \"projects_count\": {projectCount},\n        \"business_unit_tags\": [\n            {\n                \"id\": \"{businessUnitTagID}\",\n                \"name\": \"{businessUnitTagName}\",\n                \"color\": \"{businessUnitTagColor}\"\n            }\n        ],\n        \"default_team\": {\n            \"id\": \"{defaultTeamID}\"\n        },\n        \"projects\": [\n            {\n                \"id\": \"{projectID}\",\n                \"name\": \"{projectName}\"\n            },\n            {\n                \"id\": \"{projectID}\",\n                \"name\": \"{projectName}\"\n            }\n        ],\n        \"links\": {\n            \"html\": \"http://{hostname}/products/view/{productID}/details/appsec\"\n        }\n    }\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: invalid request data
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid request data
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: forbidden operation
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: forbidden operation
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: product not found
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: product not found
+      deprecated: false
+      tags:
+      - Products
+    get:
+      summary: Get Product Details
+      description: Returns the details of a product.
+      operationId: get-a-product-details
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+          default: Token
+      - name: productID
+        in: path
+        description: Product ID
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    product:
+                      id: '{productID}'
+                      name: '{productName}'
+                      projects_count: 3
+                      business_unit_tags:
+                      - id: '{businessUnitTagID}'
+                        name: '{businessUnitTagName}'
+                        color: 321a1a
+                        isActive: 0
+                        required: false
+                      accessible_for:
+                        owner_ids:
+                        - '{userID}'
+                        team_ids:
+                        - '{teamID}'
+                        - '{teamID}'
+                      default_team:
+                        id: '{teamID}'
+                      projects:
+                      - id: '{projectID}'
+                        name: '{projectName}'
+                      - id: '{projectID}'
+                        name: '{projectName}'
+                      - id: '{projectID}'
+                        name: '{projectName}'
+                      links:
+                        html: http://localhost/products/view/{productID}/details/appsec
+              schema:
+                type: object
+                properties:
+                  product:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: '{productID}'
+                      name:
+                        type: string
+                        example: '{productName}'
+                      projects_count:
+                        type: integer
+                        example: 3
+                        default: 0
+                      business_unit_tags:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: '{businessUnitTagID}'
+                            name:
+                              type: string
+                              example: '{businessUnitTagName}'
+                            color:
+                              type: string
+                              example: 321a1a
+                            isActive:
+                              type: integer
+                              example: 0
+                              default: 0
+                            required:
+                              type: boolean
+                              example: false
+                              default: true
+                      accessible_for:
+                        type: object
+                        properties:
+                          owner_ids:
+                            type: array
+                            items:
+                              type: string
+                              example: '{userID}'
+                          team_ids:
+                            type: array
+                            items:
+                              type: string
+                              example: '{teamID}'
+                      default_team:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: '{teamID}'
+                      projects:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: '{projectID}'
+                            name:
+                              type: string
+                              example: '{projectName}'
+                      links:
+                        type: object
+                        properties:
+                          html:
+                            type: string
+                            example: http://localhost/products/view/{productID}/details/appsec
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: invalid request data
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid request data
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+      deprecated: false
+      tags:
+      - Products
+components:
+  securitySchemes:
+    apiToken:
+      type: apiKey
+      in: header
+      name: X-Cookie
+      description: Kondukto-issued API token. Generate it in the UI under Integrations > Personal Access Token (shown once). Sent on every request in the X-Cookie header.

@@ -1,0 +1,1623 @@
+openapi: 3.1.0
+info:
+  title: Invicti ASPM (Kondukto) REST API v2 Authorization Managers Vulnerabilities API
+  version: '2.0'
+  description: Public REST API v2 for the Invicti ASPM platform (formerly Kondukto), an Application Security Posture Management platform that centralizes SAST, DAST, SCA, container and pentest findings from more than eighty scanners. The API manages projects, products, teams, labels, scans and vulnerabilities, and is the same public API the open-source KDT command-line client uses. Assembled by API Evangelist from the per-operation OpenAPI 3.1 definitions Kondukto publishes on each page of its API reference.
+  contact:
+    name: Kondukto Support
+    email: support@kondukto.io
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  x-origin:
+  - format: openapi
+    version: '3.1'
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+servers:
+- url: https://{hostname}
+  description: 'Invicti ASPM deployment host. The platform is deployed per customer (self-hosted or dedicated tenant), so there is no single shared public endpoint: set this to your own instance, the same value KDT reads from INVICTI_ASPM_HOST. The provider''s own published definitions leave this variable with the literal placeholder default "hostname"; api.kondukto.io is used here as a real, provider-owned default. It resolves but answers 403 to unauthenticated requests.'
+  variables:
+    hostname:
+      default: api.kondukto.io
+      description: Hostname of your Invicti ASPM instance.
+security:
+- apiToken: []
+tags:
+- name: Vulnerabilities
+paths:
+  /api/v2/vulnerabilities/:
+    get:
+      summary: Get Vulnerabilities
+      description: This endpoint retrieves a list of vulnerabilities from the Kondukto. It supports pagination and various filters to streamline the search and retrieval of vulnerability data. Clients can specify parameters to filter results based on severity, branch, type, status, and other relevant criteria.
+      operationId: get-vulnerabilities
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: The maximum number of vulnerabilities to return per request. Default is 30. Max. value can be 30.
+        schema:
+          type: integer
+          format: int32
+          default: 30
+      - name: start
+        in: query
+        description: The starting index of the vulnerabilities list. Default is 0.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: woe
+        in: query
+        description: Filters vulnerabilities by their window of exposure. Acceptable operators are eq, gt, and lt, followed by the number of days (e.g., woe=eq:15, woe=gt:4, woe=lt:3).
+        schema:
+          type: string
+          default: eq:15
+      - name: branch
+        in: query
+        description: Performs a search on the branch names of the application's source code. Entering a partial string will return all branches containing that substring.
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: Specifies the type of scan, such as "sast", "dast", "sca", "cs", "infra", etc.
+        schema:
+          type: string
+      - name: fp
+        in: query
+        description: Filters out vulnerabilities when set to "false" or includes only fp when set to "true".
+        schema:
+          type: boolean
+      - name: cvss
+        in: query
+        description: Filters vulnerabilities based on the CVSS v3 score.
+        schema:
+          type: number
+          format: float
+      - name: path
+        in: query
+        description: Filters vulnerabilities based on the path or target URL. Entering a partial string will return all vulnerabilities associated with matching paths or URLs.
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: Filters vulnerabilities by their status. Possible values are "new", "recurrent", and "closed". Multiple statuses can be specified, separated by commas (e.g., status=new,recurrent).
+        schema:
+          type: string
+      - name: cwe_name
+        in: query
+        description: Filters vulnerabilities based on the name of the CWE. Entering a partial string will return all vulnerabilities associated with matching CWE names.
+        schema:
+          type: string
+      - name: cwe_no
+        in: query
+        description: Filters vulnerabilities based on CWE numbers. Multiple CWE numbers can be specified, separated by commas (e.g., cwe_no=79,89,20).
+        schema:
+          type: integer
+          format: int32
+      - name: tool_name
+        in: query
+        description: Filters vulnerabilities by the exact name of the tool that identified them. This parameter requires an exact match. If no alphanumeric value is entered, this parameter will not work.
+        schema:
+          type: string
+      - name: issue_status
+        in: query
+        description: Filters vulnerabilities based on the status of any associated issue. This parameter requires an exact match and can take values like "open", "closed".
+        schema:
+          type: string
+      - name: committers
+        in: query
+        description: Filters vulnerabilities based on the email of committers. This is a searchable parameter that accepts multiple values. Each value can be a part of the full string, separated by commas (e.g., committers=john@kondukto.io, appsec_user)
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: Filters vulnerabilities based on the date and time they were first seen, starting from the specified ISO 8601 date (e.g., 2024-05-08T12:20:57.588Z).
+        schema:
+          type: string
+          format: date
+      - name: to
+        in: query
+        description: Filters vulnerabilities based on the date and time they were first seen, up to the specified ISO 8601 date (e.g., 2024-05-08T12:20:57.588Z).
+        schema:
+          type: string
+          format: date
+      - name: tp
+        in: query
+        description: Filters out vulnerabilities marked as true positives when set to "false" or includes only true positives when set to "true".
+        schema:
+          type: boolean
+      - name: id
+        in: query
+        description: Filters vulnerabilities by their unique identification number. This parameter allows for direct access to specific vulnerability.
+        schema:
+          type: string
+      - name: teams
+        in: query
+        description: Filters vulnerabilities based on the names of teams the vulnerabilities. Multiple team names can be specified, separated by commas (e.g., teams=security,development).
+        schema:
+          type: array
+          items:
+            type: string
+      - name: vuln_name
+        in: query
+        description: Filters vulnerabilities based on their name. This is a searchable parameter that supports partial matching. Entering a partial name will return all vulnerabilities containing that substring.
+        schema:
+          type: string
+      - name: project_name
+        in: query
+        description: Filters vulnerabilities based on the name of the project. This is a searchable parameter that supports partial matching. Entering a partial project name will return all vulnerabilities containing that substring.
+        schema:
+          type: string
+      - name: product_name
+        in: query
+        description: Filters vulnerabilities by the exact name of the product that identified them. This parameter requires an exact match.
+        schema:
+          type: string
+      - name: team_ids
+        in: query
+        description: Filters vulnerabilities based on the identifiers of the teams involved. Multiple team IDs can be specified, separated by commas (e.g., team_ids=661e36fbb3bdf42202f9eb12,65a78ae2710eb82e835b78c8).
+        schema:
+          type: array
+          items:
+            type: string
+      - name: label_ids
+        in: query
+        description: Filters vulnerabilities based on the identifiers of the labels involved. Multiple label IDs can be specified, separated by commas (e.g., label_ids=661e36fbb3bdf42202f9eb12,65a78ae2710eb82e835b78c8).
+        schema:
+          type: array
+          items:
+            type: string
+      - name: severity
+        in: query
+        description: Filters vulnerabilities by specified severity levels. Multiple severities can be specified, separated by commas (e.g., severity=1,2).
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int32
+      - name: labels
+        in: query
+        description: Filters vulnerabilities based on the names of the labels involved. Multiple labels can be specified, separated by commas (e.g., labels=appsec,infrasecurity).
+        schema:
+          type: array
+          items:
+            type: string
+      - name: overdue
+        in: query
+        description: Filters out vulnerabilities when set to "false" or includes only overdue when set to "true".
+        schema:
+          type: boolean
+      - name: wf
+        in: query
+        required: false
+        description: Filters out vulnerabilities when set to "false" or includes only Won't Fix when set to "true".
+        schema:
+          type: boolean
+          default: ''
+      - name: mitigated
+        in: query
+        required: false
+        description: Filters out vulnerabilities when set to "false" or includes only Mitigated when set to "true".
+        schema:
+          type: boolean
+          default: ''
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    limit: 1
+                    start: 0
+                    total: 7
+                    vulnerabilities:
+                    - id: 60a7c9be9f9d339dd28e0583
+                      last_seen: '2021-05-27T07:43:10.085Z'
+                      first_seen: '2021-05-21T14:54:21.364Z'
+                      woe: 6
+                      name: go.lang.security.audit.crypto.bad_imports.insecure-module-used
+                      is_fp: false
+                      status: recurrent
+                      cwe_id: 327
+                      cvss_v3: 6
+                      cwe_name: Use of a Broken or Risky Cryptographic Algorithm
+                      severity: 2
+                      path: user/user.go
+                      issue_status: ''
+                      committer_name: storm@localhost.localdomain
+                      language: go
+                      issue_assigned: false
+                      scanparams:
+                        id: 60a7c9909f9d339dd28e057d
+                        tool:
+                          id: 60a7c9769f9d339dd28e057c
+                          name: semgrep
+                          type: sast
+                        project:
+                          id: 60a7c9699f9d339dd28e0578
+                          name: govwa
+                          labels: []
+                        created_by: ''
+                        bind_name: ''
+                        branch: master
+                        scan_type: scheduled
+                        meta_data: ''
+                        pr:
+                          ok: false
+                          target: ''
+                        manual: false
+              schema:
+                type: object
+                properties:
+                  limit:
+                    type: integer
+                    example: 1
+                    default: 0
+                  start:
+                    type: integer
+                    example: 0
+                    default: 0
+                  total:
+                    type: integer
+                    example: 7
+                    default: 0
+                  vulnerabilities:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 60a7c9be9f9d339dd28e0583
+                        last_seen:
+                          type: string
+                          example: '2021-05-27T07:43:10.085Z'
+                        first_seen:
+                          type: string
+                          example: '2021-05-21T14:54:21.364Z'
+                        woe:
+                          type: integer
+                          example: 6
+                          default: 0
+                        name:
+                          type: string
+                          example: go.lang.security.audit.crypto.bad_imports.insecure-module-used
+                        is_fp:
+                          type: boolean
+                          example: false
+                          default: true
+                        status:
+                          type: string
+                          example: recurrent
+                        cwe_id:
+                          type: integer
+                          example: 327
+                          default: 0
+                        cvss_v3:
+                          type: integer
+                          example: 6
+                          default: 0
+                        cwe_name:
+                          type: string
+                          example: Use of a Broken or Risky Cryptographic Algorithm
+                        severity:
+                          type: integer
+                          example: 2
+                          default: 0
+                        path:
+                          type: string
+                          example: user/user.go
+                        issue_status:
+                          type: string
+                          example: ''
+                        committer_name:
+                          type: string
+                          example: storm@localhost.localdomain
+                        language:
+                          type: string
+                          example: go
+                        issue_assigned:
+                          type: boolean
+                          example: false
+                          default: true
+                        scanparams:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: 60a7c9909f9d339dd28e057d
+                            tool:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                  example: 60a7c9769f9d339dd28e057c
+                                name:
+                                  type: string
+                                  example: semgrep
+                                type:
+                                  type: string
+                                  example: sast
+                            project:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                  example: 60a7c9699f9d339dd28e0578
+                                name:
+                                  type: string
+                                  example: govwa
+                                labels:
+                                  type: array
+                            created_by:
+                              type: string
+                              example: ''
+                            bind_name:
+                              type: string
+                              example: ''
+                            branch:
+                              type: string
+                              example: master
+                            scan_type:
+                              type: string
+                              example: scheduled
+                            meta_data:
+                              type: string
+                              example: ''
+                            pr:
+                              type: object
+                              properties:
+                                ok:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                                target:
+                                  type: string
+                                  example: ''
+                            manual:
+                              type: boolean
+                              example: false
+                              default: true
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+      deprecated: false
+      tags:
+      - Vulnerabilities
+  /api/v2/vulnerabilities/import/dast:
+    post:
+      summary: Create a DAST Vulnerability
+      description: This endpoint allows you to create DAST vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body.
+      operationId: create-a-dast-vulnerability
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+          default: Token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                project:
+                  properties:
+                    id:
+                      type: string
+                      description: The unique identifier of the project.
+                  required:
+                  - id
+                  type: object
+                scan_details:
+                  properties:
+                    tool:
+                      type: string
+                      description: The name of the scanning tool used (e.g., "invicti").
+                    branch:
+                      type: string
+                      description: The branch of the project where the scan was conducted (e.g., "master").
+                    meta_data:
+                      type: string
+                      description: An unique identifier added by the user
+                    date_discovered:
+                      type: string
+                      description: The date and time when the scan was conducted. The format must be ISO 8601 format.
+                    discovered_by:
+                      type: string
+                      description: The person who conducted the scan (e.g., "john").
+                  required:
+                  - tool
+                  - branch
+                  - date_discovered
+                  - discovered_by
+                  type: object
+                vulnerabilities:
+                  properties:
+                    name:
+                      type: string
+                      description: The name of the vulnerability.
+                    cwe_id:
+                      type: integer
+                      description: The Common Weakness Enumeration (CWE) identifier for the vulnerability.
+                      format: int32
+                    cvss_v3:
+                      type: number
+                      description: The Common Vulnerability Scoring System (CVSS) v3 score for the vulnerability.
+                      format: float
+                    severity:
+                      type: integer
+                      description: The severity level of the vulnerability.
+                      format: int32
+                    description:
+                      type: string
+                      description: A description of the vulnerability.
+                    dast:
+                      properties:
+                        target:
+                          type: string
+                          description: The target URL where the vulnerability was found.
+                        http_request:
+                          type: string
+                          description: The HTTP request details for reproducing the vulnerability.
+                        http_response:
+                          type: string
+                          description: The HTTP response details indicating the vulnerability.
+                        method:
+                          type: string
+                          description: The HTTP method used in the request (e.g., "GET").
+                        references:
+                          type: array
+                          description: A list of reference links for more information about the vulnerability.
+                          items:
+                            type: string
+                      required:
+                      - target
+                      - http_request
+                      - http_response
+                      - method
+                      - references
+                      type: object
+                  required:
+                  - name
+                  - cwe_id
+                  - cvss_v3
+                  - severity
+                  - description
+                  type: object
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    event_id: '{eventID}'
+                    message: vulnerabilities have been uploaded and analyze event has been started successfully
+              schema:
+                type: object
+                properties:
+                  event_id:
+                    type: string
+                    example: '{eventID}'
+                  message:
+                    type: string
+                    example: vulnerabilities have been uploaded and analyze event has been started successfully
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: bad request error
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: bad request error
+      deprecated: false
+      tags:
+      - Vulnerabilities
+  /api/v2/vulnerabilities/import/infra:
+    post:
+      summary: Create an Infra Vulnerability
+      description: This endpoint allows you to create INFRA vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body.
+      operationId: create-an-infra-vulnerability
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+          default: Token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                project:
+                  properties:
+                    id:
+                      type: string
+                      description: The unique identifier of the project.
+                  required:
+                  - id
+                  type: object
+                scan_details:
+                  properties:
+                    tool:
+                      type: string
+                      description: The name of the scanning tool used (e.g., "nessuspro").
+                    branch:
+                      type: string
+                      description: The branch of the project where the scan was conducted (e.g., "master").
+                    meta_data:
+                      type: string
+                      description: An unique identifier added by the user
+                    date_discovered:
+                      type: string
+                      description: The date and time when the scan was conducted. The format must be ISO 8601 format.
+                    discovered_by:
+                      type: string
+                      description: The person who conducted the scan (e.g., "john").
+                  required:
+                  - tool
+                  - branch
+                  - meta_data
+                  - date_discovered
+                  - discovered_by
+                  type: object
+                vulnerabilities:
+                  properties:
+                    name:
+                      type: string
+                      description: The name of the vulnerability.
+                    cwe_id:
+                      type: integer
+                      description: The Common Weakness Enumeration (CWE) identifier for the vulnerability.
+                      format: int32
+                    cvss_v3:
+                      type: number
+                      description: The Common Vulnerability Scoring System (CVSS) v3 score for the vulnerability.
+                      format: float
+                    severity:
+                      type: integer
+                      description: The severity level of the vulnerability.
+                      format: int32
+                    description:
+                      type: string
+                      description: A description of the vulnerability.
+                    infra:
+                      properties:
+                        ok:
+                          type: string
+                          description: A status indicator for the vulnerability.
+                        protocol:
+                          type: string
+                          description: The protocol used (e.g., "tcp").
+                        port:
+                          type: string
+                          description: The port number where the vulnerability was found (e.g., "80").
+                        proof:
+                          type: string
+                          description: Evidence or proof of the vulnerability (e.g., "xss cannot be fixed").
+                        service:
+                          type: string
+                          description: The service associated with the vulnerability.
+                        ip:
+                          type: integer
+                          description: The IP address where the vulnerability was found (e.g., "192.168.2.51").
+                          format: int32
+                        cve:
+                          type: string
+                          description: The Common Vulnerabilities and Exposures (CVE) identifier for the vulnerability, if available.
+                      required:
+                      - ok
+                      - protocol
+                      - port
+                      - proof
+                      - service
+                      - ip
+                      - cve
+                      type: object
+                  required:
+                  - name
+                  - cwe_id
+                  - cvss_v3
+                  - severity
+                  - description
+                  type: object
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    event_id: '{eventID}'
+                    message: vulnerabilities have been uploaded and analyze event has been started successfully
+              schema:
+                type: object
+                properties:
+                  event_id:
+                    type: string
+                    example: '{eventID}'
+                  message:
+                    type: string
+                    example: vulnerabilities have been uploaded and analyze event has been started successfully
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: bad request error
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: bad request error
+      deprecated: false
+      tags:
+      - Vulnerabilities
+  /api/v2/vulnerabilities/import/pentest:
+    post:
+      summary: Create a PENTEST Vulnerability
+      description: This endpoint allows you to create PENTEST vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body.
+      operationId: create-a-pentest-vulnerability
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+          default: Token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                project:
+                  properties:
+                    id:
+                      type: string
+                      description: The unique identifier of the project.
+                  required:
+                  - id
+                  type: object
+                scan_details:
+                  properties:
+                    tool:
+                      type: string
+                      description: The name of the scanning tool used.
+                    tool_type:
+                      type: string
+                      description: The type of tool used.
+                    branch:
+                      type: string
+                      description: he branch of the project where the scan was conducted (e.g., "master").
+                    meta_data:
+                      type: string
+                      description: An unique identifier added by the user
+                    environment:
+                      type: string
+                      description: The environment in which the scan was conducted.
+                    fork_scan:
+                      type: boolean
+                      description: Indicator whether the scan was a fork scan.
+                    ' fork_source_branch':
+                      type: string
+                      description: The source branch for the fork scan.
+                    date_discovered:
+                      type: string
+                      description: The date and time when the scan was conducted. The format must be ISO 8601 format.
+                    engagement:
+                      type: string
+                      description: Information about the engagement during which the scan was conducted.
+                    discovered_by:
+                      type: string
+                      description: The person who conducted the scan (e.g., "john").
+                  required:
+                  - tool
+                  - tool_type
+                  - branch
+                  - environment
+                  - date_discovered
+                  - discovered_by
+                  type: object
+                vulnerabilities:
+                  properties:
+                    name:
+                      type: string
+                      description: The name of the vulnerability.
+                    description:
+                      type: string
+                      description: A description of the vulnerability.
+                    ' discovered_by':
+                      type: string
+                      description: The person who discovered the vulnerability.
+                    cwe_id:
+                      type: integer
+                      description: The Common Weakness Enumeration (CWE) identifier for the vulnerability.
+                      format: int32
+                    cvss_v3:
+                      type: number
+                      description: The Common Vulnerability Scoring System (CVSS) v3 score for the vulnerability.
+                      format: float
+                    severity:
+                      type: integer
+                      description: The severity level of the vulnerability.
+                      format: int32
+                    path:
+                      type: string
+                      description: The file path where the vulnerability was found.
+                    ' committer_name':
+                      type: string
+                      description: The name of the person who committed the vulnerable code.
+                    link:
+                      type: string
+                      description: A reference link for more information about the vulnerability.
+                    ' recommendation':
+                      type: string
+                      description: Recommended actions to remediate the vulnerability.
+                    ' pentest':
+                      properties:
+                        ' target':
+                          type: string
+                          description: The target URL where the vulnerability was found.
+                      required:
+                      - ' target'
+                      type: object
+                    pentest:
+                      properties:
+                        ' http_request':
+                          type: string
+                          description: The HTTP request details for reproducing the vulnerability.
+                        http_response:
+                          type: string
+                          description: The HTTP response details indicating the vulnerability.
+                        method:
+                          type: string
+                          description: The HTTP method used in the request (e.g., "GET").
+                        ' references':
+                          type: array
+                          description: A list of reference links for more information about the vulnerability.
+                          items:
+                            type: string
+                      required:
+                      - ' http_request'
+                      - http_response
+                      - method
+                      - ' references'
+                      type: object
+                  required:
+                  - name
+                  - description
+                  - ' discovered_by'
+                  - cwe_id
+                  - cvss_v3
+                  - severity
+                  type: object
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    event_id: '{eventID}'
+                    message: vulnerabilities have been uploaded and analyze event has been started successfully
+              schema:
+                type: object
+                properties:
+                  event_id:
+                    type: string
+                    example: '{eventID}'
+                  message:
+                    type: string
+                    example: vulnerabilities have been uploaded and analyze event has been started successfully
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: bad request error
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: bad request error
+      deprecated: false
+      tags:
+      - Vulnerabilities
+  /api/v2/vulnerabilities/import/sast:
+    post:
+      summary: Create a SAST Vulnerability
+      description: This endpoint allows you to create SAST vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body.
+      operationId: create-a-sast-vulnerability
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+          default: Token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                project:
+                  properties:
+                    id:
+                      type: string
+                      description: The unique identifier of the project.
+                  required:
+                  - id
+                  type: object
+                scan_details:
+                  properties:
+                    tool:
+                      type: string
+                      description: The name of the scanning tool used (e.g., "gosec").
+                    branch:
+                      type: string
+                      description: The project branch where the scan was conducted (e.g., "master").
+                    meta_data:
+                      type: string
+                      description: A unique identifier added by the user.
+                    date_discovered:
+                      type: string
+                      description: The date and time when the scan was conducted. The format must be ISO 8601 format.
+                    discovered_by:
+                      type: string
+                      description: The person who conducted the scan (e.g., "john").
+                  required:
+                  - tool
+                  - branch
+                  - date_discovered
+                  type: object
+                vulnerabilities:
+                  properties:
+                    name:
+                      type: string
+                      description: The name of the vulnerability.
+                    discovered_by:
+                      type: string
+                      description: The person or entity who discovered the vulnerability (e.g., "john").
+                    cwe_id:
+                      type: integer
+                      description: The Common Weakness Enumeration (CWE) identifier for the vulnerability.
+                      format: int32
+                    cvss_v3:
+                      type: number
+                      description: The Common Vulnerability Scoring System (CVSS) v3 score for the vulnerability.
+                      format: float
+                    severity:
+                      type: integer
+                      description: The severity level of the vulnerability.
+                      format: int32
+                    path:
+                      type: string
+                      description: The file path where the vulnerability was found.
+                    description:
+                      type: string
+                      description: A description of the vulnerability.
+                    recommendation:
+                      type: string
+                      description: Recommended actions to remediate the vulnerability.
+                    link:
+                      type: string
+                      description: A reference link for more information about the vulnerability.
+                    sast:
+                      properties:
+                        committer:
+                          type: string
+                          description: The email of the person who committed the vulnerable code.
+                        file_name:
+                          type: string
+                          description: The name of the file where the vulnerability was found.
+                        code:
+                          type: string
+                          description: The code snippet where the vulnerability was found.
+                        line_number:
+                          type: integer
+                          description: The line number in the file where the vulnerability was found.
+                          format: int32
+                        language:
+                          type: string
+                          description: The programming language of the vulnerable code (e.g., "go").
+                      required:
+                      - committer
+                      - file_name
+                      - code
+                      - line_number
+                      - language
+                      type: object
+                  required:
+                  - name
+                  - discovered_by
+                  - cwe_id
+                  - cvss_v3
+                  - severity
+                  - path
+                  - description
+                  - recommendation
+                  - link
+                  type: object
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    event_id: '{eventID}'
+                    message: vulnerabilities have been uploaded and analyze event has been started successfully
+              schema:
+                type: object
+                properties:
+                  event_id:
+                    type: string
+                    example: '{eventID}'
+                  message:
+                    type: string
+                    example: vulnerabilities have been uploaded and analyze event has been started successfully
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: bad request error
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: bad request error
+      deprecated: false
+      tags:
+      - Vulnerabilities
+  /api/v2/vulnerabilities/import/sca:
+    post:
+      summary: Create a SCA Vulnerability
+      description: This endpoint allows you to create SCA vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body.
+      operationId: create-a-sca-vulnerability
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+          default: Token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                project:
+                  properties:
+                    id:
+                      type: string
+                      description: The unique identifier of the project.
+                  required:
+                  - id
+                  type: object
+                scan_details:
+                  properties:
+                    tool:
+                      type: string
+                      description: The name of the scanning tool used (e.g., "snyk").
+                    branch:
+                      type: string
+                      description: he branch of the project where the scan was conducted (e.g., "master").
+                    meta_data:
+                      type: string
+                      description: An unique identifier added by the user
+                    date_discovered:
+                      type: string
+                      description: The date and time when the scan was conducted. The format must be ISO 8601 format.
+                    discovered_by:
+                      type: string
+                      description: The person who conducted the scan (e.g., "john").
+                  required:
+                  - tool
+                  - branch
+                  - date_discovered
+                  - discovered_by
+                  type: object
+                vulnerabilities:
+                  properties:
+                    name:
+                      type: string
+                      description: The name of the vulnerability.
+                    cwe_id:
+                      type: integer
+                      description: The Common Weakness Enumeration (CWE) identifier for the vulnerability.
+                      format: int32
+                    cvss_v3:
+                      type: number
+                      description: The Common Vulnerability Scoring System (CVSS) v3 score for the vulnerability.
+                      format: float
+                    severity:
+                      type: integer
+                      description: The severity level of the vulnerability.
+                      format: int32
+                    description:
+                      type: string
+                      description: A description of the vulnerability.
+                    sca:
+                      properties:
+                        file_name:
+                          type: string
+                          description: The name of the file where the vulnerability was found (e.g., "hello.go").
+                        license:
+                          type: string
+                          description: The license type associated with the vulnerable component (e.g., "MIT").
+                        references:
+                          type: array
+                          description: A list of reference links for more information about the vulnerability.
+                          items:
+                            type: string
+                        packages:
+                          type: array
+                          description: A list of affected packages and their versions (e.g., "package.name:1").
+                          items:
+                            type: string
+                      required:
+                      - file_name
+                      - license
+                      - references
+                      - packages
+                      type: object
+                  required:
+                  - name
+                  - cwe_id
+                  - cvss_v3
+                  - severity
+                  - description
+                  type: object
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    event_id: '{eventID}'
+                    message: vulnerabilities have been uploaded and analyze event has been started successfully
+              schema:
+                type: object
+                properties:
+                  event_id:
+                    type: string
+                    example: '{eventID}'
+                  message:
+                    type: string
+                    example: vulnerabilities have been uploaded and analyze event has been started successfully
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: bad request error
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: bad request error
+      deprecated: false
+      tags:
+      - Vulnerabilities
+  /api/v2/vulnerabilities/{vulnerabilityID}:
+    get:
+      summary: Get Vulnerability Details
+      description: ''
+      operationId: get-vulnerability-details
+      parameters:
+      - name: vulnerabilityID
+        in: path
+        description: Vulnerability ID
+        schema:
+          type: string
+        required: true
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: Specifies the type of scan, such as "sast", "dast", "sca", "cs", "infra", etc. The "type" param is required for infra vulnerabilities.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    data:
+                      vulnerability:
+                        id: 663ca27ecb6c77d3c5fd0d3a
+                        last_seen: '0001-01-01T00:00:00Z'
+                        first_seen: '2024-05-09T10:15:48.987Z'
+                        woe: 4
+                        name: CVE-2024-28182 | libnghttp2-14:1.52.0-1+deb12u1
+                        is_fp: false
+                        is_wf: false
+                        is_mitigated: false
+                        status: new
+                        cwe:
+                          _id: '000000000000000000000000'
+                          cwe_id: 0
+                          name: unknown
+                          classification:
+                            pci_dss: {}
+                            owasp_2017: {}
+                            owasp_2021: {}
+                            nist: {}
+                            sans: {}
+                        cvss_v3: 6
+                        severity: 2
+                        path: '-'
+                        issue_status: ''
+                        committer_name: ''
+                        language: ''
+                        issue_assigned: false
+                        scanparams:
+                          id: 663ca25418c5b94e0d9afcb7
+                          tool:
+                            id: 62deba6979809254769c0891
+                            name: grype
+                            type: cs
+                          project:
+                            id: 663ca22218c5b94e0d9afcb6
+                            name: project
+                            labels: null
+                          agent:
+                            id: '000000000000000000000000'
+                          bind_name: '-'
+                          branch: master
+                          scan_type: scheduled
+                          meta_data: ''
+                          pr:
+                            ok: false
+                            target: ''
+                            pr_number: ''
+                            no_decoration: false
+                          manual: false
+                          custom:
+                            type: 1420
+                            params:
+                              image_docker_registry_path: nginx:latest
+                              image_tag: latest
+                        issue_created_date: '0001-01-01T00:00:00Z'
+                        issue_wip_date: '0001-01-01T00:00:00Z'
+                        issue_closed_date: '0001-01-01T00:00:00Z'
+                        fp_mark_date: '0001-01-01T00:00:00Z'
+                        infra_group_id: null
+                        cwe_id: 0
+                        cwe_name: unknown
+                      issue:
+                        assignees: ''
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      vulnerability:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: 663ca27ecb6c77d3c5fd0d3a
+                          last_seen:
+                            type: string
+                            example: '0001-01-01T00:00:00Z'
+                          first_seen:
+                            type: string
+                            example: '2024-05-09T10:15:48.987Z'
+                          woe:
+                            type: integer
+                            example: 4
+                            default: 0
+                          name:
+                            type: string
+                            example: CVE-2024-28182 | libnghttp2-14:1.52.0-1+deb12u1
+                          is_fp:
+                            type: boolean
+                            example: false
+                            default: true
+                          is_wf:
+                            type: boolean
+                            example: false
+                            default: true
+                          is_mitigated:
+                            type: boolean
+                            example: false
+                            default: true
+                          status:
+                            type: string
+                            example: new
+                          cwe:
+                            type: object
+                            properties:
+                              _id:
+                                type: string
+                                example: '000000000000000000000000'
+                              cwe_id:
+                                type: integer
+                                example: 0
+                                default: 0
+                              name:
+                                type: string
+                                example: unknown
+                              classification:
+                                type: object
+                                properties:
+                                  pci_dss:
+                                    type: object
+                                    properties: {}
+                                  owasp_2017:
+                                    type: object
+                                    properties: {}
+                                  owasp_2021:
+                                    type: object
+                                    properties: {}
+                                  nist:
+                                    type: object
+                                    properties: {}
+                                  sans:
+                                    type: object
+                                    properties: {}
+                          cvss_v3:
+                            type: integer
+                            example: 6
+                            default: 0
+                          severity:
+                            type: integer
+                            example: 2
+                            default: 0
+                          path:
+                            type: string
+                            example: '-'
+                          issue_status:
+                            type: string
+                            example: ''
+                          committer_name:
+                            type: string
+                            example: ''
+                          language:
+                            type: string
+                            example: ''
+                          issue_assigned:
+                            type: boolean
+                            example: false
+                            default: true
+                          scanparams:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                example: 663ca25418c5b94e0d9afcb7
+                              tool:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    example: 62deba6979809254769c0891
+                                  name:
+                                    type: string
+                                    example: grype
+                                  type:
+                                    type: string
+                                    example: cs
+                              project:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    example: 663ca22218c5b94e0d9afcb6
+                                  name:
+                                    type: string
+                                    example: project
+                                  labels: {}
+                              agent:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    example: '000000000000000000000000'
+                              bind_name:
+                                type: string
+                                example: '-'
+                              branch:
+                                type: string
+                                example: master
+                              scan_type:
+                                type: string
+                                example: scheduled
+                              meta_data:
+                                type: string
+                                example: ''
+                              pr:
+                                type: object
+                                properties:
+                                  ok:
+                                    type: boolean
+                                    example: false
+                                    default: true
+                                  target:
+                                    type: string
+                                    example: ''
+                                  pr_number:
+                                    type: string
+                                    example: ''
+                                  no_decoration:
+                                    type: boolean
+                                    example: false
+                                    default: true
+                              manual:
+                                type: boolean
+                                example: false
+                                default: true
+                              custom:
+                                type: object
+                                properties:
+                                  type:
+                                    type: integer
+                                    example: 1420
+                                    default: 0
+                                  params:
+                                    type: object
+                                    properties:
+                                      image_docker_registry_path:
+                                        type: string
+                                        example: nginx:latest
+                                      image_tag:
+                                        type: string
+                                        example: latest
+                          issue_created_date:
+                            type: string
+                            example: '0001-01-01T00:00:00Z'
+                          issue_wip_date:
+                            type: string
+                            example: '0001-01-01T00:00:00Z'
+                          issue_closed_date:
+                            type: string
+                            example: '0001-01-01T00:00:00Z'
+                          fp_mark_date:
+                            type: string
+                            example: '0001-01-01T00:00:00Z'
+                          infra_group_id: {}
+                          cwe_id:
+                            type: integer
+                            example: 0
+                            default: 0
+                          cwe_name:
+                            type: string
+                            example: unknown
+                      issue:
+                        type: object
+                        properties:
+                          assignees:
+                            type: string
+                            example: ''
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+      deprecated: false
+      tags:
+      - Vulnerabilities
+  /api/v2/vulnerabilities/{vulnerabilityID}/screenshots:
+    post:
+      summary: Upload Attachments
+      description: Upload multiple attachments to a vulnerability. Attachment should be in base64 format. Supported file formats are "pdf", "html", "jpg", "png", "avi", "txt" and "mp4".
+      operationId: upload-screenshots
+      parameters:
+      - name: vulnerabilityID
+        in: path
+        description: Vulnerability ID
+        schema:
+          type: string
+        required: true
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - screenshots
+              properties:
+                screenshots:
+                  type: array
+                  items:
+                    properties:
+                      image:
+                        type: string
+                        description: Attachment as base64
+                        default: data:image/png;base64,{base64Image}
+                      description:
+                        type: string
+                        description: Description of attachment
+                      file_detail:
+                        type: object
+                        description: Detail of file. It is not necessary for image formats.
+                        properties:
+                          name:
+                            type: string
+                            description: Name of the file.
+                          extension:
+                            type: string
+                            description: Extension type of the file. It has to begin with `.` (Exp. ".avi", ".pdf")
+                    required:
+                    - image
+                    - description
+                    type: object
+      responses:
+        '200':
+          description: '200'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: ''
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    “error”: “failed to parse base64 data for screenshot”\n}"
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+      deprecated: false
+      tags:
+      - Vulnerabilities
+  /api/v2/vulnerabilities/{vulnerabilityID}/screenshots/{attachmentID}:
+    delete:
+      summary: Delete An Attachment
+      description: Delete an attachment of a vulnerability by attachment id
+      operationId: delete-a-screenshot
+      parameters:
+      - name: vulnerabilityID
+        in: path
+        description: Vulnerability ID
+        schema:
+          type: string
+        required: true
+      - name: attachmentID
+        in: path
+        description: Attachment ID
+        schema:
+          type: string
+        required: true
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: '204'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: ''
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to delete screenshot
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to delete screenshot
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+      deprecated: false
+      tags:
+      - Vulnerabilities
+components:
+  securitySchemes:
+    apiToken:
+      type: apiKey
+      in: header
+      name: X-Cookie
+      description: Kondukto-issued API token. Generate it in the UI under Integrations > Personal Access Token (shown once). Sent on every request in the X-Cookie header.

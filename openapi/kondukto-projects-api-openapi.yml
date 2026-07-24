@@ -1,0 +1,2397 @@
+openapi: 3.1.0
+info:
+  title: Invicti ASPM (Kondukto) REST API v2 Authorization Managers Projects API
+  version: '2.0'
+  description: Public REST API v2 for the Invicti ASPM platform (formerly Kondukto), an Application Security Posture Management platform that centralizes SAST, DAST, SCA, container and pentest findings from more than eighty scanners. The API manages projects, products, teams, labels, scans and vulnerabilities, and is the same public API the open-source KDT command-line client uses. Assembled by API Evangelist from the per-operation OpenAPI 3.1 definitions Kondukto publishes on each page of its API reference.
+  contact:
+    name: Kondukto Support
+    email: support@kondukto.io
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  x-origin:
+  - format: openapi
+    version: '3.1'
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+servers:
+- url: https://{hostname}
+  description: 'Invicti ASPM deployment host. The platform is deployed per customer (self-hosted or dedicated tenant), so there is no single shared public endpoint: set this to your own instance, the same value KDT reads from INVICTI_ASPM_HOST. The provider''s own published definitions leave this variable with the literal placeholder default "hostname"; api.kondukto.io is used here as a real, provider-owned default. It resolves but answers 403 to unauthenticated requests.'
+  variables:
+    hostname:
+      default: api.kondukto.io
+      description: Hostname of your Invicti ASPM instance.
+security:
+- apiToken: []
+tags:
+- name: Projects
+paths:
+  /api/v2/projects/:
+    post:
+      summary: Create a Project
+      description: 'This endpoint lets you create a project with the given parameters. To create a project on Kondukto, you can use ALM (Application Lifecycle Management) URL or ALM ID.
+
+
+        The ALM ID or the ALM URL can be easily retrieved from the CI/CD tools.'
+      operationId: create-a-project
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              properties:
+                name:
+                  type: string
+                  description: Name of the project
+                source:
+                  properties:
+                    tool:
+                      type: string
+                      description: ALM tool name. Not required if there is only one ALM enabled on Kondukto
+                    id:
+                      type: string
+                      description: ALM ID. Kondukto can create projects using the same ID in the ALM
+                    url:
+                      type: string
+                      description: Full URL of the repository. Not required if source.id is set
+                    path_scope:
+                      properties:
+                        include_empty:
+                          type: boolean
+                          description: Enable to include SAST, SCA and IAC vulnerabilities with no path in this project.
+                        included_paths:
+                          type: string
+                          description: Specify the comma-separated paths within your mono-repo so that Kondukto can decide on the SAST, SCA and IAC vulnerabilities to include in this project.
+                        included_files:
+                          type: string
+                          description: Specify the comma-separated file names Kondukto should check for in vulnerabilities alongside paths
+                      required: []
+                      type: object
+                    clone_disabled:
+                      type: boolean
+                      description: When set as true it disables clone operations and Kondukto will not be able to retrieve certain information from the ALM tool such as code line, committer etc
+                  required: []
+                  type: object
+                team:
+                  properties:
+                    id:
+                      type: string
+                      description: Team ID of the project. Also you can use team name field instead of. Kondukto accepts either one, doesn't need both.
+                    name:
+                      type: string
+                      description: Team name of the project. Also you can use team ID field instead of. Kondukto accepts either one, doesn't need both.
+                  required: []
+                  type: object
+                default_branch:
+                  type: string
+                  description: Default branch of the project. This field will be overridden by the source's default branch if source.id or source.url is provided.
+                  default: main
+                labels:
+                  type: array
+                  description: Labels of project
+                  items:
+                    properties:
+                      id:
+                        type: string
+                        description: Label ID
+                      name:
+                        type: string
+                        description: Label name
+                    type: object
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"project created successfully\",\n    \"project\": {\n        \"id\": \"{projectID}\",\n        \"name\": \"{projectName}\"\n        \"default_branch\": \"{branch}\",\n        \"created_at\": \"{time}\",\n        \"labels\": [\n            {\n                \"id\": \"{labelID}\",\n                \"name\": \"{labelName}\"\n            }\n        ],\n        \"team\": {\n            \"id\": \"{teamID}\",\n            \"name\": \"{teamName}\",\n            \"projects_count\": 0,\n            \"members_count\": 0\n        },\n        \"summary\": {\n            \"low\": 0,\n            \"high\": 0,\n            \"medium\": 0,\n            \"critical\": 0\n        },\n        \"playbook\": \"\",\n        \"links\": {\n            \"html\": \"http://develop.kondukto.local/projects/{projectID}/details/appsec\"\n        },\n        \"project_environments\": {\n            \"feature\": {\n                \"fork_source_branch\": \"\",\n                \"retention_period\": 0,\n                \"infinite_retention\": false\n            }\n        }\n    }\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: invalid project data
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid project data
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: forbidden operation
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: forbidden operation
+      deprecated: false
+      tags:
+      - Projects
+    get:
+      summary: Get Project List
+      description: This endpoint returns project list in a paginated format.
+      operationId: get-project-list
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+          default: Token
+      - name: limit
+        in: query
+        description: How many records will return
+        schema:
+          type: integer
+          format: int32
+          default: 30
+      - name: start
+        in: query
+        description: Offset for pagination
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: name
+        in: query
+        description: Project name
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: Labels to filter
+        schema:
+          type: string
+      - name: playbook
+        in: query
+        description: Playbook stands for security criteria pass/fail information
+        schema:
+          type: string
+          default: success
+      - name: team
+        in: query
+        description: Team name to filter
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    limit: 1
+                    start: 0
+                    total: 190
+                    projects:
+                    - id: '{projectID}'
+                      name: '{projectName}'
+                      default_branch: '{branch'
+                      created_at: '{time}'
+                      labels:
+                      - id: '{labelID]'
+                        name: '{labelName}'
+                      team:
+                        id: '{teamID}'
+                        name: '{teamName}'
+                        projects_count: 0
+                        members_count: 0
+                      playbook: ''
+                      links:
+                        html: http://develop.kondukto.local/projects/{projectID}/details/appsec
+                      project_environments:
+                        feature:
+                          fork_source_branch: ''
+                          retention_period: 0
+                          infinite_retention: false
+              schema:
+                type: object
+                properties:
+                  limit:
+                    type: integer
+                    example: 1
+                    default: 0
+                  start:
+                    type: integer
+                    example: 0
+                    default: 0
+                  total:
+                    type: integer
+                    example: 190
+                    default: 0
+                  projects:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: '{projectID}'
+                        name:
+                          type: string
+                          example: '{projectName}'
+                        default_branch:
+                          type: string
+                          example: '{branch'
+                        created_at:
+                          type: string
+                          example: '{time}'
+                        labels:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                example: '{labelID]'
+                              name:
+                                type: string
+                                example: '{labelName}'
+                        team:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: '{teamID}'
+                            name:
+                              type: string
+                              example: '{teamName}'
+                            projects_count:
+                              type: integer
+                              example: 0
+                              default: 0
+                            members_count:
+                              type: integer
+                              example: 0
+                              default: 0
+                        playbook:
+                          type: string
+                          example: ''
+                        links:
+                          type: object
+                          properties:
+                            html:
+                              type: string
+                              example: http://develop.kondukto.local/projects/{projectID}/details/appsec
+                        project_environments:
+                          type: object
+                          properties:
+                            feature:
+                              type: object
+                              properties:
+                                fork_source_branch:
+                                  type: string
+                                  example: ''
+                                retention_period:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                                infinite_retention:
+                                  type: boolean
+                                  example: false
+                                  default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to get projects
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to get projects
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: forbidden operation
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: forbidden operation
+      deprecated: false
+      tags:
+      - Projects
+  /api/v2/projects/check/{alm}/{repositoryID}:
+    get:
+      summary: Check if ALM Project exists on Kondukto
+      description: This endpoint checks if an ALM project has been created on Kondukto
+      operationId: check-alm-if-it-exists
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+          default: Token
+      - name: '{alm}'
+        in: path
+        description: 'ALM name. Supported: azurecloud, azureserver, github, gitlabcloud, gitlabonprem, bitbucket, bitbucketserver, githubenterprise'
+        schema:
+          type: string
+        required: true
+      - name: '{repositoryID}'
+        in: path
+        description: Repository ID of ALM project
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    exist: true
+              schema:
+                type: object
+                properties:
+                  exist:
+                    type: boolean
+                    example: true
+                    default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: invalid ALM tool
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid ALM tool
+      deprecated: false
+      tags:
+      - Projects
+  /api/v2/projects/{projectID}:
+    patch:
+      summary: Update a Project
+      description: This endpoint lets you update a project with the given parameters.
+      operationId: update-a-project
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+          default: Token
+      - name: '{projectID}'
+        in: path
+        description: ID of the Project
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              properties:
+                name:
+                  type: string
+                  description: Name of the project, keep it blank if you didn't want to update
+                team:
+                  properties:
+                    id:
+                      type: string
+                      description: Team ID of the project. Also you can use team name field instead of. Kondukto accepts either one, doesn't need both.
+                    name:
+                      type: string
+                      description: Team name of the project. Also you can use team ID field instead of. Kondukto accepts either one, doesn't need both.
+                  required:
+                  - id
+                  - name
+                  type: object
+                fork_source_branch:
+                  type: string
+                  description: Fork source branch
+                feature_branch_retention:
+                  type: string
+                  description: Feature branch retention as days
+                feature_branch_no_retention:
+                  type: boolean
+                  description: Set true if you wan't disable retention
+                labels:
+                  type: array
+                  description: Labels of project
+                  items:
+                    properties:
+                      id:
+                        type: string
+                        description: Label ID
+                      name:
+                        type: string
+                        description: Label name
+                    type: object
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: project updated successfully
+                    project:
+                      id: '{projectID}'
+                      name: '{projectName}'
+                      default_branch: '{branch}'
+                      created_at: '{time}'
+                      labels:
+                      - id: '{labelID}'
+                        name: '{labelName}'
+                      - id: '{labelID}'
+                        name: '{labelName}'
+                      - id: '{labelID}'
+                        name: '{labelName}'
+                      score: 86
+                      team:
+                        id: '{teamID}'
+                        name: '{teamName}'
+                        projects_count: 0
+                        members_count: 0
+                      summary:
+                        low: 12
+                        high: 6
+                        medium: 2
+                        critical: 0
+                      last:
+                        _id: '{scanID}'
+                        manual: false
+                        branch: '{branch}'
+                        findings:
+                          low: 12
+                          high: 0
+                          medium: 0
+                          critical: 0
+                        scan_score: 24
+                        scan_tool: '{toolName}'
+                        scan_date: '{time}'
+                      playbook: undefined
+                      links:
+                        html: http://develop.kondukto.local/projects/{projectID}/details/appsec
+                      project_environments:
+                        feature:
+                          fork_source_branch: feature
+                          retention_period: 30
+                          infinite_retention: false
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: project updated successfully
+                  project:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: '{projectID}'
+                      name:
+                        type: string
+                        example: '{projectName}'
+                      default_branch:
+                        type: string
+                        example: '{branch}'
+                      created_at:
+                        type: string
+                        example: '{time}'
+                      labels:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: '{labelID}'
+                            name:
+                              type: string
+                              example: '{labelName}'
+                      score:
+                        type: integer
+                        example: 86
+                        default: 0
+                      team:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: '{teamID}'
+                          name:
+                            type: string
+                            example: '{teamName}'
+                          projects_count:
+                            type: integer
+                            example: 0
+                            default: 0
+                          members_count:
+                            type: integer
+                            example: 0
+                            default: 0
+                      summary:
+                        type: object
+                        properties:
+                          low:
+                            type: integer
+                            example: 12
+                            default: 0
+                          high:
+                            type: integer
+                            example: 6
+                            default: 0
+                          medium:
+                            type: integer
+                            example: 2
+                            default: 0
+                          critical:
+                            type: integer
+                            example: 0
+                            default: 0
+                      last:
+                        type: object
+                        properties:
+                          _id:
+                            type: string
+                            example: '{scanID}'
+                          manual:
+                            type: boolean
+                            example: false
+                            default: true
+                          branch:
+                            type: string
+                            example: '{branch}'
+                          findings:
+                            type: object
+                            properties:
+                              low:
+                                type: integer
+                                example: 12
+                                default: 0
+                              high:
+                                type: integer
+                                example: 0
+                                default: 0
+                              medium:
+                                type: integer
+                                example: 0
+                                default: 0
+                              critical:
+                                type: integer
+                                example: 0
+                                default: 0
+                          scan_score:
+                            type: integer
+                            example: 24
+                            default: 0
+                          scan_tool:
+                            type: string
+                            example: '{toolName}'
+                          scan_date:
+                            type: string
+                            example: '{time}'
+                      playbook:
+                        type: string
+                        example: undefined
+                      links:
+                        type: object
+                        properties:
+                          html:
+                            type: string
+                            example: http://develop.kondukto.local/projects/{projectID}/details/appsec
+                      project_environments:
+                        type: object
+                        properties:
+                          feature:
+                            type: object
+                            properties:
+                              fork_source_branch:
+                                type: string
+                                example: feature
+                              retention_period:
+                                type: integer
+                                example: 30
+                                default: 0
+                              infinite_retention:
+                                type: boolean
+                                example: false
+                                default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: invalid project data
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid project data
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: forbidden operation
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: forbidden operation
+      deprecated: false
+      tags:
+      - Projects
+    get:
+      summary: Get Project Detail
+      description: This endpoint returns details of a specific project.
+      operationId: get-project-detail
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+          default: Token
+      - name: projectID
+        in: path
+        description: The ID of the project to retrieve details
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: '{projectID}'
+                    name: '{projectName}'
+                    default_branch: '{branch}'
+                    created_at: '{time}'
+                    score: 100
+                    team:
+                      id: '{teamID}'
+                      name: '{teamName}'
+                      projects_count: 0
+                      members_count: 0
+                    summary:
+                      low: 0
+                      high: 1
+                      medium: 5
+                      critical: 10
+                    last:
+                      _id: '{scanID}'
+                      manual: false
+                      branch: '{branch}'
+                      findings:
+                        low: 0
+                        high: 1
+                        medium: 5
+                        critical: 10
+                      scan_score: 100
+                      scan_tool: '{toolName}'
+                      scan_date: '{time}'
+                    playbook: ''
+                    links:
+                      html: http://develop.kondukto.local/projects/{projectID}/details/appsec
+                    project_environments:
+                      feature:
+                        fork_source_branch: ''
+                        retention_period: 0
+                        infinite_retention: false
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: '{projectID}'
+                  name:
+                    type: string
+                    example: '{projectName}'
+                  default_branch:
+                    type: string
+                    example: '{branch}'
+                  created_at:
+                    type: string
+                    example: '{time}'
+                  score:
+                    type: integer
+                    example: 100
+                    default: 0
+                  team:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: '{teamID}'
+                      name:
+                        type: string
+                        example: '{teamName}'
+                      projects_count:
+                        type: integer
+                        example: 0
+                        default: 0
+                      members_count:
+                        type: integer
+                        example: 0
+                        default: 0
+                  summary:
+                    type: object
+                    properties:
+                      low:
+                        type: integer
+                        example: 0
+                        default: 0
+                      high:
+                        type: integer
+                        example: 1
+                        default: 0
+                      medium:
+                        type: integer
+                        example: 5
+                        default: 0
+                      critical:
+                        type: integer
+                        example: 10
+                        default: 0
+                  last:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: '{scanID}'
+                      manual:
+                        type: boolean
+                        example: false
+                        default: true
+                      branch:
+                        type: string
+                        example: '{branch}'
+                      findings:
+                        type: object
+                        properties:
+                          low:
+                            type: integer
+                            example: 0
+                            default: 0
+                          high:
+                            type: integer
+                            example: 1
+                            default: 0
+                          medium:
+                            type: integer
+                            example: 5
+                            default: 0
+                          critical:
+                            type: integer
+                            example: 10
+                            default: 0
+                      scan_score:
+                        type: integer
+                        example: 100
+                        default: 0
+                      scan_tool:
+                        type: string
+                        example: '{toolName}'
+                      scan_date:
+                        type: string
+                        example: '{time}'
+                  playbook:
+                    type: string
+                    example: ''
+                  links:
+                    type: object
+                    properties:
+                      html:
+                        type: string
+                        example: http://develop.kondukto.local/projects/{projectID}/details/appsec
+                  project_environments:
+                    type: object
+                    properties:
+                      feature:
+                        type: object
+                        properties:
+                          fork_source_branch:
+                            type: string
+                            example: ''
+                          retention_period:
+                            type: integer
+                            example: 0
+                            default: 0
+                          infinite_retention:
+                            type: boolean
+                            example: false
+                            default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to get projects
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to get projects
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: forbidden operation
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: forbidden operation
+      deprecated: false
+      tags:
+      - Projects
+  /api/v2/projects/{projectID}/release:
+    get:
+      summary: Project Security Criteria Status
+      description: This endpoint retrieves security creteria of the specific project.
+      operationId: project-security-criteria-status
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+          default: Token
+      - name: '{projectID}'
+        in: path
+        description: The ID of the project to retrieve scan criteria
+        schema:
+          type: string
+        required: true
+      - name: branch
+        in: query
+        description: The branch of the project to retrieve security criteria status. When not provided, the security criteria status of the project default branch will be returned.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    progress_status: ready
+                    status: fail
+                    sast:
+                      status: success
+                    dast:
+                      status: success
+                    pentest:
+                      status: success
+                    iast:
+                      status: success
+                    sca:
+                      status: success
+                    cs:
+                      status: fail
+                    iac:
+                      status: success
+                    mast:
+                      status: ''
+                    sbom:
+                      status: undefined
+              schema:
+                type: object
+                properties:
+                  progress_status:
+                    type: string
+                    example: ready
+                  status:
+                    type: string
+                    example: fail
+                  sast:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: success
+                  dast:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: success
+                  pentest:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: success
+                  iast:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: success
+                  sca:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: success
+                  cs:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: fail
+                  iac:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: success
+                  mast:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: ''
+                  sbom:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: undefined
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to get projects
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to get projects
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: forbidden operation
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: forbidden operation
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to processing release criteria
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to processing release criteria
+      deprecated: false
+      tags:
+      - Projects
+  /api/v2/projects/{projectID}/scanparams:
+    post:
+      summary: Create Project Scan Configuration
+      description: This endpoint creates a scan parameter to project.
+      operationId: create-project-scan-configuration
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+          default: Token
+      - name: '{projectID}'
+        in: path
+        description: ID of the project
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                branch:
+                  type: string
+                  description: Branch of scanparam
+                meta_data:
+                  type: string
+                  description: Meta data of scan param
+                tool:
+                  properties:
+                    id:
+                      type: string
+                      description: Scanner tool ID. You can get Tool ID from "Get Active Scanners"
+                  required: []
+                  type: object
+                custom:
+                  properties:
+                    type:
+                      type: integer
+                      description: Scanner tool custom type. You can get custom type from "Get Active Scanners"
+                      format: int32
+                    params:
+                      type: string
+                      description: Scanner tool custom params. You can get custom params from "Get Active Scanners"
+                      format: json
+                  required: []
+                  type: object
+                fork_scan:
+                  type: boolean
+                  description: Make scanparam a fork scan
+                fork_source_branch:
+                  type: string
+                  description: Provide source branch if it's a fork scan
+                environment:
+                  type: string
+                  description: Scan environment
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    scanparams:
+                      id: '{scanparamID}'
+                      tool:
+                        id: '{toolID}'
+                        name: '{toolName}'
+                        type: '{toolType}'
+                      project:
+                        id: '{projectID}'
+                        name: '{projectName}'
+                        labels:
+                        - id: '{labelID}'
+                          name: '{labelName}'
+                          color: f79102
+                          internal: true
+                          isActive: 1
+                          is_used_sc: false
+                          is_used_ic: false
+                          is_used_sla: false
+                          is_used_hv: false
+                          organization:
+                            id: '{organizationID}'
+                          risk_value: 40
+                          is_constant_risk_profile_label: false
+                      agent:
+                        id: '{agentID}'
+                      bind_name: '-'
+                      branch: '{branch}'
+                      scan_type: kdt
+                      meta_data: '{metadata}'
+                      pr:
+                        ok: false
+                        target: ''
+                        pr_number: ''
+                        no_decoration: false
+                      manual: false
+                      custom:
+                        type: 1420
+                        params:
+                          param1: value1
+                          param2: value2
+              schema:
+                type: object
+                properties:
+                  scanparams:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: '{scanparamID}'
+                      tool:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: '{toolID}'
+                          name:
+                            type: string
+                            example: '{toolName}'
+                          type:
+                            type: string
+                            example: '{toolType}'
+                      project:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: '{projectID}'
+                          name:
+                            type: string
+                            example: '{projectName}'
+                          labels:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                  example: '{labelID}'
+                                name:
+                                  type: string
+                                  example: '{labelName}'
+                                color:
+                                  type: string
+                                  example: f79102
+                                internal:
+                                  type: boolean
+                                  example: true
+                                  default: true
+                                isActive:
+                                  type: integer
+                                  example: 1
+                                  default: 0
+                                is_used_sc:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                                is_used_ic:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                                is_used_sla:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                                is_used_hv:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                                organization:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      example: '{organizationID}'
+                                risk_value:
+                                  type: integer
+                                  example: 40
+                                  default: 0
+                                is_constant_risk_profile_label:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                      agent:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: '{agentID}'
+                      bind_name:
+                        type: string
+                        example: '-'
+                      branch:
+                        type: string
+                        example: '{branch}'
+                      scan_type:
+                        type: string
+                        example: kdt
+                      meta_data:
+                        type: string
+                        example: '{metadata}'
+                      pr:
+                        type: object
+                        properties:
+                          ok:
+                            type: boolean
+                            example: false
+                            default: true
+                          target:
+                            type: string
+                            example: ''
+                          pr_number:
+                            type: string
+                            example: ''
+                          no_decoration:
+                            type: boolean
+                            example: false
+                            default: true
+                      manual:
+                        type: boolean
+                        example: false
+                        default: true
+                      custom:
+                        type: object
+                        properties:
+                          type:
+                            type: integer
+                            example: 1420
+                            default: 0
+                          params:
+                            type: object
+                            properties:
+                              param1:
+                                type: string
+                                example: value1
+                              param2:
+                                type: string
+                                example: value2
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to create scanparams
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to create scanparams
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+      deprecated: false
+      tags:
+      - Projects
+    get:
+      summary: Get Project Scan Configuration
+      description: This endpoint retrieves security creteria of the specific project.
+      operationId: get-project-scan-configuration
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+          default: Token
+      - name: '{projectID}'
+        in: path
+        description: ID of the project
+        schema:
+          type: string
+        required: true
+      - name: start
+        in: query
+        description: Start of the pagination
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: limit
+        in: query
+        description: Limit of the pagination
+        schema:
+          type: integer
+          format: int32
+          default: 30
+      - name: manual
+        in: query
+        schema:
+          type: boolean
+      - name: meta_data
+        in: query
+        schema:
+          type: string
+      - name: tool_id
+        in: query
+        description: Tool ID of scan param
+        schema:
+          type: string
+      - name: branch
+        in: query
+        description: Branch of the scan
+        schema:
+          type: string
+      - name: fork_scan
+        in: query
+        description: Check scan param is a fork scan. Compares with project's main branch. If you compare with another branch, you must specify branch with `fork_source_branch` query parameter
+        schema:
+          type: boolean
+      - name: target
+        in: query
+        description: Target ALM of the scan param. You must to set `pr` query parameter as true.
+        schema:
+          type: string
+      - name: agent
+        in: query
+        description: Agent of the scan param
+        schema:
+          type: string
+      - name: pr
+        in: query
+        description: Check scan param is a PR
+        schema:
+          type: string
+      - name: environment
+        in: query
+        description: 'Environment of scan param. Accepts: production, feature, staging, development'
+        schema:
+          type: string
+      - name: fork_source_branch
+        in: query
+        description: Custom branch name for `fork_scan` query parameter
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    limit: 1
+                    start: 0
+                    total: 14
+                    scanparams:
+                    - id: '{scanParamID}'
+                      tool:
+                        id: '{toolID}'
+                        name: '{toolName}'
+                        type: '{toolType}'
+                      project:
+                        id: '{projectID}'
+                        name: '{projectName}'
+                        labels: null
+                      agent:
+                        id: '{agentID}'
+                      bind_name: '-'
+                      branch: '{branch}'
+                      scan_type: ''
+                      meta_data: ''
+                      pr:
+                        ok: false
+                        target: ''
+                        pr_number: ''
+                        no_decoration: false
+                      manual: false
+                      custom:
+                        type: 1120
+                        params: {}
+              schema:
+                type: object
+                properties:
+                  limit:
+                    type: integer
+                    example: 1
+                    default: 0
+                  start:
+                    type: integer
+                    example: 0
+                    default: 0
+                  total:
+                    type: integer
+                    example: 14
+                    default: 0
+                  scanparams:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: '{scanParamID}'
+                        tool:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: '{toolID}'
+                            name:
+                              type: string
+                              example: '{toolName}'
+                            type:
+                              type: string
+                              example: '{toolType}'
+                        project:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: '{projectID}'
+                            name:
+                              type: string
+                              example: '{projectName}'
+                            labels: {}
+                        agent:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: '{agentID}'
+                        bind_name:
+                          type: string
+                          example: '-'
+                        branch:
+                          type: string
+                          example: '{branch}'
+                        scan_type:
+                          type: string
+                          example: ''
+                        meta_data:
+                          type: string
+                          example: ''
+                        pr:
+                          type: object
+                          properties:
+                            ok:
+                              type: boolean
+                              example: false
+                              default: true
+                            target:
+                              type: string
+                              example: ''
+                            pr_number:
+                              type: string
+                              example: ''
+                            no_decoration:
+                              type: boolean
+                              example: false
+                              default: true
+                        manual:
+                          type: boolean
+                          example: false
+                          default: true
+                        custom:
+                          type: object
+                          properties:
+                            type:
+                              type: integer
+                              example: 1120
+                              default: 0
+                            params:
+                              type: object
+                              properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to get projects
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to get projects
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: forbidden operation
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: forbidden operation
+      deprecated: false
+      tags:
+      - Projects
+  /api/v2/projects/{projectID}/scans:
+    get:
+      summary: Get Project Scans
+      description: This endpoint retrieves scans of the given project.
+      operationId: get-project-scans
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      - name: '{projectID}'
+        in: path
+        description: The ID of the project to retrieve details
+        schema:
+          type: string
+        required: true
+      - name: limit
+        in: query
+        description: How many records will return
+        schema:
+          type: integer
+          format: int32
+          default: 30
+      - name: start
+        in: query
+        description: Offset for pagination
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: tool
+        in: query
+        description: Tool name for exact match
+        schema:
+          type: string
+      - name: branch
+        in: query
+        description: Branch of the application
+        schema:
+          type: string
+      - name: manual
+        in: query
+        description: If this scan imported manually or not
+        schema:
+          type: string
+      - name: fork_scan
+        in: query
+        description: Get only forked scans
+        schema:
+          type: boolean
+          default: false
+      - name: meta_data
+        in: query
+        description: Meta name for scan -- can be used to distinguish different presets
+        schema:
+          type: string
+      - name: target
+        in: query
+        description: Target ALM
+        schema:
+          type: string
+      - name: agent_id
+        in: query
+        description: Agent ID of scan
+        schema:
+          type: string
+      - name: pr
+        in: query
+        description: Check if scan have PR
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    limit: 1
+                    start: 0
+                    total: 5
+                    scans:
+                    - id: '{scanID}'
+                      name: '{scanName}'
+                      branch: '{branch}'
+                      scan_type: '{scanType}'
+                      meta_data: ''
+                      tool: '{toolName}'
+                      scanner_type: ''
+                      date: '{time}'
+                      project: '{projectName}'
+                      score: 100
+                      summary:
+                        low: 10
+                        high: 5
+                        medium: 1
+                        critical: 0
+                      links:
+                        html: http://develop.kondukto.local/vulnerabilities/scan/{projectID}/appsec
+              schema:
+                type: object
+                properties:
+                  limit:
+                    type: integer
+                    example: 1
+                    default: 0
+                  start:
+                    type: integer
+                    example: 0
+                    default: 0
+                  total:
+                    type: integer
+                    example: 5
+                    default: 0
+                  scans:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: '{scanID}'
+                        name:
+                          type: string
+                          example: '{scanName}'
+                        branch:
+                          type: string
+                          example: '{branch}'
+                        scan_type:
+                          type: string
+                          example: '{scanType}'
+                        meta_data:
+                          type: string
+                          example: ''
+                        tool:
+                          type: string
+                          example: '{toolName}'
+                        scanner_type:
+                          type: string
+                          example: ''
+                        date:
+                          type: string
+                          example: '{time}'
+                        project:
+                          type: string
+                          example: '{projectName}'
+                        score:
+                          type: integer
+                          example: 100
+                          default: 0
+                        summary:
+                          type: object
+                          properties:
+                            low:
+                              type: integer
+                              example: 10
+                              default: 0
+                            high:
+                              type: integer
+                              example: 5
+                              default: 0
+                            medium:
+                              type: integer
+                              example: 1
+                              default: 0
+                            critical:
+                              type: integer
+                              example: 0
+                              default: 0
+                        links:
+                          type: object
+                          properties:
+                            html:
+                              type: string
+                              example: http://develop.kondukto.local/vulnerabilities/scan/{projectID}/appsec
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to get projects
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to get projects
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: forbidden operation
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: forbidden operation
+      deprecated: false
+      tags:
+      - Projects
+  /api/v2/projects/{projectID}/vulnerabilities:
+    get:
+      summary: Get Project Vulnerabilities
+      description: This endpoint retrieves vulnerabilities of the specific project.
+      operationId: get-project-vulnerabilities
+      parameters:
+      - name: '{projectID}'
+        in: path
+        description: The ID of the project to retrieve scan criteria
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: query
+        description: ID of vulnerability
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: How many records will return
+        schema:
+          type: integer
+          format: int32
+          default: 30
+      - name: start
+        in: query
+        description: Offset for pagination
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: fp
+        in: query
+        description: False/positive
+        schema:
+          type: string
+      - name: tp
+        in: query
+        description: True/Positive
+        schema:
+          type: boolean
+      - name: woe
+        in: query
+        description: Window of Exposure (WOE) -- how many days this vulnerability exsis on the system
+        schema:
+          type: string
+      - name: branch
+        in: query
+        description: Branch of the application
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: Type of the scan. (dast, sast, sca, cs)
+        schema:
+          type: string
+      - name: cvss
+        in: query
+        description: CVSS v3 score
+        schema:
+          type: string
+      - name: path
+        in: query
+        description: Path or target URL of the vulnerability
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: Vulnerability status
+        schema:
+          type: string
+      - name: cwe_name
+        in: query
+        description: CWE name for exact match
+        schema:
+          type: string
+      - name: cwe_no
+        in: query
+        description: CWE Number
+        schema:
+          type: string
+      - name: committers
+        in: query
+        description: Committer of the vulnerability.
+        schema:
+          type: string
+      - name: severity
+        in: query
+        description: 'Severity level of the vulnerability in number. [Critical: 4, High: 3, Medium: 2, Low: 1]'
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      - name: tool_name
+        in: query
+        description: Scanner tool name
+        schema:
+          type: string
+      - name: vuln_name
+        in: query
+        description: Name of the vulnerability
+        schema:
+          type: string
+      - name: issue_status
+        in: query
+        description: 'Issue status. Accepts: open, closed, undefined'
+        schema:
+          type: string
+      - name: from
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    limit: 1
+                    start: 0
+                    total: 275
+                    vulnerabilities:
+                    - id: '{vulnerabilityID}'
+                      last_seen: '{time}'
+                      first_seen: '{time}'
+                      woe: 102
+                      name: '{vulnerabilityName}'
+                      is_fp: false
+                      is_wf: false
+                      is_mitigated: false
+                      status: recurrent
+                      cwe:
+                        _id: '{cweID}'
+                        cwe_id: 0
+                        name: unknown
+                        classification:
+                          pci_dss: {}
+                          owasp_2017: {}
+                          owasp_2021: {}
+                          nist: {}
+                          sans: {}
+                      cvss_v3: 8
+                      severity: 3
+                      path: '-'
+                      issue_status: ''
+                      committer_name: ''
+                      language: ''
+                      issue_assigned: false
+                      scanparams:
+                        id: '{scanParamID}'
+                        tool:
+                          id: '{toolID}'
+                          name: '{toolName}'
+                          type: '{toolType}'
+                        project:
+                          id: '{projectID}'
+                          name: '{projectName}'
+                          labels:
+                          - id: '{labelID}'
+                            name: '{labelName}'
+                            color: ffffff
+                            internal: true
+                            isActive: 1
+                            is_used_sc: false
+                            is_used_ic: false
+                            is_used_sla: false
+                            is_used_hv: false
+                            organization:
+                              id: '{organizationID}'
+                            risk_value: 0
+                            is_constant_risk_profile_label: true
+                        agent:
+                          id: '{agentID}'
+                        bind_name: '-'
+                        branch: main
+                        scan_type: scheduled
+                        meta_data: ''
+                        pr:
+                          ok: false
+                          target: ''
+                          pr_number: ''
+                          no_decoration: false
+                        manual: false
+                        custom:
+                          type: 1175
+                          params: {}
+                      issue_created_date: '{time}'
+                      issue_wip_date: '{time}'
+                      issue_closed_date: '{time}'
+                      fp_mark_date: '{time}'
+                      infra_group_id: null
+                      cwe_id: 0
+                      cwe_name: unknown
+              schema:
+                type: object
+                properties:
+                  limit:
+                    type: integer
+                    example: 1
+                    default: 0
+                  start:
+                    type: integer
+                    example: 0
+                    default: 0
+                  total:
+                    type: integer
+                    example: 275
+                    default: 0
+                  vulnerabilities:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: '{vulnerabilityID}'
+                        last_seen:
+                          type: string
+                          example: '{time}'
+                        first_seen:
+                          type: string
+                          example: '{time}'
+                        woe:
+                          type: integer
+                          example: 102
+                          default: 0
+                        name:
+                          type: string
+                          example: '{vulnerabilityName}'
+                        is_fp:
+                          type: boolean
+                          example: false
+                          default: true
+                        is_wf:
+                          type: boolean
+                          example: false
+                          default: true
+                        is_mitigated:
+                          type: boolean
+                          example: false
+                          default: true
+                        status:
+                          type: string
+                          example: recurrent
+                        cwe:
+                          type: object
+                          properties:
+                            _id:
+                              type: string
+                              example: '{cweID}'
+                            cwe_id:
+                              type: integer
+                              example: 0
+                              default: 0
+                            name:
+                              type: string
+                              example: unknown
+                            classification:
+                              type: object
+                              properties:
+                                pci_dss:
+                                  type: object
+                                  properties: {}
+                                owasp_2017:
+                                  type: object
+                                  properties: {}
+                                owasp_2021:
+                                  type: object
+                                  properties: {}
+                                nist:
+                                  type: object
+                                  properties: {}
+                                sans:
+                                  type: object
+                                  properties: {}
+                        cvss_v3:
+                          type: integer
+                          example: 8
+                          default: 0
+                        severity:
+                          type: integer
+                          example: 3
+                          default: 0
+                        path:
+                          type: string
+                          example: '-'
+                        issue_status:
+                          type: string
+                          example: ''
+                        committer_name:
+                          type: string
+                          example: ''
+                        language:
+                          type: string
+                          example: ''
+                        issue_assigned:
+                          type: boolean
+                          example: false
+                          default: true
+                        scanparams:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: '{scanParamID}'
+                            tool:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                  example: '{toolID}'
+                                name:
+                                  type: string
+                                  example: '{toolName}'
+                                type:
+                                  type: string
+                                  example: '{toolType}'
+                            project:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                  example: '{projectID}'
+                                name:
+                                  type: string
+                                  example: '{projectName}'
+                                labels:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        example: '{labelID}'
+                                      name:
+                                        type: string
+                                        example: '{labelName}'
+                                      color:
+                                        type: string
+                                        example: ffffff
+                                      internal:
+                                        type: boolean
+                                        example: true
+                                        default: true
+                                      isActive:
+                                        type: integer
+                                        example: 1
+                                        default: 0
+                                      is_used_sc:
+                                        type: boolean
+                                        example: false
+                                        default: true
+                                      is_used_ic:
+                                        type: boolean
+                                        example: false
+                                        default: true
+                                      is_used_sla:
+                                        type: boolean
+                                        example: false
+                                        default: true
+                                      is_used_hv:
+                                        type: boolean
+                                        example: false
+                                        default: true
+                                      organization:
+                                        type: object
+                                        properties:
+                                          id:
+                                            type: string
+                                            example: '{organizationID}'
+                                      risk_value:
+                                        type: integer
+                                        example: 0
+                                        default: 0
+                                      is_constant_risk_profile_label:
+                                        type: boolean
+                                        example: true
+                                        default: true
+                            agent:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                  example: '{agentID}'
+                            bind_name:
+                              type: string
+                              example: '-'
+                            branch:
+                              type: string
+                              example: main
+                            scan_type:
+                              type: string
+                              example: scheduled
+                            meta_data:
+                              type: string
+                              example: ''
+                            pr:
+                              type: object
+                              properties:
+                                ok:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                                target:
+                                  type: string
+                                  example: ''
+                                pr_number:
+                                  type: string
+                                  example: ''
+                                no_decoration:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                            manual:
+                              type: boolean
+                              example: false
+                              default: true
+                            custom:
+                              type: object
+                              properties:
+                                type:
+                                  type: integer
+                                  example: 1175
+                                  default: 0
+                                params:
+                                  type: object
+                                  properties: {}
+                        issue_created_date:
+                          type: string
+                          example: '{time}'
+                        issue_wip_date:
+                          type: string
+                          example: '{time}'
+                        issue_closed_date:
+                          type: string
+                          example: '{time}'
+                        fp_mark_date:
+                          type: string
+                          example: '{time}'
+                        infra_group_id: {}
+                        cwe_id:
+                          type: integer
+                          example: 0
+                          default: 0
+                        cwe_name:
+                          type: string
+                          example: unknown
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to get projects
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to get projects
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: forbidden operation
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: forbidden operation
+      deprecated: false
+      tags:
+      - Projects
+components:
+  securitySchemes:
+    apiToken:
+      type: apiKey
+      in: header
+      name: X-Cookie
+      description: Kondukto-issued API token. Generate it in the UI under Integrations > Personal Access Token (shown once). Sent on every request in the X-Cookie header.

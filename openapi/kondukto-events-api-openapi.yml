@@ -1,0 +1,126 @@
+openapi: 3.1.0
+info:
+  title: Invicti ASPM (Kondukto) REST API v2 Authorization Managers Events API
+  version: '2.0'
+  description: Public REST API v2 for the Invicti ASPM platform (formerly Kondukto), an Application Security Posture Management platform that centralizes SAST, DAST, SCA, container and pentest findings from more than eighty scanners. The API manages projects, products, teams, labels, scans and vulnerabilities, and is the same public API the open-source KDT command-line client uses. Assembled by API Evangelist from the per-operation OpenAPI 3.1 definitions Kondukto publishes on each page of its API reference.
+  contact:
+    name: Kondukto Support
+    email: support@kondukto.io
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  x-origin:
+  - format: openapi
+    version: '3.1'
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+servers:
+- url: https://{hostname}
+  description: 'Invicti ASPM deployment host. The platform is deployed per customer (self-hosted or dedicated tenant), so there is no single shared public endpoint: set this to your own instance, the same value KDT reads from INVICTI_ASPM_HOST. The provider''s own published definitions leave this variable with the literal placeholder default "hostname"; api.kondukto.io is used here as a real, provider-owned default. It resolves but answers 403 to unauthenticated requests.'
+  variables:
+    hostname:
+      default: api.kondukto.io
+      description: Hostname of your Invicti ASPM instance.
+security:
+- apiToken: []
+tags:
+- name: Events
+paths:
+  /api/v2/events/{eventID}/status:
+    get:
+      summary: Get Event Status
+      description: Returns status of an event
+      operationId: get-event-status
+      parameters:
+      - name: eventID
+        in: path
+        description: Event ID
+        schema:
+          type: string
+        required: true
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    active: 0
+                    id: '{eventID}'
+                    links:
+                      html: '{eventLink}'
+                    message: ''
+                    scan_id: '{scanID}'
+                    status: 6
+                    status_text: '{statusText}'
+              schema:
+                type: object
+                properties:
+                  active:
+                    type: integer
+                    example: 0
+                    default: 0
+                  id:
+                    type: string
+                    example: '{eventID}'
+                  links:
+                    type: object
+                    properties:
+                      html:
+                        type: string
+                        example: '{eventLink}'
+                  message:
+                    type: string
+                    example: ''
+                  scan_id:
+                    type: string
+                    example: '{scanID}'
+                  status:
+                    type: integer
+                    example: 6
+                    default: 0
+                  status_text:
+                    type: string
+                    example: '{statusText}'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to get events
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to get events
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+      deprecated: false
+      tags:
+      - Events
+components:
+  securitySchemes:
+    apiToken:
+      type: apiKey
+      in: header
+      name: X-Cookie
+      description: Kondukto-issued API token. Generate it in the UI under Integrations > Personal Access Token (shown once). Sent on every request in the X-Cookie header.

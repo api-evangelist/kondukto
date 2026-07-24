@@ -1,0 +1,859 @@
+openapi: 3.1.0
+info:
+  title: Invicti ASPM (Kondukto) REST API v2 Authorization Managers Scans API
+  version: '2.0'
+  description: Public REST API v2 for the Invicti ASPM platform (formerly Kondukto), an Application Security Posture Management platform that centralizes SAST, DAST, SCA, container and pentest findings from more than eighty scanners. The API manages projects, products, teams, labels, scans and vulnerabilities, and is the same public API the open-source KDT command-line client uses. Assembled by API Evangelist from the per-operation OpenAPI 3.1 definitions Kondukto publishes on each page of its API reference.
+  contact:
+    name: Kondukto Support
+    email: support@kondukto.io
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  x-origin:
+  - format: openapi
+    version: '3.1'
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+servers:
+- url: https://{hostname}
+  description: 'Invicti ASPM deployment host. The platform is deployed per customer (self-hosted or dedicated tenant), so there is no single shared public endpoint: set this to your own instance, the same value KDT reads from INVICTI_ASPM_HOST. The provider''s own published definitions leave this variable with the literal placeholder default "hostname"; api.kondukto.io is used here as a real, provider-owned default. It resolves but answers 403 to unauthenticated requests.'
+  variables:
+    hostname:
+      default: api.kondukto.io
+      description: Hostname of your Invicti ASPM instance.
+security:
+- apiToken: []
+tags:
+- name: Scans
+paths:
+  /api/v2/scans/completed:
+    get:
+      summary: Get Completed Scans
+      description: This endpoint returns scans that completed.
+      operationId: get-scans-that-completed
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      - name: start
+        in: query
+        description: Offset for pagination
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: limit
+        in: query
+        description: How many records will return
+        schema:
+          type: integer
+          format: int32
+          default: 30
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    start: 0
+                    limit: 1
+                    total: 428
+                    scans:
+                    - id: '{scanID}'
+                      tool: '{toolName}'
+                      scan_type: '{scanType}'
+                      project:
+                        id: '{projectID}'
+                      finished_at: '{time}'
+                      started_at: '{time}'
+                      scanparams:
+                        id: '{scanparamsID}'
+                      duration: 63601
+              schema:
+                type: object
+                properties:
+                  start:
+                    type: integer
+                    example: 0
+                    default: 0
+                  limit:
+                    type: integer
+                    example: 1
+                    default: 0
+                  total:
+                    type: integer
+                    example: 428
+                    default: 0
+                  scans:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: '{scanID}'
+                        tool:
+                          type: string
+                          example: '{toolName}'
+                        scan_type:
+                          type: string
+                          example: '{scanType}'
+                        project:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: '{projectID}'
+                        finished_at:
+                          type: string
+                          example: '{time}'
+                        started_at:
+                          type: string
+                          example: '{time}'
+                        scanparams:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: '{scanparamsID}'
+                        duration:
+                          type: integer
+                          example: 63601
+                          default: 0
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to get completed scans
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to get completed scans
+      deprecated: false
+      tags:
+      - Scans
+  /api/v2/scans/create:
+    post:
+      summary: Create New Scan
+      description: This endpoint allows you to create a new scan with specified parameters for a project. You can access the "custom" information in the body parameters from the Scanner details.
+      operationId: create-new-scan
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - scanparams_id
+              - branch
+              - project
+              - tool_id
+              properties:
+                scanparams_id:
+                  type: string
+                  description: The unique identifier for the scan parameters.
+                branch:
+                  type: string
+                  description: The branch of the project where the scan will be conducted (e.g., "master").
+                meta_data:
+                  type: string
+                  description: Additional metadata associated with the scan.
+                project:
+                  type: string
+                  description: The unique identifier of the project.
+                tool_id:
+                  type: string
+                  description: The unique identifier for the scanning tool to be used (e.g., "650c518c7495187ed927cd22").
+                pr:
+                  properties:
+                    ok:
+                      type: boolean
+                      description: Indicator whether the scan is associated with a pull request.
+                    target:
+                      type: string
+                      description: The target branch for the pull request.
+                    ' pr_number':
+                      type: string
+                      description: The pull request number.
+                    no_decoration:
+                      type: boolean
+                      description: Indicator whether to disable decorations on the pull request.
+                  required:
+                  - ok
+                  - target
+                  - ' pr_number'
+                  - no_decoration
+                  type: object
+                custom:
+                  properties:
+                    type:
+                      type: integer
+                      description: The type of custom parameters.
+                      format: int32
+                    params:
+                      type: string
+                      description: Object containing specific custom parameters.
+                      format: json
+                  required:
+                  - type
+                  - params
+                  type: object
+                fork_scan:
+                  type: boolean
+                  description: Indicator whether the scan is a fork scan.
+                fork_source_branch:
+                  type: string
+                  description: The source branch for the fork scan.
+                override_fork_source_branch:
+                  type: boolean
+                  description: Indicator whether to override the fork source branch.
+                environment:
+                  type: string
+                  description: The environment in which the scan will be conducted.
+                scheduled:
+                  type: boolean
+                  description: Indicator whether to create scheduled scans.
+                  default: false
+                api_rrule:
+                  type: object
+                  description: Schedule scan rule configuration
+                  required:
+                  - frequency
+                  - interval
+                  properties:
+                    frequency:
+                      type: integer
+                      description: Frequency Hourly = 1, Frequency Daily=2, Frequency Weekly=3, Frequency Monthly=4
+                      format: int32
+                    interval:
+                      type: integer
+                      format: int32
+                    count:
+                      type: integer
+                      format: int32
+                    days_of_week:
+                      type: array
+                      description: Required if the frequency is weekly (Monday=1, Tuesday=2, Wednesday=3, Thursday=4, Friday=5, Saturday=6, Sunday=7)
+                      items:
+                        type: integer
+                        format: int32
+                    days_of_month:
+                      type: array
+                      description: Required if the frequency is monthly (Values should be between 1 - 31)
+                      items:
+                        type: integer
+                        format: int32
+                    start_date:
+                      type: string
+                      description: Expected format (2006-01-02T15:04:05Z)
+                      default: Now
+                      format: date
+                    end_date:
+                      type: string
+                      description: Expected format (2006-01-02T15:04:05Z)
+                      format: date
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    event_id: '{eventID}'
+                    message: scan created successfully
+              schema:
+                type: object
+                properties:
+                  event_id:
+                    type: string
+                    example: '{eventID}'
+                  message:
+                    type: string
+                    example: scan created successfully
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: bad request error
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: bad request error
+      deprecated: false
+      tags:
+      - Scans
+  /api/v2/scans/failed:
+    get:
+      summary: Get Failed Scans
+      description: This endpoint returns scans that failed.
+      operationId: get-scans-that-failed
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      - name: start
+        in: query
+        description: Offset for pagination
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: limit
+        in: query
+        description: How many records will return
+        schema:
+          type: integer
+          format: int32
+          default: 30
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    start: 0
+                    limit: 1
+                    total: 1
+                    scans:
+                    - id: '{scanID}'
+                      tool: '{toolName}'
+                      scan_type: '{scanType}'
+                      project:
+                        id: '{projectID}'
+                      finished_at: '{time}'
+                      started_at: '{time}'
+                      message: '{message}'
+                      scanparams:
+                        id: '{scanparamID}'
+              schema:
+                type: object
+                properties:
+                  start:
+                    type: integer
+                    example: 0
+                    default: 0
+                  limit:
+                    type: integer
+                    example: 1
+                    default: 0
+                  total:
+                    type: integer
+                    example: 1
+                    default: 0
+                  scans:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: '{scanID}'
+                        tool:
+                          type: string
+                          example: '{toolName}'
+                        scan_type:
+                          type: string
+                          example: '{scanType}'
+                        project:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: '{projectID}'
+                        finished_at:
+                          type: string
+                          example: '{time}'
+                        started_at:
+                          type: string
+                          example: '{time}'
+                        message:
+                          type: string
+                          example: '{message}'
+                        scanparams:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: '{scanparamID}'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to get completed scans
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to get completed scans
+      deprecated: false
+      tags:
+      - Scans
+  /api/v2/scans/image:
+    post:
+      summary: Image Scan
+      description: This endpoint allows you to create a new scan for a container image with specified parameters for a project. The scan details and configurations are included in the request body.
+      operationId: image-scan
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - image
+              - branch
+              - project
+              - tool
+              properties:
+                image:
+                  type: string
+                  description: The name and tag of the container image to be scanned (e.g., "nginx:latest").
+                branch:
+                  type: string
+                  description: The branch of the project where the scan will be conducted (e.g., "master").
+                meta_data:
+                  type: string
+                  description: Additional metadata associated with the scan.
+                project:
+                  type: string
+                  description: The unique identifier of the project.
+                tool:
+                  type: string
+                  description: The scanning tool to be used (e.g., "trivy").
+                scheduled:
+                  type: boolean
+                  description: Indicator whether to create scheduled scans.
+                  default: false
+                api_rrule:
+                  type: object
+                  description: Schedule scan rule configuration
+                  required:
+                  - frequency
+                  - interval
+                  properties:
+                    frequency:
+                      type: integer
+                      description: Frequency Hourly = 1, Frequency Daily=2, Frequency Weekly=3, Frequency Monthly=4
+                      format: int32
+                    interval:
+                      type: integer
+                      format: int32
+                    count:
+                      type: integer
+                      format: int32
+                    days_of_week:
+                      type: array
+                      description: Required if the frequency is weekly (Monday=1, Tuesday=2, Wednesday=3, Thursday=4, Friday=5, Saturday=6, Sunday=7)
+                      items:
+                        type: integer
+                        format: int32
+                    days_of_month:
+                      type: array
+                      description: Required if the frequency is monthly (Values should be between 1 - 31)
+                      items:
+                        type: integer
+                        format: int32
+                    start_date:
+                      type: string
+                      description: Expected format (2006-01-02T15:04:05Z)
+                      default: Now
+                      format: date
+                    end_date:
+                      type: string
+                      description: Expected format (2006-01-02T15:04:05Z)
+                      format: date
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    event_id: '{eventID}'
+              schema:
+                type: object
+                properties:
+                  event_id:
+                    type: string
+                    example: '{eventID}'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: bad request error
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: bad request error
+      deprecated: false
+      tags:
+      - Scans
+  /api/v2/scans/import:
+    post:
+      summary: Import Scan Result
+      description: This endpoint allows you to import scan results for a specified project. The scan details and configurations are included in the form parameters.
+      operationId: import-scan-result
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - project
+              - branch
+              - tool
+              properties:
+                project:
+                  type: string
+                  description: The name of the project.
+                branch:
+                  type: string
+                  description: The name of the branch where the scan was conducted.
+                tool:
+                  type: string
+                  description: The name of the scanning tool used.
+                target:
+                  type: string
+                  description: The target value for the scan. This is mandatory if override-old-analyze is true.
+                override-old-analyze:
+                  type: boolean
+                  description: If true, the target value is mandatory.
+                meta_data:
+                  type: string
+                  description: Additional metadata associated with the scan.
+                fork-value:
+                  type: boolean
+                  description: Indicates whether the scan is a fork scan.
+                override-fork-source:
+                  type: boolean
+                  description: Indicates whether to override the fork source.
+                fork-source:
+                  type: string
+                  description: The source branch for the fork scan.
+                environment:
+                  type: string
+                  description: The environment variable for the scan.
+                file:
+                  type: string
+                  description: The import file containing the scan results (e.g., results.json, dependency-check-report.json, gl-sast-report.json, result.xml).
+                  format: binary
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n\t\t\"event_id\": \"{eventID}\",\n\t\t\"message\":  \"scan results have been imported successfully\",\n\t}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: bad request error
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: bad request error
+      deprecated: false
+      tags:
+      - Scans
+  /api/v2/scans/imported:
+    get:
+      summary: Get Imported Scans
+      description: This endpoint returns scans that imported.
+      operationId: get-scans-that-imported
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      - name: start
+        in: query
+        description: Offset for pagination
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: limit
+        in: query
+        description: How many records will return
+        schema:
+          type: integer
+          format: int32
+          default: 30
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"start\": 0,\n    \"limit\": 1,\n    \"total\": 31,\n    \"scans\": [\n        {\n            \"id\": \"{scanID}\",\n            \"tool\": \"{toolName}\",\n            \"scan_type\": \"{scanType}\",\n            \"project\": {\n                \"id\": \"{projectID}\"\n            },\n            \"finished_at\": \"{time}\",\n            \"started_at\": \"{time}\",\n            \"scanparams\": {\n                \"id\": \"{scanparamID}\"\n            },\n            \"duration\": {durationMS}\n        }\n    ]\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to get completed scans
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to get completed scans
+      deprecated: false
+      tags:
+      - Scans
+  /api/v2/scans/queue:
+    get:
+      summary: Get Scans in the Queue
+      description: This endpoint returns scans in the queue.
+      operationId: get-scans-in-the-queue
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      - name: start
+        in: query
+        description: Offset for pagination
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: limit
+        in: query
+        description: How many records will return
+        schema:
+          type: integer
+          format: int32
+          default: 30
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"start\": 0,\n    \"limit\": 30,\n    \"total\": 1,\n    \"scans\": [\n        {\n            \"id\": \"{scanID}\",\n            \"tool\": \"{toolName}\",\n            \"stage\": \"{scanStage}\",\n            \"status\": \"{scanStatus}\",\n            \"scan_type\": \"{scanType}\",\n            \"message\": \"{message}\",\n            \"project\": {\n                \"id\": \"{projectID}\"\n            },\n            \"finished_at\": \"{time}\",\n            \"started_at\": \"{time}\",\n            \"scanparams\": {\n                \"id\": \"{scanparamsID}\"\n            },\n            \"duration\": {durationMS}\n        }\n    ]\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to get queued scans
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to get queued scans
+      deprecated: false
+      tags:
+      - Scans
+  /api/v2/scans/{scan_id}:
+    get:
+      summary: Get Scan Details
+      description: This endpoint returns scan details of the given scan.
+      operationId: get-scan-detail
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      - name: scan_id
+        in: path
+        description: The ID of the scan to retrieve details.
+        schema:
+          type: string
+          default: '{scan_id}'
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"id\": \"{ID}\",\n    \"name\": \"{name}\",\n    \"branch\": \"{branch}\",\n    \"scan_type\": \"{scanType}\",\n    \"meta_data\": \"metaData\",\n    \"tool\": \"{tool}\",\n    \"date\": \"{date}\",\n    \"project\": \"{project}\",\n    \"score\": {score},\n    \"summary\": {\n        \"low\": {low},\n        \"high\": {high},\n        \"medium\": {medium},\n        \"critical\": {critical}\n    },\n    \"links\": {\n        \"html\": \"{html_link}\"\n    }\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: {}
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Scans
+  /api/v2/scans/{scan_id}/restart:
+    get:
+      summary: Restart A Scan
+      description: This endpoint creates a scan event on Kondukto. To trigger a scan, the project should exist on Kondukto, and the scanner should be already configured.
+      operationId: restart-a-scan
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      - name: scan_id
+        in: path
+        description: The ID of the scan to create a scan event.
+        schema:
+          type: string
+          default: '{scan_id}'
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    event: '{event}'
+                    message: scan created successfully
+              schema:
+                type: object
+                properties:
+                  event:
+                    type: string
+                    example: '{event}'
+                  message:
+                    type: string
+                    example: scan created successfully
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: bad request error
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: bad request error
+      deprecated: false
+      tags:
+      - Scans
+  /api/v2/scans/{scan_id}/status:
+    get:
+      summary: Get Scan Security Criteria
+      description: This endpoint returns the security criteria of a specific scan.
+      operationId: get-scan-release-status
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      - name: scan_id
+        in: path
+        description: The ID of the scan to retrieve security criteria.
+        schema:
+          type: string
+          default: '{scan_id}'
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"scan_detail\": {\n        \"tool_type\": \"{toolType}\",\n        \"tool_name\": \"{toolName}\",\n        \"risk_score\": {riskScore},\n        \"summary\": {\n            \"low\": {low},\n            \"high\": {high},\n            \"medium\": {medium},\n            \"critical\": {critical}\n        }\n    },\n    \"security_gateway\": {securityGateway},\n    \"status\": {status}\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: bad request error
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: bad request error
+      deprecated: false
+      tags:
+      - Scans
+components:
+  securitySchemes:
+    apiToken:
+      type: apiKey
+      in: header
+      name: X-Cookie
+      description: Kondukto-issued API token. Generate it in the UI under Integrations > Personal Access Token (shown once). Sent on every request in the X-Cookie header.

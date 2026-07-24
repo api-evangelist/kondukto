@@ -1,0 +1,329 @@
+openapi: 3.1.0
+info:
+  title: Invicti ASPM (Kondukto) REST API v2 Authorization Managers Labels API
+  version: '2.0'
+  description: Public REST API v2 for the Invicti ASPM platform (formerly Kondukto), an Application Security Posture Management platform that centralizes SAST, DAST, SCA, container and pentest findings from more than eighty scanners. The API manages projects, products, teams, labels, scans and vulnerabilities, and is the same public API the open-source KDT command-line client uses. Assembled by API Evangelist from the per-operation OpenAPI 3.1 definitions Kondukto publishes on each page of its API reference.
+  contact:
+    name: Kondukto Support
+    email: support@kondukto.io
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  x-origin:
+  - format: openapi
+    version: '3.1'
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+servers:
+- url: https://{hostname}
+  description: 'Invicti ASPM deployment host. The platform is deployed per customer (self-hosted or dedicated tenant), so there is no single shared public endpoint: set this to your own instance, the same value KDT reads from INVICTI_ASPM_HOST. The provider''s own published definitions leave this variable with the literal placeholder default "hostname"; api.kondukto.io is used here as a real, provider-owned default. It resolves but answers 403 to unauthenticated requests.'
+  variables:
+    hostname:
+      default: api.kondukto.io
+      description: Hostname of your Invicti ASPM instance.
+security:
+- apiToken: []
+tags:
+- name: Labels
+paths:
+  /api/v2/business_unit_tags/:
+    get:
+      summary: Get Business Unit Tags
+      description: Return business unit tags. Query business unit tags by business unit tag name.
+      operationId: get-business-unit-tags
+      parameters:
+      - name: start
+        in: query
+        description: Offset for pagination
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: limit
+        in: query
+        description: How many records will return
+        schema:
+          type: integer
+          format: int32
+          default: 30
+      - name: q
+        in: query
+        description: Business Unit Tag Name (Contains)
+        schema:
+          type: string
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    limit: 30
+                    start: 0
+                    total: 2
+                    business_unit_tags:
+                    - id: 6540ba1d2c753662b184b55e
+                      name: Business Unit Tag 1
+                      color: 321a1a
+                    - id: 645cf4697990ad4f45b41f0e
+                      name: Business Unit Tag 2
+                      color: 321a1a
+              schema:
+                type: object
+                properties:
+                  limit:
+                    type: integer
+                    example: 30
+                    default: 0
+                  start:
+                    type: integer
+                    example: 0
+                    default: 0
+                  total:
+                    type: integer
+                    example: 2
+                    default: 0
+                  business_unit_tags:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 6540ba1d2c753662b184b55e
+                        name:
+                          type: string
+                          example: Business Unit Tag 1
+                        color:
+                          type: string
+                          example: 321a1a
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+      deprecated: false
+      tags:
+      - Labels
+  /api/v2/labels/:
+    get:
+      summary: Get Labels
+      description: Return labels. Query labels by label name.
+      operationId: get-labels
+      parameters:
+      - name: start
+        in: query
+        description: Offset for pagination
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: limit
+        in: query
+        description: How many records will return
+        schema:
+          type: integer
+          format: int32
+          default: 30
+      - name: name
+        in: query
+        description: Label Name (Contains)
+        schema:
+          type: string
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    start: 0
+                    limit: 30
+                    total: 1
+                    labels:
+                    - id: '{labelID}'
+                      name: '{labelName}'
+              schema:
+                type: object
+                properties:
+                  start:
+                    type: integer
+                    example: 0
+                    default: 0
+                  limit:
+                    type: integer
+                    example: 30
+                    default: 0
+                  total:
+                    type: integer
+                    example: 1
+                    default: 0
+                  labels:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: '{labelID}'
+                        name:
+                          type: string
+                          example: '{labelName}'
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+      deprecated: false
+      tags:
+      - Labels
+    post:
+      summary: Create Label
+      description: Create a label
+      operationId: create-label
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - color
+              - risk_value
+              - add_to_all_projects
+              properties:
+                name:
+                  type: string
+                  description: Label  name
+                  default: label_name
+                color:
+                  type: string
+                  description: Label color as hex format
+                  default: AA00FF
+                risk_value:
+                  type: integer
+                  description: Risk level of the label
+                  default: 2
+                  format: int32
+                add_to_all_projects:
+                  type: boolean
+                  description: Assign the created label to all projects
+                  default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"data\": {\n        \"id\": \"label_id\",\n        \"name\": \"label_name\",\n        \"color\": \"ff1f1f\",\n        \"isActive\": 1,\n        \"is_used_sc\": false,\n        \"is_used_ic\": false,\n        \"is_used_sla\": false,\n        \"is_used_hv\": false,\n        \"organization\": {\n            \"id\": \"organization_id\"\n        },\n        \"risk_value\": risk_value,\n        \"is_constant_risk_profile_label\": false,\n        \"add_to_all_projects\": true,\n        \"type\": \"user\",\n        \"is_deactivated_from_user\": false,\n        \"auto_label_keywords\": null\n    },\n    \"message\": \"label created successfully\"\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: label already exists
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: label already exists
+      deprecated: false
+      tags:
+      - Labels
+  /api/v2/labels/{id}:
+    delete:
+      summary: Delete Label
+      description: Delete a label by ID
+      operationId: delete-label
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Label ID to delete
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: label deleted successfully
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: label deleted successfully
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: internal labels cannot be deleted
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: internal labels cannot be deleted
+      deprecated: false
+      tags:
+      - Labels
+components:
+  securitySchemes:
+    apiToken:
+      type: apiKey
+      in: header
+      name: X-Cookie
+      description: Kondukto-issued API token. Generate it in the UI under Integrations > Personal Access Token (shown once). Sent on every request in the X-Cookie header.

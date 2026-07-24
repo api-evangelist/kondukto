@@ -1,0 +1,774 @@
+openapi: 3.1.0
+info:
+  title: Invicti ASPM (Kondukto) REST API v2 Authorization Managers Teams API
+  version: '2.0'
+  description: Public REST API v2 for the Invicti ASPM platform (formerly Kondukto), an Application Security Posture Management platform that centralizes SAST, DAST, SCA, container and pentest findings from more than eighty scanners. The API manages projects, products, teams, labels, scans and vulnerabilities, and is the same public API the open-source KDT command-line client uses. Assembled by API Evangelist from the per-operation OpenAPI 3.1 definitions Kondukto publishes on each page of its API reference.
+  contact:
+    name: Kondukto Support
+    email: support@kondukto.io
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  x-origin:
+  - format: openapi
+    version: '3.1'
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+servers:
+- url: https://{hostname}
+  description: 'Invicti ASPM deployment host. The platform is deployed per customer (self-hosted or dedicated tenant), so there is no single shared public endpoint: set this to your own instance, the same value KDT reads from INVICTI_ASPM_HOST. The provider''s own published definitions leave this variable with the literal placeholder default "hostname"; api.kondukto.io is used here as a real, provider-owned default. It resolves but answers 403 to unauthenticated requests.'
+  variables:
+    hostname:
+      default: api.kondukto.io
+      description: Hostname of your Invicti ASPM instance.
+security:
+- apiToken: []
+tags:
+- name: Teams
+paths:
+  /api/v2/teams/:
+    get:
+      summary: Get Teams
+      description: Return teams. Query teams by team name.
+      operationId: get-teams
+      parameters:
+      - name: start
+        in: query
+        description: Offset for pagination
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: limit
+        in: query
+        description: How many records will return
+        schema:
+          type: integer
+          format: int32
+          default: 30
+      - name: q
+        in: query
+        description: Team Name (Contains)
+        schema:
+          type: string
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    limit: 30
+                    start: 0
+                    total: 1
+                    teams:
+                    - id: '{teamID}'
+                      name: '{teamName}'
+              schema:
+                type: object
+                properties:
+                  limit:
+                    type: integer
+                    example: 30
+                    default: 0
+                  start:
+                    type: integer
+                    example: 0
+                    default: 0
+                  total:
+                    type: integer
+                    example: 1
+                    default: 0
+                  teams:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: '{teamID}'
+                        name:
+                          type: string
+                          example: '{teamName}'
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+      deprecated: false
+      tags:
+      - Teams
+    post:
+      summary: Create a Team
+      description: Create a team through API
+      operationId: create-a-team
+      parameters:
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              properties:
+                name:
+                  type: string
+                issue_responsible:
+                  properties:
+                    id:
+                      type: string
+                  required:
+                  - id
+                  type: object
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: '{teamID}'
+                    name: '{teamName}'
+                    projects_count: 0
+                    members_count: 1
+                    issue_responsible:
+                      id: '{userID}'
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: '{teamID}'
+                  name:
+                    type: string
+                    example: '{teamName}'
+                  projects_count:
+                    type: integer
+                    example: 0
+                    default: 0
+                  members_count:
+                    type: integer
+                    example: 1
+                    default: 0
+                  issue_responsible:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: '{userID}'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to assign members to team
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to assign members to team
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+      deprecated: false
+      tags:
+      - Teams
+  /api/v2/teams/members/:
+    get:
+      summary: Get Teams With Members
+      description: Returns teams with members. Query teams by team name.
+      operationId: get-teams-with-members
+      parameters:
+      - name: start
+        in: query
+        description: Offset for pagination
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: limit
+        in: query
+        description: How many records will return
+        schema:
+          type: integer
+          format: int32
+          default: 30
+      - name: q
+        in: query
+        description: Team Name (Contains)
+        schema:
+          type: string
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    limit: 30
+                    start: 0
+                    total: 1
+                    teams:
+                    - id: '{teamID}'
+                      name: '{teamName}'
+                      members_count: 1
+                      issue_responsible:
+                        id: '{userID}'
+                        username: '{username}'
+                        email: '{email}'
+                        teams: null
+                      members:
+                      - id: '{userID}'
+                        username: '{username}'
+                        email: '{email}'
+                        teams:
+                        - '{teamID}'
+              schema:
+                type: object
+                properties:
+                  limit:
+                    type: integer
+                    example: 30
+                    default: 0
+                  start:
+                    type: integer
+                    example: 0
+                    default: 0
+                  total:
+                    type: integer
+                    example: 1
+                    default: 0
+                  teams:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: '{teamID}'
+                        name:
+                          type: string
+                          example: '{teamName}'
+                        members_count:
+                          type: integer
+                          example: 1
+                          default: 0
+                        issue_responsible:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: '{userID}'
+                            username:
+                              type: string
+                              example: '{username}'
+                            email:
+                              type: string
+                              example: '{email}'
+                            teams: {}
+                        members:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                example: '{userID}'
+                              username:
+                                type: string
+                                example: '{username}'
+                              email:
+                                type: string
+                                example: '{email}'
+                              teams:
+                                type: array
+                                items:
+                                  type: string
+                                  example: '{teamID}'
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+      deprecated: false
+      tags:
+      - Teams
+  /api/v2/teams/{teamID}:
+    get:
+      summary: Get Team Details
+      description: Returns a team's details
+      operationId: get-team-details
+      parameters:
+      - name: teamID
+        in: path
+        description: Team ID
+        schema:
+          type: string
+        required: true
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: '{teamID}'
+                    name: '{teamName}'
+                    projects_count: 1
+                    members_count: 1
+                    issue_responsible:
+                      id: '{userID}'
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: '{teamID}'
+                  name:
+                    type: string
+                    example: '{teamName}'
+                  projects_count:
+                    type: integer
+                    example: 1
+                    default: 0
+                  members_count:
+                    type: integer
+                    example: 1
+                    default: 0
+                  issue_responsible:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: '{userID}'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to get teams
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to get teams
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+      deprecated: false
+      tags:
+      - Teams
+    patch:
+      summary: Update a Team
+      description: Update a team through API
+      operationId: update-a-team
+      parameters:
+      - name: teamID
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Name:
+                  type: string
+                  description: Team name
+                issue_responsible:
+                  properties:
+                    id:
+                      type: string
+                      description: Issue responsible ID
+                  required: []
+                  type: object
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    data:
+                      id: '{teamID}'
+                      name: '{teamName}'
+                      projects_count: 0
+                      members_count: 2
+                      issue_responsible:
+                        id: '{userID}'
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: '{teamID}'
+                      name:
+                        type: string
+                        example: '{teamName}'
+                      projects_count:
+                        type: integer
+                        example: 0
+                        default: 0
+                      members_count:
+                        type: integer
+                        example: 2
+                        default: 0
+                      issue_responsible:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: '{userID}'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to assign members to team
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to assign members to team
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+      deprecated: false
+      tags:
+      - Teams
+    delete:
+      summary: Delete a Team
+      description: Delete a team by id
+      operationId: delete-a-team
+      parameters:
+      - name: teamID
+        in: path
+        description: Team ID
+        schema:
+          type: string
+        required: true
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: '204'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: ''
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to get teams
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to get teams
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+      deprecated: false
+      tags:
+      - Teams
+  /api/v2/teams/{teamID}/members:
+    patch:
+      summary: Update Team Members
+      description: Update members of a team
+      operationId: update-team-members
+      parameters:
+      - name: teamID
+        in: path
+        description: Team ID
+        schema:
+          type: string
+        required: true
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                add:
+                  type: array
+                  description: List of user ids
+                  items:
+                    type: string
+                remove:
+                  type: array
+                  description: List of user ids
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: ''
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+      deprecated: false
+      tags:
+      - Teams
+  /api/v2/teams/{teamID}/members/:
+    get:
+      summary: Get Team Members
+      description: Returns a team's members
+      operationId: get-team-members
+      parameters:
+      - name: teamID
+        in: path
+        description: Team ID
+        schema:
+          type: string
+        required: true
+      - name: start
+        in: query
+        description: Offset for pagination
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: limit
+        in: query
+        description: How many records will return
+        schema:
+          type: integer
+          format: int32
+          default: 30
+      - name: q
+        in: query
+        description: Username or email (Contains)
+        schema:
+          type: string
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    limit: 30
+                    start: 0
+                    total: 3
+                    members:
+                    - id: '{userID}'
+                      username: '{username}'
+                      email: '{email}'
+                      teams:
+                      - '{teamID}'
+                      - '{teamID}'
+                    - id: '{userID}'
+                      username: '{username}'
+                      email: '{email}'
+                      teams:
+                      - '{teamID}'
+                      - '{teamID}'
+                    - id: '{userID}'
+                      username: '{username}'
+                      email: '{email}'
+                      teams:
+                      - '{teamID}'
+              schema:
+                type: object
+                properties:
+                  limit:
+                    type: integer
+                    example: 30
+                    default: 0
+                  start:
+                    type: integer
+                    example: 0
+                    default: 0
+                  total:
+                    type: integer
+                    example: 3
+                    default: 0
+                  members:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: '{userID}'
+                        username:
+                          type: string
+                          example: '{username}'
+                        email:
+                          type: string
+                          example: '{email}'
+                        teams:
+                          type: array
+                          items:
+                            type: string
+                            example: '{teamID}'
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    error: failed to authorize
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+      deprecated: false
+      tags:
+      - Teams
+components:
+  securitySchemes:
+    apiToken:
+      type: apiKey
+      in: header
+      name: X-Cookie
+      description: Kondukto-issued API token. Generate it in the UI under Integrations > Personal Access Token (shown once). Sent on every request in the X-Cookie header.
