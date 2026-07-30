@@ -1,0 +1,2361 @@
+{
+  "info": {
+    "_postman_id": "9e6fb2bd-937e-4f16-8445-25b030e061f2",
+    "name": "Invicti ASPM (Kondukto) REST API v2 Authorization Managers Vulnerabilities API",
+    "description": "Public REST API v2 for the Invicti ASPM platform (formerly Kondukto), an Application Security Posture Management platform that centralizes SAST, DAST, SCA, container and pentest findings from more than eighty scanners. The API manages projects, products, teams, labels, scans and vulnerabilities, and is the same public API the open-source KDT command-line client uses. Assembled by API Evangelist from the per-operation OpenAPI 3.1 definitions Kondukto publishes on each page of its API reference.\n\nContact Support:\n Name: Kondukto Support\n Email: support@kondukto.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:57:19.000Z",
+    "updatedAt": "2026-07-28T10:57:19.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9e6fb2bd-937e-4f16-8445-25b030e061f2"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "vulnerabilities",
+              "item": [
+                {
+                  "name": "import",
+                  "item": [
+                    {
+                      "name": "dast",
+                      "item": [
+                        {
+                          "name": "Create a DAST Vulnerability",
+                          "id": "bb5d0348-d73b-418b-aa6b-31332e2b3878",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "Token"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"discovered_by\": \"<string>\",\n    \"meta_data\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"dast\": {\n      \"target\": \"<string>\",\n      \"http_request\": \"<string>\",\n      \"http_response\": \"<string>\",\n      \"method\": \"<string>\",\n      \"references\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/vulnerabilities/import/dast",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "vulnerabilities",
+                                "import",
+                                "dast"
+                              ]
+                            },
+                            "description": "This endpoint allows you to create DAST vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body."
+                          },
+                          "response": [
+                            {
+                              "id": "f89a951d-620a-4858-b0a6-638cbe8c478b",
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) Personal Access Token",
+                                    "key": "X-Cookie",
+                                    "value": "Token"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Cookie",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"discovered_by\": \"<string>\",\n    \"meta_data\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"dast\": {\n      \"target\": \"<string>\",\n      \"http_request\": \"<string>\",\n      \"http_response\": \"<string>\",\n      \"method\": \"<string>\",\n      \"references\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/vulnerabilities/import/dast",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "vulnerabilities",
+                                    "import",
+                                    "dast"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"event_id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T10:57:20.000Z",
+                              "updatedAt": "2026-07-28T10:57:20.000Z",
+                              "uid": "35240-f89a951d-620a-4858-b0a6-638cbe8c478b"
+                            },
+                            {
+                              "id": "75e75cb0-8fad-462a-8d37-051c3bd8229b",
+                              "name": "400",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) Personal Access Token",
+                                    "key": "X-Cookie",
+                                    "value": "Token"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Cookie",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"discovered_by\": \"<string>\",\n    \"meta_data\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"dast\": {\n      \"target\": \"<string>\",\n      \"http_request\": \"<string>\",\n      \"http_response\": \"<string>\",\n      \"method\": \"<string>\",\n      \"references\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/vulnerabilities/import/dast",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "vulnerabilities",
+                                    "import",
+                                    "dast"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T10:57:20.000Z",
+                              "updatedAt": "2026-07-28T10:57:20.000Z",
+                              "uid": "35240-75e75cb0-8fad-462a-8d37-051c3bd8229b"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T10:57:20.000Z",
+                          "updatedAt": "2026-07-28T10:57:20.000Z",
+                          "uid": "35240-bb5d0348-d73b-418b-aa6b-31332e2b3878"
+                        }
+                      ],
+                      "id": "ed3253ce-7b79-4115-9c62-212e7695fcd4",
+                      "createdAt": "2026-07-28T10:57:20.000Z",
+                      "updatedAt": "2026-07-28T10:57:20.000Z",
+                      "uid": "35240-ed3253ce-7b79-4115-9c62-212e7695fcd4"
+                    },
+                    {
+                      "name": "infra",
+                      "item": [
+                        {
+                          "name": "Create an Infra Vulnerability",
+                          "id": "fc1defb5-7e4c-4070-8d88-32cb13a57732",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "Token"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"meta_data\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"discovered_by\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"infra\": {\n      \"ok\": \"<string>\",\n      \"protocol\": \"<string>\",\n      \"port\": \"<string>\",\n      \"proof\": \"<string>\",\n      \"service\": \"<string>\",\n      \"ip\": \"<integer>\",\n      \"cve\": \"<string>\"\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/vulnerabilities/import/infra",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "vulnerabilities",
+                                "import",
+                                "infra"
+                              ]
+                            },
+                            "description": "This endpoint allows you to create INFRA vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body."
+                          },
+                          "response": [
+                            {
+                              "id": "0933d377-4969-4202-8d36-44efd8de6378",
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) Personal Access Token",
+                                    "key": "X-Cookie",
+                                    "value": "Token"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Cookie",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"meta_data\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"discovered_by\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"infra\": {\n      \"ok\": \"<string>\",\n      \"protocol\": \"<string>\",\n      \"port\": \"<string>\",\n      \"proof\": \"<string>\",\n      \"service\": \"<string>\",\n      \"ip\": \"<integer>\",\n      \"cve\": \"<string>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/vulnerabilities/import/infra",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "vulnerabilities",
+                                    "import",
+                                    "infra"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"event_id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T10:57:20.000Z",
+                              "updatedAt": "2026-07-28T10:57:20.000Z",
+                              "uid": "35240-0933d377-4969-4202-8d36-44efd8de6378"
+                            },
+                            {
+                              "id": "56bac881-69d3-49a7-bc76-4a62ff1e796f",
+                              "name": "400",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) Personal Access Token",
+                                    "key": "X-Cookie",
+                                    "value": "Token"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Cookie",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"meta_data\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"discovered_by\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"infra\": {\n      \"ok\": \"<string>\",\n      \"protocol\": \"<string>\",\n      \"port\": \"<string>\",\n      \"proof\": \"<string>\",\n      \"service\": \"<string>\",\n      \"ip\": \"<integer>\",\n      \"cve\": \"<string>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/vulnerabilities/import/infra",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "vulnerabilities",
+                                    "import",
+                                    "infra"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T10:57:20.000Z",
+                              "updatedAt": "2026-07-28T10:57:20.000Z",
+                              "uid": "35240-56bac881-69d3-49a7-bc76-4a62ff1e796f"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T10:57:20.000Z",
+                          "updatedAt": "2026-07-28T10:57:20.000Z",
+                          "uid": "35240-fc1defb5-7e4c-4070-8d88-32cb13a57732"
+                        }
+                      ],
+                      "id": "09926ff2-a4b4-4832-bd1e-50af8ff872da",
+                      "createdAt": "2026-07-28T10:57:20.000Z",
+                      "updatedAt": "2026-07-28T10:57:20.000Z",
+                      "uid": "35240-09926ff2-a4b4-4832-bd1e-50af8ff872da"
+                    },
+                    {
+                      "name": "pentest",
+                      "item": [
+                        {
+                          "name": "Create a PENTEST Vulnerability",
+                          "id": "bfde413a-6cf4-43db-8e3f-06c4fe25f347",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "Token"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"tool_type\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"environment\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"discovered_by\": \"<string>\",\n    \"meta_data\": \"<string>\",\n    \"fork_scan\": \"<boolean>\",\n    \" fork_source_branch\": \"<string>\",\n    \"engagement\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \" discovered_by\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"path\": \"<string>\",\n    \" committer_name\": \"<string>\",\n    \"link\": \"<string>\",\n    \" recommendation\": \"<string>\",\n    \" pentest\": {\n      \" target\": \"<string>\"\n    },\n    \"pentest\": {\n      \" http_request\": \"<string>\",\n      \"http_response\": \"<string>\",\n      \"method\": \"<string>\",\n      \" references\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/vulnerabilities/import/pentest",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "vulnerabilities",
+                                "import",
+                                "pentest"
+                              ]
+                            },
+                            "description": "This endpoint allows you to create PENTEST vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body."
+                          },
+                          "response": [
+                            {
+                              "id": "15253eae-1786-4325-b7e2-38b47d7a07b1",
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) Personal Access Token",
+                                    "key": "X-Cookie",
+                                    "value": "Token"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Cookie",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"tool_type\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"environment\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"discovered_by\": \"<string>\",\n    \"meta_data\": \"<string>\",\n    \"fork_scan\": \"<boolean>\",\n    \" fork_source_branch\": \"<string>\",\n    \"engagement\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \" discovered_by\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"path\": \"<string>\",\n    \" committer_name\": \"<string>\",\n    \"link\": \"<string>\",\n    \" recommendation\": \"<string>\",\n    \" pentest\": {\n      \" target\": \"<string>\"\n    },\n    \"pentest\": {\n      \" http_request\": \"<string>\",\n      \"http_response\": \"<string>\",\n      \"method\": \"<string>\",\n      \" references\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/vulnerabilities/import/pentest",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "vulnerabilities",
+                                    "import",
+                                    "pentest"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"event_id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T10:57:20.000Z",
+                              "updatedAt": "2026-07-28T10:57:20.000Z",
+                              "uid": "35240-15253eae-1786-4325-b7e2-38b47d7a07b1"
+                            },
+                            {
+                              "id": "03d3a7cc-5e79-476f-9964-605fe0dabfa4",
+                              "name": "400",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) Personal Access Token",
+                                    "key": "X-Cookie",
+                                    "value": "Token"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Cookie",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"tool_type\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"environment\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"discovered_by\": \"<string>\",\n    \"meta_data\": \"<string>\",\n    \"fork_scan\": \"<boolean>\",\n    \" fork_source_branch\": \"<string>\",\n    \"engagement\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \" discovered_by\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"path\": \"<string>\",\n    \" committer_name\": \"<string>\",\n    \"link\": \"<string>\",\n    \" recommendation\": \"<string>\",\n    \" pentest\": {\n      \" target\": \"<string>\"\n    },\n    \"pentest\": {\n      \" http_request\": \"<string>\",\n      \"http_response\": \"<string>\",\n      \"method\": \"<string>\",\n      \" references\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/vulnerabilities/import/pentest",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "vulnerabilities",
+                                    "import",
+                                    "pentest"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T10:57:20.000Z",
+                              "updatedAt": "2026-07-28T10:57:20.000Z",
+                              "uid": "35240-03d3a7cc-5e79-476f-9964-605fe0dabfa4"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T10:57:20.000Z",
+                          "updatedAt": "2026-07-28T10:57:20.000Z",
+                          "uid": "35240-bfde413a-6cf4-43db-8e3f-06c4fe25f347"
+                        }
+                      ],
+                      "id": "b3b4dde6-d164-4de2-8d6a-9b7ef165f4b0",
+                      "createdAt": "2026-07-28T10:57:20.000Z",
+                      "updatedAt": "2026-07-28T10:57:20.000Z",
+                      "uid": "35240-b3b4dde6-d164-4de2-8d6a-9b7ef165f4b0"
+                    },
+                    {
+                      "name": "sast",
+                      "item": [
+                        {
+                          "name": "Create a SAST Vulnerability",
+                          "id": "6ffbfa63-3184-4bb8-939e-904556ebbaa2",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "Token"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"meta_data\": \"<string>\",\n    \"discovered_by\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"discovered_by\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"path\": \"<string>\",\n    \"description\": \"<string>\",\n    \"recommendation\": \"<string>\",\n    \"link\": \"<string>\",\n    \"sast\": {\n      \"committer\": \"<string>\",\n      \"file_name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"line_number\": \"<integer>\",\n      \"language\": \"<string>\"\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/vulnerabilities/import/sast",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "vulnerabilities",
+                                "import",
+                                "sast"
+                              ]
+                            },
+                            "description": "This endpoint allows you to create SAST vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body."
+                          },
+                          "response": [
+                            {
+                              "id": "f001ddb4-a414-4b1a-8daf-9fea5277a554",
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) Personal Access Token",
+                                    "key": "X-Cookie",
+                                    "value": "Token"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Cookie",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"meta_data\": \"<string>\",\n    \"discovered_by\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"discovered_by\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"path\": \"<string>\",\n    \"description\": \"<string>\",\n    \"recommendation\": \"<string>\",\n    \"link\": \"<string>\",\n    \"sast\": {\n      \"committer\": \"<string>\",\n      \"file_name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"line_number\": \"<integer>\",\n      \"language\": \"<string>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/vulnerabilities/import/sast",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "vulnerabilities",
+                                    "import",
+                                    "sast"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"event_id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T10:57:20.000Z",
+                              "updatedAt": "2026-07-28T10:57:20.000Z",
+                              "uid": "35240-f001ddb4-a414-4b1a-8daf-9fea5277a554"
+                            },
+                            {
+                              "id": "e7128f0e-e6a3-4196-9c7e-d8f26dcbbff7",
+                              "name": "400",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) Personal Access Token",
+                                    "key": "X-Cookie",
+                                    "value": "Token"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Cookie",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"meta_data\": \"<string>\",\n    \"discovered_by\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"discovered_by\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"path\": \"<string>\",\n    \"description\": \"<string>\",\n    \"recommendation\": \"<string>\",\n    \"link\": \"<string>\",\n    \"sast\": {\n      \"committer\": \"<string>\",\n      \"file_name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"line_number\": \"<integer>\",\n      \"language\": \"<string>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/vulnerabilities/import/sast",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "vulnerabilities",
+                                    "import",
+                                    "sast"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T10:57:20.000Z",
+                              "updatedAt": "2026-07-28T10:57:20.000Z",
+                              "uid": "35240-e7128f0e-e6a3-4196-9c7e-d8f26dcbbff7"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T10:57:20.000Z",
+                          "updatedAt": "2026-07-28T10:57:20.000Z",
+                          "uid": "35240-6ffbfa63-3184-4bb8-939e-904556ebbaa2"
+                        }
+                      ],
+                      "id": "26eb0c7a-5d0f-440a-9998-c6f5103b150b",
+                      "createdAt": "2026-07-28T10:57:20.000Z",
+                      "updatedAt": "2026-07-28T10:57:20.000Z",
+                      "uid": "35240-26eb0c7a-5d0f-440a-9998-c6f5103b150b"
+                    },
+                    {
+                      "name": "sca",
+                      "item": [
+                        {
+                          "name": "Create a SCA Vulnerability",
+                          "id": "0a0d462b-546a-4c62-a786-a229856e3d02",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "Token"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"discovered_by\": \"<string>\",\n    \"meta_data\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"sca\": {\n      \"file_name\": \"<string>\",\n      \"license\": \"<string>\",\n      \"references\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"packages\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/vulnerabilities/import/sca",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "vulnerabilities",
+                                "import",
+                                "sca"
+                              ]
+                            },
+                            "description": "This endpoint allows you to create SCA vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body."
+                          },
+                          "response": [
+                            {
+                              "id": "fd8e8b1f-38b0-4b58-a53d-efece5a1801f",
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) Personal Access Token",
+                                    "key": "X-Cookie",
+                                    "value": "Token"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Cookie",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"discovered_by\": \"<string>\",\n    \"meta_data\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"sca\": {\n      \"file_name\": \"<string>\",\n      \"license\": \"<string>\",\n      \"references\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"packages\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/vulnerabilities/import/sca",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "vulnerabilities",
+                                    "import",
+                                    "sca"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"event_id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T10:57:20.000Z",
+                              "updatedAt": "2026-07-28T10:57:20.000Z",
+                              "uid": "35240-fd8e8b1f-38b0-4b58-a53d-efece5a1801f"
+                            },
+                            {
+                              "id": "47e0f4e3-68a2-4d09-96bd-064d0a9093db",
+                              "name": "400",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) Personal Access Token",
+                                    "key": "X-Cookie",
+                                    "value": "Token"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Cookie",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"discovered_by\": \"<string>\",\n    \"meta_data\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"sca\": {\n      \"file_name\": \"<string>\",\n      \"license\": \"<string>\",\n      \"references\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"packages\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/vulnerabilities/import/sca",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "vulnerabilities",
+                                    "import",
+                                    "sca"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T10:57:20.000Z",
+                              "updatedAt": "2026-07-28T10:57:20.000Z",
+                              "uid": "35240-47e0f4e3-68a2-4d09-96bd-064d0a9093db"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T10:57:20.000Z",
+                          "updatedAt": "2026-07-28T10:57:20.000Z",
+                          "uid": "35240-0a0d462b-546a-4c62-a786-a229856e3d02"
+                        }
+                      ],
+                      "id": "acf98476-9f73-449c-b829-d9fd215e984c",
+                      "createdAt": "2026-07-28T10:57:20.000Z",
+                      "updatedAt": "2026-07-28T10:57:20.000Z",
+                      "uid": "35240-acf98476-9f73-449c-b829-d9fd215e984c"
+                    }
+                  ],
+                  "id": "34fad351-64b2-4941-ae63-bf2b54ffb0e4",
+                  "createdAt": "2026-07-28T10:57:20.000Z",
+                  "updatedAt": "2026-07-28T10:57:20.000Z",
+                  "uid": "35240-34fad351-64b2-4941-ae63-bf2b54ffb0e4"
+                },
+                {
+                  "name": "{vulnerabilityID}",
+                  "item": [
+                    {
+                      "name": "screenshots",
+                      "item": [
+                        {
+                          "name": "{attachmentID}",
+                          "item": [
+                            {
+                              "name": "Delete An Attachment",
+                              "id": "788e3401-8d80-4842-b7a0-826c6df7c50f",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "(Required) Personal Access Token",
+                                    "key": "X-Cookie",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "text/plain"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/vulnerabilities/:vulnerabilityID/screenshots/:attachmentID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "vulnerabilities",
+                                    ":vulnerabilityID",
+                                    "screenshots",
+                                    ":attachmentID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "8bdcac0a-51f4-43a4-bc9c-8867d63fc1c3",
+                                      "key": "vulnerabilityID",
+                                      "value": "<string>",
+                                      "description": "(Required) Vulnerability ID"
+                                    },
+                                    {
+                                      "id": "a29fb563-b3ba-478b-baa4-33f98ea4c487",
+                                      "key": "attachmentID",
+                                      "value": "<string>",
+                                      "description": "(Required) Attachment ID"
+                                    }
+                                  ]
+                                },
+                                "description": "Delete an attachment of a vulnerability by attachment id"
+                              },
+                              "response": [
+                                {
+                                  "id": "e16ab702-0f02-4274-83fb-47a7b8120f66",
+                                  "name": "204",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "(Required) Personal Access Token",
+                                        "key": "X-Cookie",
+                                        "value": "<string>"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "text/plain"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-Cookie",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/vulnerabilities/:vulnerabilityID/screenshots/:attachmentID",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "vulnerabilities",
+                                        ":vulnerabilityID",
+                                        "screenshots",
+                                        ":attachmentID"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "vulnerabilityID"
+                                        },
+                                        {
+                                          "key": "attachmentID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "text/plain"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": \"\"\n    }\n  }\n}",
+                                  "createdAt": "2026-07-28T10:57:20.000Z",
+                                  "updatedAt": "2026-07-28T10:57:20.000Z",
+                                  "uid": "35240-e16ab702-0f02-4274-83fb-47a7b8120f66"
+                                },
+                                {
+                                  "id": "1b39b1f2-72be-48f3-9c9f-fd1ff3e0e9b9",
+                                  "name": "400",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "(Required) Personal Access Token",
+                                        "key": "X-Cookie",
+                                        "value": "<string>"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-Cookie",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/vulnerabilities/:vulnerabilityID/screenshots/:attachmentID",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "vulnerabilities",
+                                        ":vulnerabilityID",
+                                        "screenshots",
+                                        ":attachmentID"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "vulnerabilityID"
+                                        },
+                                        {
+                                          "key": "attachmentID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T10:57:20.000Z",
+                                  "updatedAt": "2026-07-28T10:57:20.000Z",
+                                  "uid": "35240-1b39b1f2-72be-48f3-9c9f-fd1ff3e0e9b9"
+                                },
+                                {
+                                  "id": "310d13d4-9691-4d18-9e00-9fa7ddc1aff7",
+                                  "name": "401",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "(Required) Personal Access Token",
+                                        "key": "X-Cookie",
+                                        "value": "<string>"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-Cookie",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/vulnerabilities/:vulnerabilityID/screenshots/:attachmentID",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "vulnerabilities",
+                                        ":vulnerabilityID",
+                                        "screenshots",
+                                        ":attachmentID"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "vulnerabilityID"
+                                        },
+                                        {
+                                          "key": "attachmentID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T10:57:20.000Z",
+                                  "updatedAt": "2026-07-28T10:57:20.000Z",
+                                  "uid": "35240-310d13d4-9691-4d18-9e00-9fa7ddc1aff7"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T10:57:20.000Z",
+                              "updatedAt": "2026-07-28T10:57:20.000Z",
+                              "uid": "35240-788e3401-8d80-4842-b7a0-826c6df7c50f"
+                            }
+                          ],
+                          "id": "ac9e29bf-beca-41b9-abe4-f546a03479f8",
+                          "createdAt": "2026-07-28T10:57:20.000Z",
+                          "updatedAt": "2026-07-28T10:57:20.000Z",
+                          "uid": "35240-ac9e29bf-beca-41b9-abe4-f546a03479f8"
+                        },
+                        {
+                          "name": "Upload Attachments",
+                          "id": "4d8f1499-ce1c-4c99-a4e1-34e1ef790c90",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"screenshots\": [\n    {\n      \"image\": \"data:image/png;base64,{base64Image}\",\n      \"description\": \"<string>\",\n      \"file_detail\": {\n        \"name\": \"<string>\",\n        \"extension\": \"<string>\"\n      }\n    },\n    {\n      \"image\": \"data:image/png;base64,{base64Image}\",\n      \"description\": \"<string>\",\n      \"file_detail\": {\n        \"name\": \"<string>\",\n        \"extension\": \"<string>\"\n      }\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/vulnerabilities/:vulnerabilityID/screenshots",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "vulnerabilities",
+                                ":vulnerabilityID",
+                                "screenshots"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "63681df0-0667-447b-942d-53bb7b8b5028",
+                                  "key": "vulnerabilityID",
+                                  "value": "<string>",
+                                  "description": "(Required) Vulnerability ID"
+                                }
+                              ]
+                            },
+                            "description": "Upload multiple attachments to a vulnerability. Attachment should be in base64 format. Supported file formats are \"pdf\", \"html\", \"jpg\", \"png\", \"avi\", \"txt\" and \"mp4\"."
+                          },
+                          "response": [
+                            {
+                              "id": "d7fdea1c-fff1-402d-b9fd-f67dad1bb761",
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) Personal Access Token",
+                                    "key": "X-Cookie",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "text/plain"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Cookie",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"screenshots\": [\n    {\n      \"image\": \"data:image/png;base64,{base64Image}\",\n      \"description\": \"<string>\",\n      \"file_detail\": {\n        \"name\": \"<string>\",\n        \"extension\": \"<string>\"\n      }\n    },\n    {\n      \"image\": \"data:image/png;base64,{base64Image}\",\n      \"description\": \"<string>\",\n      \"file_detail\": {\n        \"name\": \"<string>\",\n        \"extension\": \"<string>\"\n      }\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/vulnerabilities/:vulnerabilityID/screenshots",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "vulnerabilities",
+                                    ":vulnerabilityID",
+                                    "screenshots"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "vulnerabilityID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "text/plain"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": \"\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T10:57:20.000Z",
+                              "updatedAt": "2026-07-28T10:57:20.000Z",
+                              "uid": "35240-d7fdea1c-fff1-402d-b9fd-f67dad1bb761"
+                            },
+                            {
+                              "id": "7f82fe6d-86b5-4227-a95a-4f0f450919c0",
+                              "name": "400",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) Personal Access Token",
+                                    "key": "X-Cookie",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Cookie",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"screenshots\": [\n    {\n      \"image\": \"data:image/png;base64,{base64Image}\",\n      \"description\": \"<string>\",\n      \"file_detail\": {\n        \"name\": \"<string>\",\n        \"extension\": \"<string>\"\n      }\n    },\n    {\n      \"image\": \"data:image/png;base64,{base64Image}\",\n      \"description\": \"<string>\",\n      \"file_detail\": {\n        \"name\": \"<string>\",\n        \"extension\": \"<string>\"\n      }\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/vulnerabilities/:vulnerabilityID/screenshots",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "vulnerabilities",
+                                    ":vulnerabilityID",
+                                    "screenshots"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "vulnerabilityID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": \"{\\n    \u201cerror\u201d: \u201cfailed to parse base64 data for screenshot\u201d\\n}\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T10:57:20.000Z",
+                              "updatedAt": "2026-07-28T10:57:20.000Z",
+                              "uid": "35240-7f82fe6d-86b5-4227-a95a-4f0f450919c0"
+                            },
+                            {
+                              "id": "50354c77-1e8d-4726-a893-06dabcb76c59",
+                              "name": "401",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) Personal Access Token",
+                                    "key": "X-Cookie",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Cookie",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"screenshots\": [\n    {\n      \"image\": \"data:image/png;base64,{base64Image}\",\n      \"description\": \"<string>\",\n      \"file_detail\": {\n        \"name\": \"<string>\",\n        \"extension\": \"<string>\"\n      }\n    },\n    {\n      \"image\": \"data:image/png;base64,{base64Image}\",\n      \"description\": \"<string>\",\n      \"file_detail\": {\n        \"name\": \"<string>\",\n        \"extension\": \"<string>\"\n      }\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/vulnerabilities/:vulnerabilityID/screenshots",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "vulnerabilities",
+                                    ":vulnerabilityID",
+                                    "screenshots"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "vulnerabilityID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T10:57:20.000Z",
+                              "updatedAt": "2026-07-28T10:57:20.000Z",
+                              "uid": "35240-50354c77-1e8d-4726-a893-06dabcb76c59"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T10:57:20.000Z",
+                          "updatedAt": "2026-07-28T10:57:20.000Z",
+                          "uid": "35240-4d8f1499-ce1c-4c99-a4e1-34e1ef790c90"
+                        }
+                      ],
+                      "id": "bd052755-bcbb-4fd2-a2bd-47235de4c292",
+                      "createdAt": "2026-07-28T10:57:20.000Z",
+                      "updatedAt": "2026-07-28T10:57:20.000Z",
+                      "uid": "35240-bd052755-bcbb-4fd2-a2bd-47235de4c292"
+                    },
+                    {
+                      "name": "Get Vulnerability Details",
+                      "id": "c6987a6d-5780-4189-b20d-cce41d09c57a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/vulnerabilities/:vulnerabilityID?type=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "vulnerabilities",
+                            ":vulnerabilityID"
+                          ],
+                          "query": [
+                            {
+                              "description": "Specifies the type of scan, such as \"sast\", \"dast\", \"sca\", \"cs\", \"infra\", etc. The \"type\" param is required for infra vulnerabilities.",
+                              "key": "type",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "62c7a0dc-c146-4645-bf4c-3a996285c328",
+                              "key": "vulnerabilityID",
+                              "value": "<string>",
+                              "description": "(Required) Vulnerability ID"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "5a2ba596-80c6-4848-b2e1-e4a1ce0a25f1",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/vulnerabilities/:vulnerabilityID?type=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "vulnerabilities",
+                                ":vulnerabilityID"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Specifies the type of scan, such as \"sast\", \"dast\", \"sca\", \"cs\", \"infra\", etc. The \"type\" param is required for infra vulnerabilities.",
+                                  "key": "type",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "vulnerabilityID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": {\n    \"vulnerability\": {\n      \"id\": \"<string>\",\n      \"last_seen\": \"<string>\",\n      \"first_seen\": \"<string>\",\n      \"woe\": 0,\n      \"name\": \"<string>\",\n      \"is_fp\": true,\n      \"is_wf\": true,\n      \"is_mitigated\": true,\n      \"status\": \"<string>\",\n      \"cwe\": {\n        \"_id\": \"<string>\",\n        \"cwe_id\": 0,\n        \"name\": \"<string>\",\n        \"classification\": {\n          \"pci_dss\": {},\n          \"owasp_2017\": {},\n          \"owasp_2021\": {},\n          \"nist\": {},\n          \"sans\": {}\n        }\n      },\n      \"cvss_v3\": 0,\n      \"severity\": 0,\n      \"path\": \"<string>\",\n      \"issue_status\": \"<string>\",\n      \"committer_name\": \"<string>\",\n      \"language\": \"<string>\",\n      \"issue_assigned\": true,\n      \"scanparams\": {\n        \"id\": \"<string>\",\n        \"tool\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        \"project\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"labels\": {}\n        },\n        \"agent\": {\n          \"id\": \"<string>\"\n        },\n        \"bind_name\": \"<string>\",\n        \"branch\": \"<string>\",\n        \"scan_type\": \"<string>\",\n        \"meta_data\": \"<string>\",\n        \"pr\": {\n          \"ok\": true,\n          \"target\": \"<string>\",\n          \"pr_number\": \"<string>\",\n          \"no_decoration\": true\n        },\n        \"manual\": true,\n        \"custom\": {\n          \"type\": 0,\n          \"params\": {\n            \"image_docker_registry_path\": \"<string>\",\n            \"image_tag\": \"<string>\"\n          }\n        }\n      },\n      \"issue_created_date\": \"<string>\",\n      \"issue_wip_date\": \"<string>\",\n      \"issue_closed_date\": \"<string>\",\n      \"fp_mark_date\": \"<string>\",\n      \"infra_group_id\": {},\n      \"cwe_id\": 0,\n      \"cwe_name\": \"<string>\"\n    },\n    \"issue\": {\n      \"assignees\": \"<string>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T10:57:20.000Z",
+                          "updatedAt": "2026-07-28T10:57:20.000Z",
+                          "uid": "35240-5a2ba596-80c6-4848-b2e1-e4a1ce0a25f1"
+                        },
+                        {
+                          "id": "09c47680-e23a-49c9-9444-116738aecff9",
+                          "name": "401",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/vulnerabilities/:vulnerabilityID?type=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "vulnerabilities",
+                                ":vulnerabilityID"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Specifies the type of scan, such as \"sast\", \"dast\", \"sca\", \"cs\", \"infra\", etc. The \"type\" param is required for infra vulnerabilities.",
+                                  "key": "type",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "vulnerabilityID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T10:57:20.000Z",
+                          "updatedAt": "2026-07-28T10:57:20.000Z",
+                          "uid": "35240-09c47680-e23a-49c9-9444-116738aecff9"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T10:57:20.000Z",
+                      "updatedAt": "2026-07-28T10:57:20.000Z",
+                      "uid": "35240-c6987a6d-5780-4189-b20d-cce41d09c57a"
+                    }
+                  ],
+                  "id": "6baa3285-c9b5-433b-872c-445ef6e0667a",
+                  "createdAt": "2026-07-28T10:57:20.000Z",
+                  "updatedAt": "2026-07-28T10:57:20.000Z",
+                  "uid": "35240-6baa3285-c9b5-433b-872c-445ef6e0667a"
+                },
+                {
+                  "name": "Get Vulnerabilities",
+                  "id": "e5ecebf8-fb9a-4cda-b56d-db568c3f1d9a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Personal Access Token",
+                        "key": "X-Cookie",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/vulnerabilities/?limit=30&start=0&woe=eq:15&branch=<string>&type=<string>&fp=<boolean>&cvss=<float>&path=<string>&status=<string>&cwe_name=<string>&cwe_no=<integer>&tool_name=<string>&issue_status=<string>&committers=<string>&from=<date>&to=<date>&tp=<boolean>&id=<string>&teams=<string>&teams=<string>&vuln_name=<string>&project_name=<string>&product_name=<string>&team_ids=<string>&team_ids=<string>&label_ids=<string>&label_ids=<string>&severity=<integer>&severity=<integer>&labels=<string>&labels=<string>&overdue=<boolean>&wf=&mitigated=",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "vulnerabilities",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "The maximum number of vulnerabilities to return per request. Default is 30. Max. value can be 30.",
+                          "key": "limit",
+                          "value": "30"
+                        },
+                        {
+                          "description": "The starting index of the vulnerabilities list. Default is 0.",
+                          "key": "start",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Filters vulnerabilities by their window of exposure. Acceptable operators are eq, gt, and lt, followed by the number of days (e.g., woe=eq:15, woe=gt:4, woe=lt:3).",
+                          "key": "woe",
+                          "value": "eq:15"
+                        },
+                        {
+                          "description": "Performs a search on the branch names of the application's source code. Entering a partial string will return all branches containing that substring.",
+                          "key": "branch",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Specifies the type of scan, such as \"sast\", \"dast\", \"sca\", \"cs\", \"infra\", etc.",
+                          "key": "type",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters out vulnerabilities when set to \"false\" or includes only fp when set to \"true\".",
+                          "key": "fp",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Filters vulnerabilities based on the CVSS v3 score.",
+                          "key": "cvss",
+                          "value": "<float>"
+                        },
+                        {
+                          "description": "Filters vulnerabilities based on the path or target URL. Entering a partial string will return all vulnerabilities associated with matching paths or URLs.",
+                          "key": "path",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters vulnerabilities by their status. Possible values are \"new\", \"recurrent\", and \"closed\". Multiple statuses can be specified, separated by commas (e.g., status=new,recurrent).",
+                          "key": "status",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters vulnerabilities based on the name of the CWE. Entering a partial string will return all vulnerabilities associated with matching CWE names.",
+                          "key": "cwe_name",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters vulnerabilities based on CWE numbers. Multiple CWE numbers can be specified, separated by commas (e.g., cwe_no=79,89,20).",
+                          "key": "cwe_no",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Filters vulnerabilities by the exact name of the tool that identified them. This parameter requires an exact match. If no alphanumeric value is entered, this parameter will not work.",
+                          "key": "tool_name",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters vulnerabilities based on the status of any associated issue. This parameter requires an exact match and can take values like \"open\", \"closed\".",
+                          "key": "issue_status",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters vulnerabilities based on the email of committers. This is a searchable parameter that accepts multiple values. Each value can be a part of the full string, separated by commas (e.g., committers=john@kondukto.io, appsec_user)",
+                          "key": "committers",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters vulnerabilities based on the date and time they were first seen, starting from the specified ISO 8601 date (e.g., 2024-05-08T12:20:57.588Z).",
+                          "key": "from",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Filters vulnerabilities based on the date and time they were first seen, up to the specified ISO 8601 date (e.g., 2024-05-08T12:20:57.588Z).",
+                          "key": "to",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Filters out vulnerabilities marked as true positives when set to \"false\" or includes only true positives when set to \"true\".",
+                          "key": "tp",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Filters vulnerabilities by their unique identification number. This parameter allows for direct access to specific vulnerability.",
+                          "key": "id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters vulnerabilities based on the names of teams the vulnerabilities. Multiple team names can be specified, separated by commas (e.g., teams=security,development).",
+                          "key": "teams",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters vulnerabilities based on the names of teams the vulnerabilities. Multiple team names can be specified, separated by commas (e.g., teams=security,development).",
+                          "key": "teams",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters vulnerabilities based on their name. This is a searchable parameter that supports partial matching. Entering a partial name will return all vulnerabilities containing that substring.",
+                          "key": "vuln_name",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters vulnerabilities based on the name of the project. This is a searchable parameter that supports partial matching. Entering a partial project name will return all vulnerabilities containing that substring.",
+                          "key": "project_name",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters vulnerabilities by the exact name of the product that identified them. This parameter requires an exact match.",
+                          "key": "product_name",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters vulnerabilities based on the identifiers of the teams involved. Multiple team IDs can be specified, separated by commas (e.g., team_ids=661e36fbb3bdf42202f9eb12,65a78ae2710eb82e835b78c8).",
+                          "key": "team_ids",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters vulnerabilities based on the identifiers of the teams involved. Multiple team IDs can be specified, separated by commas (e.g., team_ids=661e36fbb3bdf42202f9eb12,65a78ae2710eb82e835b78c8).",
+                          "key": "team_ids",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters vulnerabilities based on the identifiers of the labels involved. Multiple label IDs can be specified, separated by commas (e.g., label_ids=661e36fbb3bdf42202f9eb12,65a78ae2710eb82e835b78c8).",
+                          "key": "label_ids",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters vulnerabilities based on the identifiers of the labels involved. Multiple label IDs can be specified, separated by commas (e.g., label_ids=661e36fbb3bdf42202f9eb12,65a78ae2710eb82e835b78c8).",
+                          "key": "label_ids",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters vulnerabilities by specified severity levels. Multiple severities can be specified, separated by commas (e.g., severity=1,2).",
+                          "key": "severity",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Filters vulnerabilities by specified severity levels. Multiple severities can be specified, separated by commas (e.g., severity=1,2).",
+                          "key": "severity",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Filters vulnerabilities based on the names of the labels involved. Multiple labels can be specified, separated by commas (e.g., labels=appsec,infrasecurity).",
+                          "key": "labels",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters vulnerabilities based on the names of the labels involved. Multiple labels can be specified, separated by commas (e.g., labels=appsec,infrasecurity).",
+                          "key": "labels",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters out vulnerabilities when set to \"false\" or includes only overdue when set to \"true\".",
+                          "key": "overdue",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Filters out vulnerabilities when set to \"false\" or includes only Won't Fix when set to \"true\".",
+                          "key": "wf",
+                          "value": ""
+                        },
+                        {
+                          "description": "Filters out vulnerabilities when set to \"false\" or includes only Mitigated when set to \"true\".",
+                          "key": "mitigated",
+                          "value": ""
+                        }
+                      ]
+                    },
+                    "description": "This endpoint retrieves a list of vulnerabilities from the Kondukto. It supports pagination and various filters to streamline the search and retrieval of vulnerability data. Clients can specify parameters to filter results based on severity, branch, type, status, and other relevant criteria."
+                  },
+                  "response": [
+                    {
+                      "id": "674afcef-a477-4d00-a61e-7aee05ade1ca",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Cookie",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/vulnerabilities/?limit=30&start=0&woe=eq:15&branch=<string>&type=<string>&fp=<boolean>&cvss=<float>&path=<string>&status=<string>&cwe_name=<string>&cwe_no=<integer>&tool_name=<string>&issue_status=<string>&committers=<string>&from=<date>&to=<date>&tp=<boolean>&id=<string>&teams=<string>&vuln_name=<string>&project_name=<string>&product_name=<string>&team_ids=<string>&label_ids=<string>&severity=<integer>&labels=<string>&overdue=<boolean>&wf=&mitigated=",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "vulnerabilities",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "The maximum number of vulnerabilities to return per request. Default is 30. Max. value can be 30.",
+                              "key": "limit",
+                              "value": "30"
+                            },
+                            {
+                              "description": "The starting index of the vulnerabilities list. Default is 0.",
+                              "key": "start",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Filters vulnerabilities by their window of exposure. Acceptable operators are eq, gt, and lt, followed by the number of days (e.g., woe=eq:15, woe=gt:4, woe=lt:3).",
+                              "key": "woe",
+                              "value": "eq:15"
+                            },
+                            {
+                              "description": "Performs a search on the branch names of the application's source code. Entering a partial string will return all branches containing that substring.",
+                              "key": "branch",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Specifies the type of scan, such as \"sast\", \"dast\", \"sca\", \"cs\", \"infra\", etc.",
+                              "key": "type",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters out vulnerabilities when set to \"false\" or includes only fp when set to \"true\".",
+                              "key": "fp",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on the CVSS v3 score.",
+                              "key": "cvss",
+                              "value": "<float>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on the path or target URL. Entering a partial string will return all vulnerabilities associated with matching paths or URLs.",
+                              "key": "path",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities by their status. Possible values are \"new\", \"recurrent\", and \"closed\". Multiple statuses can be specified, separated by commas (e.g., status=new,recurrent).",
+                              "key": "status",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on the name of the CWE. Entering a partial string will return all vulnerabilities associated with matching CWE names.",
+                              "key": "cwe_name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on CWE numbers. Multiple CWE numbers can be specified, separated by commas (e.g., cwe_no=79,89,20).",
+                              "key": "cwe_no",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities by the exact name of the tool that identified them. This parameter requires an exact match. If no alphanumeric value is entered, this parameter will not work.",
+                              "key": "tool_name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on the status of any associated issue. This parameter requires an exact match and can take values like \"open\", \"closed\".",
+                              "key": "issue_status",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on the email of committers. This is a searchable parameter that accepts multiple values. Each value can be a part of the full string, separated by commas (e.g., committers=john@kondukto.io, appsec_user)",
+                              "key": "committers",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on the date and time they were first seen, starting from the specified ISO 8601 date (e.g., 2024-05-08T12:20:57.588Z).",
+                              "key": "from",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on the date and time they were first seen, up to the specified ISO 8601 date (e.g., 2024-05-08T12:20:57.588Z).",
+                              "key": "to",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "Filters out vulnerabilities marked as true positives when set to \"false\" or includes only true positives when set to \"true\".",
+                              "key": "tp",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities by their unique identification number. This parameter allows for direct access to specific vulnerability.",
+                              "key": "id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on the names of teams the vulnerabilities. Multiple team names can be specified, separated by commas (e.g., teams=security,development).",
+                              "key": "teams",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on their name. This is a searchable parameter that supports partial matching. Entering a partial name will return all vulnerabilities containing that substring.",
+                              "key": "vuln_name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on the name of the project. This is a searchable parameter that supports partial matching. Entering a partial project name will return all vulnerabilities containing that substring.",
+                              "key": "project_name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities by the exact name of the product that identified them. This parameter requires an exact match.",
+                              "key": "product_name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on the identifiers of the teams involved. Multiple team IDs can be specified, separated by commas (e.g., team_ids=661e36fbb3bdf42202f9eb12,65a78ae2710eb82e835b78c8).",
+                              "key": "team_ids",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on the identifiers of the labels involved. Multiple label IDs can be specified, separated by commas (e.g., label_ids=661e36fbb3bdf42202f9eb12,65a78ae2710eb82e835b78c8).",
+                              "key": "label_ids",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities by specified severity levels. Multiple severities can be specified, separated by commas (e.g., severity=1,2).",
+                              "key": "severity",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on the names of the labels involved. Multiple labels can be specified, separated by commas (e.g., labels=appsec,infrasecurity).",
+                              "key": "labels",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters out vulnerabilities when set to \"false\" or includes only overdue when set to \"true\".",
+                              "key": "overdue",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Filters out vulnerabilities when set to \"false\" or includes only Won't Fix when set to \"true\".",
+                              "key": "wf",
+                              "value": ""
+                            },
+                            {
+                              "description": "Filters out vulnerabilities when set to \"false\" or includes only Mitigated when set to \"true\".",
+                              "key": "mitigated",
+                              "value": ""
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"limit\": 0,\n  \"start\": 0,\n  \"total\": 0,\n  \"vulnerabilities\": [\n    {\n      \"id\": \"<string>\",\n      \"last_seen\": \"<string>\",\n      \"first_seen\": \"<string>\",\n      \"woe\": 0,\n      \"name\": \"<string>\",\n      \"is_fp\": true,\n      \"status\": \"<string>\",\n      \"cwe_id\": 0,\n      \"cvss_v3\": 0,\n      \"cwe_name\": \"<string>\",\n      \"severity\": 0,\n      \"path\": \"<string>\",\n      \"issue_status\": \"<string>\",\n      \"committer_name\": \"<string>\",\n      \"language\": \"<string>\",\n      \"issue_assigned\": true,\n      \"scanparams\": {\n        \"id\": \"<string>\",\n        \"tool\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        \"project\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"labels\": \"<array>\"\n        },\n        \"created_by\": \"<string>\",\n        \"bind_name\": \"<string>\",\n        \"branch\": \"<string>\",\n        \"scan_type\": \"<string>\",\n        \"meta_data\": \"<string>\",\n        \"pr\": {\n          \"ok\": true,\n          \"target\": \"<string>\"\n        },\n        \"manual\": true\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"last_seen\": \"<string>\",\n      \"first_seen\": \"<string>\",\n      \"woe\": 0,\n      \"name\": \"<string>\",\n      \"is_fp\": true,\n      \"status\": \"<string>\",\n      \"cwe_id\": 0,\n      \"cvss_v3\": 0,\n      \"cwe_name\": \"<string>\",\n      \"severity\": 0,\n      \"path\": \"<string>\",\n      \"issue_status\": \"<string>\",\n      \"committer_name\": \"<string>\",\n      \"language\": \"<string>\",\n      \"issue_assigned\": true,\n      \"scanparams\": {\n        \"id\": \"<string>\",\n        \"tool\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        \"project\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"labels\": \"<array>\"\n        },\n        \"created_by\": \"<string>\",\n        \"bind_name\": \"<string>\",\n        \"branch\": \"<string>\",\n        \"scan_type\": \"<string>\",\n        \"meta_data\": \"<string>\",\n        \"pr\": {\n          \"ok\": true,\n          \"target\": \"<string>\"\n        },\n        \"manual\": true\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T10:57:20.000Z",
+                      "updatedAt": "2026-07-28T10:57:20.000Z",
+                      "uid": "35240-674afcef-a477-4d00-a61e-7aee05ade1ca"
+                    },
+                    {
+                      "id": "a6d1f97b-c722-4a5f-92c0-c86a9b42bc8d",
+                      "name": "401",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Cookie",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/vulnerabilities/?limit=30&start=0&woe=eq:15&branch=<string>&type=<string>&fp=<boolean>&cvss=<float>&path=<string>&status=<string>&cwe_name=<string>&cwe_no=<integer>&tool_name=<string>&issue_status=<string>&committers=<string>&from=<date>&to=<date>&tp=<boolean>&id=<string>&teams=<string>&vuln_name=<string>&project_name=<string>&product_name=<string>&team_ids=<string>&label_ids=<string>&severity=<integer>&labels=<string>&overdue=<boolean>&wf=&mitigated=",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "vulnerabilities",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "The maximum number of vulnerabilities to return per request. Default is 30. Max. value can be 30.",
+                              "key": "limit",
+                              "value": "30"
+                            },
+                            {
+                              "description": "The starting index of the vulnerabilities list. Default is 0.",
+                              "key": "start",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Filters vulnerabilities by their window of exposure. Acceptable operators are eq, gt, and lt, followed by the number of days (e.g., woe=eq:15, woe=gt:4, woe=lt:3).",
+                              "key": "woe",
+                              "value": "eq:15"
+                            },
+                            {
+                              "description": "Performs a search on the branch names of the application's source code. Entering a partial string will return all branches containing that substring.",
+                              "key": "branch",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Specifies the type of scan, such as \"sast\", \"dast\", \"sca\", \"cs\", \"infra\", etc.",
+                              "key": "type",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters out vulnerabilities when set to \"false\" or includes only fp when set to \"true\".",
+                              "key": "fp",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on the CVSS v3 score.",
+                              "key": "cvss",
+                              "value": "<float>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on the path or target URL. Entering a partial string will return all vulnerabilities associated with matching paths or URLs.",
+                              "key": "path",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities by their status. Possible values are \"new\", \"recurrent\", and \"closed\". Multiple statuses can be specified, separated by commas (e.g., status=new,recurrent).",
+                              "key": "status",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on the name of the CWE. Entering a partial string will return all vulnerabilities associated with matching CWE names.",
+                              "key": "cwe_name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on CWE numbers. Multiple CWE numbers can be specified, separated by commas (e.g., cwe_no=79,89,20).",
+                              "key": "cwe_no",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities by the exact name of the tool that identified them. This parameter requires an exact match. If no alphanumeric value is entered, this parameter will not work.",
+                              "key": "tool_name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on the status of any associated issue. This parameter requires an exact match and can take values like \"open\", \"closed\".",
+                              "key": "issue_status",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on the email of committers. This is a searchable parameter that accepts multiple values. Each value can be a part of the full string, separated by commas (e.g., committers=john@kondukto.io, appsec_user)",
+                              "key": "committers",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on the date and time they were first seen, starting from the specified ISO 8601 date (e.g., 2024-05-08T12:20:57.588Z).",
+                              "key": "from",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on the date and time they were first seen, up to the specified ISO 8601 date (e.g., 2024-05-08T12:20:57.588Z).",
+                              "key": "to",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "Filters out vulnerabilities marked as true positives when set to \"false\" or includes only true positives when set to \"true\".",
+                              "key": "tp",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities by their unique identification number. This parameter allows for direct access to specific vulnerability.",
+                              "key": "id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on the names of teams the vulnerabilities. Multiple team names can be specified, separated by commas (e.g., teams=security,development).",
+                              "key": "teams",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on their name. This is a searchable parameter that supports partial matching. Entering a partial name will return all vulnerabilities containing that substring.",
+                              "key": "vuln_name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on the name of the project. This is a searchable parameter that supports partial matching. Entering a partial project name will return all vulnerabilities containing that substring.",
+                              "key": "project_name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities by the exact name of the product that identified them. This parameter requires an exact match.",
+                              "key": "product_name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on the identifiers of the teams involved. Multiple team IDs can be specified, separated by commas (e.g., team_ids=661e36fbb3bdf42202f9eb12,65a78ae2710eb82e835b78c8).",
+                              "key": "team_ids",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on the identifiers of the labels involved. Multiple label IDs can be specified, separated by commas (e.g., label_ids=661e36fbb3bdf42202f9eb12,65a78ae2710eb82e835b78c8).",
+                              "key": "label_ids",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities by specified severity levels. Multiple severities can be specified, separated by commas (e.g., severity=1,2).",
+                              "key": "severity",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Filters vulnerabilities based on the names of the labels involved. Multiple labels can be specified, separated by commas (e.g., labels=appsec,infrasecurity).",
+                              "key": "labels",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters out vulnerabilities when set to \"false\" or includes only overdue when set to \"true\".",
+                              "key": "overdue",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Filters out vulnerabilities when set to \"false\" or includes only Won't Fix when set to \"true\".",
+                              "key": "wf",
+                              "value": ""
+                            },
+                            {
+                              "description": "Filters out vulnerabilities when set to \"false\" or includes only Mitigated when set to \"true\".",
+                              "key": "mitigated",
+                              "value": ""
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T10:57:20.000Z",
+                      "updatedAt": "2026-07-28T10:57:20.000Z",
+                      "uid": "35240-a6d1f97b-c722-4a5f-92c0-c86a9b42bc8d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T10:57:20.000Z",
+                  "updatedAt": "2026-07-28T10:57:20.000Z",
+                  "uid": "35240-e5ecebf8-fb9a-4cda-b56d-db568c3f1d9a"
+                }
+              ],
+              "id": "fb204030-836a-4d71-815b-142e9ceb4ccd",
+              "createdAt": "2026-07-28T10:57:20.000Z",
+              "updatedAt": "2026-07-28T10:57:20.000Z",
+              "uid": "35240-fb204030-836a-4d71-815b-142e9ceb4ccd"
+            }
+          ],
+          "id": "2da1a09e-2c0d-4692-88a3-b63338ac091f",
+          "createdAt": "2026-07-28T10:57:20.000Z",
+          "updatedAt": "2026-07-28T10:57:20.000Z",
+          "uid": "35240-2da1a09e-2c0d-4692-88a3-b63338ac091f"
+        }
+      ],
+      "id": "3d604a11-a5b3-4c92-a885-eb84a5790c10",
+      "createdAt": "2026-07-28T10:57:20.000Z",
+      "updatedAt": "2026-07-28T10:57:20.000Z",
+      "uid": "35240-3d604a11-a5b3-4c92-a885-eb84a5790c10"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Cookie",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "hostname",
+      "value": "api.kondukto.io"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{hostname}}"
+    }
+  ]
+}

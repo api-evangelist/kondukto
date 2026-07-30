@@ -1,0 +1,137 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/kondukto-aspm-openapi.yml
+docs: https://docs.kondukto.io/reference/starting-with-kondukto-api
+notes: >-
+  Cross-cutting request/response semantics of the Invicti ASPM (Kondukto) REST API v2, searched from
+  the published API reference and derived from the 51 operation definitions the provider publishes.
+  Where the provider documents no contract the field says so explicitly rather than guessing.
+authentication:
+  style: api-key-header
+  header: X-Cookie
+  scoped: false
+  detail: authentication/kondukto-authentication.yml
+base_path:
+  style: uri-path-prefix
+  value: /api/v2
+  host: per-deployment (self-hosted or dedicated tenant); set via INVICTI_ASPM_HOST
+versioning:
+  scheme: uri-path
+  current: v2
+  documented_versions: [v2]
+  other_versions_referenced:
+  - version: v3
+    evidence: >-
+      The v1.109 release note references an "SBOM endpoint in API v3"; v3 is not covered by the
+      public API reference at docs.kondukto.io/reference.
+  breaking_change_policy_published: false
+  detail: lifecycle/kondukto-lifecycle.yml
+pagination:
+  style: offset-limit
+  supported_on:
+  - get-project-list
+  - get-vulnerabilities
+  - get-project-vulnerabilities
+  request_parameters:
+  - name: limit
+    in: query
+    description: Maximum number of records to return per request.
+  - name: start
+    in: query
+    description: Zero-based starting index (offset) into the result set.
+    default: 0
+  response_fields:
+  - field: limit
+    description: Echo of the requested page size.
+  - field: start
+    description: Echo of the requested offset.
+  - field: total
+    description: Total number of records matching the query across all pages.
+  - field: <collection>
+    description: >-
+      The page of records, under a resource-named key such as projects[] or vulnerabilities[].
+  cursor_support: false
+  link_header: false
+  example: '{"limit": 1, "start": 0, "total": 190, "projects": [ ... ]}'
+filtering:
+  style: query-parameters
+  description: >-
+    Collection endpoints expose rich typed filters rather than a generic query language. The
+    vulnerability search alone accepts roughly thirty filters.
+  notable_parameters:
+    vulnerabilities: [severity, status, type, branch, cvss, cwe_no, cwe_name, tool_name, path,
+      project_name, product_name, teams, team_ids, labels, label_ids, committers, from, to, woe,
+      fp, tp, overdue, wf, mitigated, issue_status, id, vuln_name]
+    projects: [name, labels, team, playbook]
+  multi_value: several filters accept comma-separated lists
+  searchable_parameters_note: >-
+    Parameters the docs mark "searchable" match on partial values; others require an exact match.
+sorting:
+  documented: false
+field_expansion:
+  documented: false
+sparse_fieldsets:
+  documented: false
+metadata:
+  supported: true
+  mechanism: >-
+    Scans accept free-form metadata and tags at creation time (KDT --meta and --scan-tag); projects
+    carry labels and business-unit tags as first-class filterable entities.
+idempotency:
+  supported: false
+  idempotency_key_header: null
+  note: >-
+    The API documents no idempotency key. Write operations are plain POST/PATCH/DELETE with no
+    published replay-safety contract, so clients must not blindly retry non-GET calls. Two partial
+    mitigations exist: scan creation is asynchronous and returns an event id that can be polled with
+    get-event-status instead of re-issuing the request, and restart-a-scan is addressed by an
+    existing scan_id. No Idempotency pointer is claimed for this provider.
+request_tracing:
+  request_id_header: null
+  documented: false
+error_envelope:
+  format: custom
+  rfc9457: false
+  content_type: application/json
+  fields:
+  - field: error
+    used_on: [400, 401]
+  - field: message
+    used_on: [403]
+  detail: errors/kondukto-problem-types.yml
+rate_limiting:
+  api_rate_limit_documented: false
+  response_headers: []
+  note: >-
+    No API rate-limit headers or quotas are published. The provider instead publishes recommended
+    fair-usage data limits per plan (vulnerabilities and scan parameters per project) which bound
+    dataset size rather than request rate.
+  fair_usage: plans/kondukto-plans.yml
+long_running_operations:
+  style: event-polling
+  description: >-
+    Scan creation and restart are asynchronous. The API returns an event id; clients poll
+    get-event-status until the scan completes, then read results with get-scan-detail and
+    get-scan-release-status. KDT exposes the same pattern with --async and kdt status -e <event_id>.
+  operations: [create-new-scan, image-scan, restart-a-scan, get-event-status, get-scan-detail]
+content_types:
+  request: [application/json, multipart/form-data]
+  response: [application/json]
+  multipart_operations: [import-scan-result, upload-screenshots]
+  note: >-
+    Scan-result import uses form parameters; vulnerability attachments are uploaded base64-encoded
+    and limited to pdf, html, jpg, png, avi, txt and mp4.
+identifiers:
+  style: objectid-hex-24
+  example: 60a7c9be9f9d339dd28e0583
+  typed_prefixes: false
+  detail: data-model/kondukto-data-model.yml
+events:
+  webhooks: true
+  detail: asyncapi/kondukto-webhooks.yml
+related:
+  authentication: authentication/kondukto-authentication.yml
+  errors: errors/kondukto-problem-types.yml
+  lifecycle: lifecycle/kondukto-lifecycle.yml
+  data_model: data-model/kondukto-data-model.yml
+  cli: cli/kondukto-cli.yml

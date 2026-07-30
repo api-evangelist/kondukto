@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Invicti ASPM (Kondukto) REST API v2 Authorization Managers API
-  version: '2.0'
+  version: '3.1'
   description: Public REST API v2 for the Invicti ASPM platform (formerly Kondukto), an Application Security Posture Management platform that centralizes SAST, DAST, SCA, container and pentest findings from more than eighty scanners. The API manages projects, products, teams, labels, scans and vulnerabilities, and is the same public API the open-source KDT command-line client uses. Assembled by API Evangelist from the per-operation OpenAPI 3.1 definitions Kondukto publishes on each page of its API reference.
   contact:
     name: Kondukto Support
@@ -9,7 +9,6 @@ info:
     url: https://docs.kondukto.io/reference/starting-with-kondukto-api
   x-origin:
   - format: openapi
-    version: '3.1'
     url: https://docs.kondukto.io/reference/starting-with-kondukto-api
 servers:
 - url: https://{hostname}

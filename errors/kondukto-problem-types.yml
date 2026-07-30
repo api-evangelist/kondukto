@@ -1,0 +1,234 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/kondukto-aspm-openapi.yml
+format: custom
+notes: 'Invicti ASPM (Kondukto) does not use RFC 9457 application/problem+json. Errors are returned as
+  a flat JSON object with a single string field: ''error'' on 400/401 responses and ''message'' on 403
+  responses. Derived from the 4xx/5xx responses and published examples in the API reference; message strings
+  are the provider''s own examples, not invented.'
+envelope:
+  content_type: application/json
+  fields:
+  - field: error
+    type: string
+    used_on:
+    - 400
+    - 401
+    description: Human-readable description of the failed action.
+  - field: message
+    type: string
+    used_on:
+    - 403
+    description: Human-readable authorization failure description.
+status_codes:
+- 400
+- 401
+- 403
+- 404
+- 500
+problems:
+- status: 400
+  title: Bad request
+  message: null
+  envelope_field: null
+  remediation: Check required parameters and the request body against the operation's schema; the platform
+    returns the failed action in the error string.
+  example_operations:
+  - get-scan-detail
+  - upload-screenshots
+- status: 400
+  title: Bad request
+  message: bad request error
+  envelope_field: error
+  remediation: Check required parameters and the request body against the operation's schema; the platform
+    returns the failed action in the error string.
+  example_operations:
+  - create-new-scan
+  - image-scan
+  - import-scan-result
+  - restart-a-scan
+  - get-scan-release-status
+  - create-a-dast-vulnerability
+- status: 400
+  title: Bad request
+  message: failed to assign members to team
+  envelope_field: error
+  remediation: Check required parameters and the request body against the operation's schema; the platform
+    returns the failed action in the error string.
+  example_operations:
+  - create-a-team
+  - update-a-team
+- status: 400
+  title: Bad request
+  message: failed to create scanparams
+  envelope_field: error
+  remediation: Check required parameters and the request body against the operation's schema; the platform
+    returns the failed action in the error string.
+  example_operations:
+  - create-project-scan-configuration
+- status: 400
+  title: Bad request
+  message: failed to delete screenshot
+  envelope_field: error
+  remediation: Check required parameters and the request body against the operation's schema; the platform
+    returns the failed action in the error string.
+  example_operations:
+  - delete-a-screenshot
+- status: 400
+  title: Bad request
+  message: failed to get active authmans
+  envelope_field: error
+  remediation: Check required parameters and the request body against the operation's schema; the platform
+    returns the failed action in the error string.
+  example_operations:
+  - get-active-auth-managers
+- status: 400
+  title: Bad request
+  message: failed to get completed scans
+  envelope_field: error
+  remediation: Check required parameters and the request body against the operation's schema; the platform
+    returns the failed action in the error string.
+  example_operations:
+  - get-scans-that-completed
+  - get-scans-that-failed
+  - get-scans-that-imported
+- status: 400
+  title: Bad request
+  message: failed to get events
+  envelope_field: error
+  remediation: Check required parameters and the request body against the operation's schema; the platform
+    returns the failed action in the error string.
+  example_operations:
+  - get-event-status
+- status: 400
+  title: Bad request
+  message: failed to get projects
+  envelope_field: error
+  remediation: Check required parameters and the request body against the operation's schema; the platform
+    returns the failed action in the error string.
+  example_operations:
+  - get-project-list
+  - get-project-detail
+  - project-security-criteria-status
+  - get-project-scan-configuration
+  - get-project-scans
+  - get-project-vulnerabilities
+- status: 400
+  title: Bad request
+  message: failed to get queued scans
+  envelope_field: error
+  remediation: Check required parameters and the request body against the operation's schema; the platform
+    returns the failed action in the error string.
+  example_operations:
+  - get-scans-in-the-queue
+- status: 400
+  title: Bad request
+  message: failed to get teams
+  envelope_field: error
+  remediation: Check required parameters and the request body against the operation's schema; the platform
+    returns the failed action in the error string.
+  example_operations:
+  - get-team-details
+  - delete-a-team
+- status: 400
+  title: Bad request
+  message: failed to get users
+  envelope_field: error
+  remediation: Check required parameters and the request body against the operation's schema; the platform
+    returns the failed action in the error string.
+  example_operations:
+  - get-user-details
+- status: 400
+  title: Bad request
+  message: internal labels cannot be deleted
+  envelope_field: error
+  remediation: Check required parameters and the request body against the operation's schema; the platform
+    returns the failed action in the error string.
+  example_operations:
+  - delete-label
+- status: 400
+  title: Bad request
+  message: invalid ALM tool
+  envelope_field: error
+  remediation: Check required parameters and the request body against the operation's schema; the platform
+    returns the failed action in the error string.
+  example_operations:
+  - check-alm-if-it-exists
+- status: 400
+  title: Bad request
+  message: invalid project data
+  envelope_field: error
+  remediation: Check required parameters and the request body against the operation's schema; the platform
+    returns the failed action in the error string.
+  example_operations:
+  - create-a-project
+  - update-a-project
+- status: 400
+  title: Bad request
+  message: invalid request data
+  envelope_field: error
+  remediation: Check required parameters and the request body against the operation's schema; the platform
+    returns the failed action in the error string.
+  example_operations:
+  - create-a-product
+  - get-products
+  - update-a-product
+  - get-a-product-details
+- status: 400
+  title: Bad request
+  message: label already exists
+  envelope_field: error
+  remediation: Check required parameters and the request body against the operation's schema; the platform
+    returns the failed action in the error string.
+  example_operations:
+  - create-label
+- status: 401
+  title: Unauthorized
+  message: failed to authorize
+  envelope_field: error
+  remediation: The X-Cookie API token is missing, malformed, or revoked. Regenerate it in the UI under
+    Integrations > Personal Access Token.
+  example_operations:
+  - get-business-unit-tags
+  - get-event-status
+  - get-labels
+  - create-a-product
+  - get-products
+  - update-a-product
+- status: 403
+  title: Forbidden
+  message: forbidden operation
+  envelope_field: message
+  remediation: The token's user lacks permission for this resource. Review the role and team membership
+    in the user permission matrix.
+  example_operations:
+  - create-a-product
+  - create-a-project
+  - get-project-list
+  - update-a-project
+  - get-project-detail
+  - project-security-criteria-status
+- status: 403
+  title: Forbidden
+  message: forbidden operation
+  envelope_field: error
+  remediation: The token's user lacks permission for this resource. Review the role and team membership
+    in the user permission matrix.
+  example_operations:
+  - update-a-product
+- status: 404
+  title: Not found
+  message: product not found
+  envelope_field: error
+  remediation: The referenced resource id does not exist on this deployment, or the token's user cannot
+    see it.
+  example_operations:
+  - update-a-product
+- status: 500
+  title: Internal server error
+  message: failed to processing release criteria
+  envelope_field: error
+  remediation: A server-side failure on the Invicti ASPM deployment; retry, then contact support@kondukto.io
+    with the request details.
+  example_operations:
+  - project-security-criteria-status

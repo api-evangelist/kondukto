@@ -1,0 +1,283 @@
+{
+  "info": {
+    "_postman_id": "0eef70e2-ae94-4d5b-acba-2b319497d39a",
+    "name": "Invicti ASPM (Kondukto) REST API v2 Authorization Managers Scanners API",
+    "description": "Public REST API v2 for the Invicti ASPM platform (formerly Kondukto), an Application Security Posture Management platform that centralizes SAST, DAST, SCA, container and pentest findings from more than eighty scanners. The API manages projects, products, teams, labels, scans and vulnerabilities, and is the same public API the open-source KDT command-line client uses. Assembled by API Evangelist from the per-operation OpenAPI 3.1 definitions Kondukto publishes on each page of its API reference.\n\nContact Support:\n Name: Kondukto Support\n Email: support@kondukto.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:57:12.000Z",
+    "updatedAt": "2026-07-28T10:57:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0eef70e2-ae94-4d5b-acba-2b319497d39a"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "scanners",
+              "item": [
+                {
+                  "name": "active",
+                  "item": [
+                    {
+                      "name": "Get Active Scanners",
+                      "id": "b46e8395-4dd4-4e1f-975c-edc3485b2cf2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/scanners/active/?name=<string>&types=<string>&types=<string>&labels=<string>&labels=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "scanners",
+                            "active",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Scanner Name (Contains)",
+                              "key": "name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Comma separated scanner types",
+                              "key": "types",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Comma separated scanner types",
+                              "key": "types",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Comma separated scanner labels",
+                              "key": "labels",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Comma separated scanner labels",
+                              "key": "labels",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Return active scanners"
+                      },
+                      "response": [
+                        {
+                          "id": "3b8c32c7-9f32-4d2f-8a86-66bbbca8b7c6",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/scanners/active/?name=<string>&types=<string>&labels=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "scanners",
+                                "active",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "Scanner Name (Contains)",
+                                  "key": "name",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Comma separated scanner types",
+                                  "key": "types",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Comma separated scanner labels",
+                                  "key": "labels",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": \"{\\n    \\\"active_scanners\\\": [\\n        {\\n            \\\"id\\\": \\\"{scannerID}\\\",\\n            \\\"type\\\": \\\"{scannerType}\\\",\\n            \\\"slug\\\": \\\"{scannerName}\\\",\\n            \\\"display_name\\\": \\\"{scannerDisplayName}\\\",\\n            \\\"labels\\\": [\\n                \\\"{scannerLabel}\\\",\\n                \\\"{scannerLabel}\\\",\\n                \\\"{scannerLabel}\\\"\\n            ],\\n            \\\"image_tags\\\": [\\n                \\\"{scannerImageTag}\\\"\\n            ],\\n            \\\"disabled\\\": false,\\n            \\\"global_configurations\\\": {\\n                \\\"custom_registry\\\": false,\\n                \\\"scanner_image\\\": \\\"{scannerImageName}\\\"\\n            },\\n            \\\"params\\\": {},\\n        }\\n    ],\\n    \\\"total\\\": 1\\n}\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T10:57:13.000Z",
+                          "updatedAt": "2026-07-28T10:57:13.000Z",
+                          "uid": "35240-3b8c32c7-9f32-4d2f-8a86-66bbbca8b7c6"
+                        },
+                        {
+                          "id": "b6c4aef1-7bad-4955-b09c-be27013c7b94",
+                          "name": "401",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/scanners/active/?name=<string>&types=<string>&labels=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "scanners",
+                                "active",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "Scanner Name (Contains)",
+                                  "key": "name",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Comma separated scanner types",
+                                  "key": "types",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Comma separated scanner labels",
+                                  "key": "labels",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T10:57:13.000Z",
+                          "updatedAt": "2026-07-28T10:57:13.000Z",
+                          "uid": "35240-b6c4aef1-7bad-4955-b09c-be27013c7b94"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T10:57:13.000Z",
+                      "updatedAt": "2026-07-28T10:57:13.000Z",
+                      "uid": "35240-b46e8395-4dd4-4e1f-975c-edc3485b2cf2"
+                    }
+                  ],
+                  "id": "09718150-bbc6-44d3-83c0-73adb8fdefde",
+                  "createdAt": "2026-07-28T10:57:13.000Z",
+                  "updatedAt": "2026-07-28T10:57:13.000Z",
+                  "uid": "35240-09718150-bbc6-44d3-83c0-73adb8fdefde"
+                }
+              ],
+              "id": "9011bffb-aaed-4c53-9b1f-1f680d1fa07b",
+              "createdAt": "2026-07-28T10:57:13.000Z",
+              "updatedAt": "2026-07-28T10:57:13.000Z",
+              "uid": "35240-9011bffb-aaed-4c53-9b1f-1f680d1fa07b"
+            }
+          ],
+          "id": "05dde322-0ea0-45f7-98f8-9c3384fbb61c",
+          "createdAt": "2026-07-28T10:57:13.000Z",
+          "updatedAt": "2026-07-28T10:57:13.000Z",
+          "uid": "35240-05dde322-0ea0-45f7-98f8-9c3384fbb61c"
+        }
+      ],
+      "id": "14f27acc-4b99-433e-bc3f-478ec515f9c4",
+      "createdAt": "2026-07-28T10:57:13.000Z",
+      "updatedAt": "2026-07-28T10:57:13.000Z",
+      "uid": "35240-14f27acc-4b99-433e-bc3f-478ec515f9c4"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Cookie",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "hostname",
+      "value": "api.kondukto.io"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{hostname}}"
+    }
+  ]
+}

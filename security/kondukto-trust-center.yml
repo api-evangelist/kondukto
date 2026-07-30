@@ -1,0 +1,48 @@
+generated: '2026-07-19'
+method: searched
+probe: true
+url: https://trust.invicti.com
+compliance_page: https://www.invicti.com/compliance/
+notes: >-
+  Kondukto has no standalone trust centre; post-acquisition the compliance posture for the ASPM
+  product is published on Invicti's properties. trust.invicti.com resolves and returns 200 but is a
+  JavaScript-rendered trust-portal application whose certification list could not be read from the
+  raw HTML. The certifications recorded below were verified in the server-rendered text of
+  https://www.invicti.com/compliance/ and are quoted as that page names them.
+certifications:
+- name: SOC 2 Type 2
+  evidence: >-
+    "Our SOC 2 Type 2 report validates internal controls and systems related to security
+    availability, processing integrity, confidentiality, and data privacy." (invicti.com/compliance)
+  artifact: report available on request via the compliance page
+- name: ISO 27001:2025
+  evidence: >-
+    "Our Information Security Management Systems meet international security standards in data
+    protection." (invicti.com/compliance)
+  artifact: certificate linked from the compliance page
+policies:
+- name: Information Security Policy
+  url: https://www.invicti.com/compliance/
+  note: Invicti's published commitment to maintaining information security controls.
+not_found:
+- PCI DSS
+- HIPAA
+- FedRAMP
+- CSA STAR
+- FIPS 140
+not_found_note: >-
+  These frameworks were probed for and are not named on the compliance page; absence here is
+  recorded data, not a claim that they do not exist elsewhere.
+evidence:
+- source: https://trust.invicti.com
+  status: 200
+  keywords: []
+  note: JS-rendered trust portal; body contains only a loading shim.
+- source: https://www.invicti.com/compliance/
+  status: 200
+  keywords: [soc 2 type 2, 'iso 27001:2025', enterprise compliance, information security policy]
+- source: https://www.invicti.com/trust-center/
+  status: 404
+related:
+  conformance: conformance/kondukto-conformance.yml
+  vulnerability_disclosure: security/kondukto-vulnerability-disclosure.yml

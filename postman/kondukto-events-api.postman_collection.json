@@ -1,0 +1,305 @@
+{
+  "info": {
+    "_postman_id": "be70d429-f2f7-4a7e-a290-191c47869256",
+    "name": "Invicti ASPM (Kondukto) REST API v2 Authorization Managers Events API",
+    "description": "Public REST API v2 for the Invicti ASPM platform (formerly Kondukto), an Application Security Posture Management platform that centralizes SAST, DAST, SCA, container and pentest findings from more than eighty scanners. The API manages projects, products, teams, labels, scans and vulnerabilities, and is the same public API the open-source KDT command-line client uses. Assembled by API Evangelist from the per-operation OpenAPI 3.1 definitions Kondukto publishes on each page of its API reference.\n\nContact Support:\n Name: Kondukto Support\n Email: support@kondukto.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:57:07.000Z",
+    "updatedAt": "2026-07-28T10:57:07.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-be70d429-f2f7-4a7e-a290-191c47869256"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "events",
+              "item": [
+                {
+                  "name": "{eventID}",
+                  "item": [
+                    {
+                      "name": "status",
+                      "item": [
+                        {
+                          "name": "Get Event Status",
+                          "id": "be7e1741-caa1-41e4-b227-56b60699ed3a",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/events/:eventID/status",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "events",
+                                ":eventID",
+                                "status"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "0cb31504-72a7-4449-bfe8-4a33c54b2ed7",
+                                  "key": "eventID",
+                                  "value": "<string>",
+                                  "description": "(Required) Event ID"
+                                }
+                              ]
+                            },
+                            "description": "Returns status of an event"
+                          },
+                          "response": [
+                            {
+                              "id": "66b821a5-7137-493e-811e-21015fe0f81e",
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) Personal Access Token",
+                                    "key": "X-Cookie",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Cookie",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/events/:eventID/status",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "events",
+                                    ":eventID",
+                                    "status"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "eventID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"active\": 0,\n  \"id\": \"<string>\",\n  \"links\": {\n    \"html\": \"<string>\"\n  },\n  \"message\": \"<string>\",\n  \"scan_id\": \"<string>\",\n  \"status\": 0,\n  \"status_text\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T10:57:07.000Z",
+                              "updatedAt": "2026-07-28T10:57:07.000Z",
+                              "uid": "35240-66b821a5-7137-493e-811e-21015fe0f81e"
+                            },
+                            {
+                              "id": "526b5efd-8e34-4f8e-8d19-d2583867f23f",
+                              "name": "400",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) Personal Access Token",
+                                    "key": "X-Cookie",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Cookie",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/events/:eventID/status",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "events",
+                                    ":eventID",
+                                    "status"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "eventID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T10:57:07.000Z",
+                              "updatedAt": "2026-07-28T10:57:07.000Z",
+                              "uid": "35240-526b5efd-8e34-4f8e-8d19-d2583867f23f"
+                            },
+                            {
+                              "id": "5233ae43-7324-41c1-a609-ebfc8cba61d2",
+                              "name": "401",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) Personal Access Token",
+                                    "key": "X-Cookie",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Cookie",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/events/:eventID/status",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "events",
+                                    ":eventID",
+                                    "status"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "eventID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T10:57:07.000Z",
+                              "updatedAt": "2026-07-28T10:57:07.000Z",
+                              "uid": "35240-5233ae43-7324-41c1-a609-ebfc8cba61d2"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T10:57:07.000Z",
+                          "updatedAt": "2026-07-28T10:57:07.000Z",
+                          "uid": "35240-be7e1741-caa1-41e4-b227-56b60699ed3a"
+                        }
+                      ],
+                      "id": "79f30e6f-cd06-4348-b6d6-0d96a2eb1fe9",
+                      "createdAt": "2026-07-28T10:57:07.000Z",
+                      "updatedAt": "2026-07-28T10:57:07.000Z",
+                      "uid": "35240-79f30e6f-cd06-4348-b6d6-0d96a2eb1fe9"
+                    }
+                  ],
+                  "id": "0ac83cae-7661-49cc-9229-9efeec6fb007",
+                  "createdAt": "2026-07-28T10:57:07.000Z",
+                  "updatedAt": "2026-07-28T10:57:07.000Z",
+                  "uid": "35240-0ac83cae-7661-49cc-9229-9efeec6fb007"
+                }
+              ],
+              "id": "a78611d8-bc39-4c49-8b2a-f1809ac4e296",
+              "createdAt": "2026-07-28T10:57:07.000Z",
+              "updatedAt": "2026-07-28T10:57:07.000Z",
+              "uid": "35240-a78611d8-bc39-4c49-8b2a-f1809ac4e296"
+            }
+          ],
+          "id": "de3682a2-bf2d-4236-8afb-d2a013cb1309",
+          "createdAt": "2026-07-28T10:57:07.000Z",
+          "updatedAt": "2026-07-28T10:57:07.000Z",
+          "uid": "35240-de3682a2-bf2d-4236-8afb-d2a013cb1309"
+        }
+      ],
+      "id": "75e5ba01-fd20-46bc-a4b6-b666ea2f0fb4",
+      "createdAt": "2026-07-28T10:57:07.000Z",
+      "updatedAt": "2026-07-28T10:57:07.000Z",
+      "uid": "35240-75e5ba01-fd20-46bc-a4b6-b666ea2f0fb4"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Cookie",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "hostname",
+      "value": "api.kondukto.io"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{hostname}}"
+    }
+  ]
+}

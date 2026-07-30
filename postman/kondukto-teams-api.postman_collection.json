@@ -1,0 +1,1834 @@
+{
+  "info": {
+    "_postman_id": "93fc4e61-2c73-436d-ba69-656c7e6dda3c",
+    "name": "Invicti ASPM (Kondukto) REST API v2 Authorization Managers Teams API",
+    "description": "Public REST API v2 for the Invicti ASPM platform (formerly Kondukto), an Application Security Posture Management platform that centralizes SAST, DAST, SCA, container and pentest findings from more than eighty scanners. The API manages projects, products, teams, labels, scans and vulnerabilities, and is the same public API the open-source KDT command-line client uses. Assembled by API Evangelist from the per-operation OpenAPI 3.1 definitions Kondukto publishes on each page of its API reference.\n\nContact Support:\n Name: Kondukto Support\n Email: support@kondukto.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:57:14.000Z",
+    "updatedAt": "2026-07-28T10:57:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-93fc4e61-2c73-436d-ba69-656c7e6dda3c"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "teams",
+              "item": [
+                {
+                  "name": "members",
+                  "item": [
+                    {
+                      "name": "Get Teams With Members",
+                      "id": "b72bff15-c1d9-498e-9229-25ee49b108e8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/teams/members/?start=0&limit=30&q=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "teams",
+                            "members",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Offset for pagination",
+                              "key": "start",
+                              "value": "0"
+                            },
+                            {
+                              "description": "How many records will return",
+                              "key": "limit",
+                              "value": "30"
+                            },
+                            {
+                              "description": "Team Name (Contains)",
+                              "key": "q",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Returns teams with members. Query teams by team name."
+                      },
+                      "response": [
+                        {
+                          "id": "f56beed5-8aff-4657-af39-1a35305bf4d0",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/teams/members/?start=0&limit=30&q=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "teams",
+                                "members",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "Offset for pagination",
+                                  "key": "start",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "How many records will return",
+                                  "key": "limit",
+                                  "value": "30"
+                                },
+                                {
+                                  "description": "Team Name (Contains)",
+                                  "key": "q",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"limit\": 0,\n  \"start\": 0,\n  \"total\": 0,\n  \"teams\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"members_count\": 0,\n      \"issue_responsible\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\",\n        \"email\": \"<string>\",\n        \"teams\": {}\n      },\n      \"members\": [\n        {\n          \"id\": \"<string>\",\n          \"username\": \"<string>\",\n          \"email\": \"<string>\",\n          \"teams\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"username\": \"<string>\",\n          \"email\": \"<string>\",\n          \"teams\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"members_count\": 0,\n      \"issue_responsible\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\",\n        \"email\": \"<string>\",\n        \"teams\": {}\n      },\n      \"members\": [\n        {\n          \"id\": \"<string>\",\n          \"username\": \"<string>\",\n          \"email\": \"<string>\",\n          \"teams\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"username\": \"<string>\",\n          \"email\": \"<string>\",\n          \"teams\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T10:57:15.000Z",
+                          "updatedAt": "2026-07-28T10:57:15.000Z",
+                          "uid": "35240-f56beed5-8aff-4657-af39-1a35305bf4d0"
+                        },
+                        {
+                          "id": "2593678a-280f-4166-b286-29171dd42d22",
+                          "name": "401",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/teams/members/?start=0&limit=30&q=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "teams",
+                                "members",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "Offset for pagination",
+                                  "key": "start",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "How many records will return",
+                                  "key": "limit",
+                                  "value": "30"
+                                },
+                                {
+                                  "description": "Team Name (Contains)",
+                                  "key": "q",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T10:57:15.000Z",
+                          "updatedAt": "2026-07-28T10:57:15.000Z",
+                          "uid": "35240-2593678a-280f-4166-b286-29171dd42d22"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T10:57:15.000Z",
+                      "updatedAt": "2026-07-28T10:57:15.000Z",
+                      "uid": "35240-b72bff15-c1d9-498e-9229-25ee49b108e8"
+                    }
+                  ],
+                  "id": "310714c4-09b2-4f0e-be4e-5fd4de2423b6",
+                  "createdAt": "2026-07-28T10:57:15.000Z",
+                  "updatedAt": "2026-07-28T10:57:15.000Z",
+                  "uid": "35240-310714c4-09b2-4f0e-be4e-5fd4de2423b6"
+                },
+                {
+                  "name": "{teamID}",
+                  "item": [
+                    {
+                      "name": "members",
+                      "item": [
+                        {
+                          "name": "Update Team Members",
+                          "id": "f15ede65-4335-4cfb-b77d-b07ae117b03e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"add\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"remove\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/teams/:teamID/members",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "teams",
+                                ":teamID",
+                                "members"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "645c8e78-64a3-4421-b3d7-9d2b5144d28d",
+                                  "key": "teamID",
+                                  "value": "<string>",
+                                  "description": "(Required) Team ID"
+                                }
+                              ]
+                            },
+                            "description": "Update members of a team"
+                          },
+                          "response": [
+                            {
+                              "id": "8dadbe91-11ff-431c-8517-715eaa6bcd6a",
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "description": "(Required) Personal Access Token",
+                                    "key": "X-Cookie",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "text/plain"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Cookie",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"add\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"remove\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/teams/:teamID/members",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "teams",
+                                    ":teamID",
+                                    "members"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "text/plain"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": \"\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T10:57:15.000Z",
+                              "updatedAt": "2026-07-28T10:57:15.000Z",
+                              "uid": "35240-8dadbe91-11ff-431c-8517-715eaa6bcd6a"
+                            },
+                            {
+                              "id": "e1f00f82-8c1b-48db-ac6b-4b8ee138987e",
+                              "name": "401",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "description": "(Required) Personal Access Token",
+                                    "key": "X-Cookie",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Cookie",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"add\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"remove\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/teams/:teamID/members",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "teams",
+                                    ":teamID",
+                                    "members"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T10:57:15.000Z",
+                              "updatedAt": "2026-07-28T10:57:15.000Z",
+                              "uid": "35240-e1f00f82-8c1b-48db-ac6b-4b8ee138987e"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T10:57:15.000Z",
+                          "updatedAt": "2026-07-28T10:57:15.000Z",
+                          "uid": "35240-f15ede65-4335-4cfb-b77d-b07ae117b03e"
+                        },
+                        {
+                          "name": "Get Team Members",
+                          "id": "6b650bea-f970-432a-aeb2-39beb8feb064",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/teams/:teamID/members/?start=0&limit=30&q=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "teams",
+                                ":teamID",
+                                "members",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "Offset for pagination",
+                                  "key": "start",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "How many records will return",
+                                  "key": "limit",
+                                  "value": "30"
+                                },
+                                {
+                                  "description": "Username or email (Contains)",
+                                  "key": "q",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "e747cc93-d251-4591-bbc0-dd32689cfe0d",
+                                  "key": "teamID",
+                                  "value": "<string>",
+                                  "description": "(Required) Team ID"
+                                }
+                              ]
+                            },
+                            "description": "Returns a team's members"
+                          },
+                          "response": [
+                            {
+                              "id": "1a6a1899-b62b-48ab-8936-e4f867bd49bc",
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) Personal Access Token",
+                                    "key": "X-Cookie",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Cookie",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/teams/:teamID/members/?start=0&limit=30&q=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "teams",
+                                    ":teamID",
+                                    "members",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Offset for pagination",
+                                      "key": "start",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "description": "How many records will return",
+                                      "key": "limit",
+                                      "value": "30"
+                                    },
+                                    {
+                                      "description": "Username or email (Contains)",
+                                      "key": "q",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"limit\": 0,\n  \"start\": 0,\n  \"total\": 0,\n  \"members\": [\n    {\n      \"id\": \"<string>\",\n      \"username\": \"<string>\",\n      \"email\": \"<string>\",\n      \"teams\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"username\": \"<string>\",\n      \"email\": \"<string>\",\n      \"teams\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T10:57:15.000Z",
+                              "updatedAt": "2026-07-28T10:57:15.000Z",
+                              "uid": "35240-1a6a1899-b62b-48ab-8936-e4f867bd49bc"
+                            },
+                            {
+                              "id": "b34639d2-08c9-4a83-addb-87a77e235cf9",
+                              "name": "401",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) Personal Access Token",
+                                    "key": "X-Cookie",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Cookie",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/teams/:teamID/members/?start=0&limit=30&q=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "teams",
+                                    ":teamID",
+                                    "members",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Offset for pagination",
+                                      "key": "start",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "description": "How many records will return",
+                                      "key": "limit",
+                                      "value": "30"
+                                    },
+                                    {
+                                      "description": "Username or email (Contains)",
+                                      "key": "q",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T10:57:15.000Z",
+                              "updatedAt": "2026-07-28T10:57:15.000Z",
+                              "uid": "35240-b34639d2-08c9-4a83-addb-87a77e235cf9"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T10:57:15.000Z",
+                          "updatedAt": "2026-07-28T10:57:15.000Z",
+                          "uid": "35240-6b650bea-f970-432a-aeb2-39beb8feb064"
+                        }
+                      ],
+                      "id": "bc70410e-a75e-461f-8d88-6686b9315f61",
+                      "createdAt": "2026-07-28T10:57:15.000Z",
+                      "updatedAt": "2026-07-28T10:57:15.000Z",
+                      "uid": "35240-bc70410e-a75e-461f-8d88-6686b9315f61"
+                    },
+                    {
+                      "name": "Get Team Details",
+                      "id": "88eddb9b-2f24-458c-a663-af75306b480f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/teams/:teamID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "teams",
+                            ":teamID"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9c892d1e-9c00-4f91-a2ba-dd219c593ef2",
+                              "key": "teamID",
+                              "value": "<string>",
+                              "description": "(Required) Team ID"
+                            }
+                          ]
+                        },
+                        "description": "Returns a team's details"
+                      },
+                      "response": [
+                        {
+                          "id": "94ecd428-7076-4f5a-94ec-19605ce4e109",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/teams/:teamID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "teams",
+                                ":teamID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"projects_count\": 0,\n  \"members_count\": 0,\n  \"issue_responsible\": {\n    \"id\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T10:57:15.000Z",
+                          "updatedAt": "2026-07-28T10:57:15.000Z",
+                          "uid": "35240-94ecd428-7076-4f5a-94ec-19605ce4e109"
+                        },
+                        {
+                          "id": "ce95ac9f-155d-4091-b0cc-9d5b62e60f2e",
+                          "name": "400",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/teams/:teamID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "teams",
+                                ":teamID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T10:57:15.000Z",
+                          "updatedAt": "2026-07-28T10:57:15.000Z",
+                          "uid": "35240-ce95ac9f-155d-4091-b0cc-9d5b62e60f2e"
+                        },
+                        {
+                          "id": "5a478514-7d4f-4369-ba61-c7df6ffed238",
+                          "name": "401",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/teams/:teamID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "teams",
+                                ":teamID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T10:57:15.000Z",
+                          "updatedAt": "2026-07-28T10:57:15.000Z",
+                          "uid": "35240-5a478514-7d4f-4369-ba61-c7df6ffed238"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T10:57:15.000Z",
+                      "updatedAt": "2026-07-28T10:57:15.000Z",
+                      "uid": "35240-88eddb9b-2f24-458c-a663-af75306b480f"
+                    },
+                    {
+                      "name": "Update a Team",
+                      "id": "bd018f1c-39e5-4a7c-b0d0-b2a7aa8ff3ec",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"Name\": \"<string>\",\n  \"issue_responsible\": {\n    \"id\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/teams/:teamID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "teams",
+                            ":teamID"
+                          ],
+                          "variable": [
+                            {
+                              "id": "14cb93fc-3c2e-4517-a99f-d22c9f82938c",
+                              "key": "teamID",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Update a team through API"
+                      },
+                      "response": [
+                        {
+                          "id": "4c1f6ccf-431f-4cc9-9135-b292e3cd37e9",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"Name\": \"<string>\",\n  \"issue_responsible\": {\n    \"id\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/teams/:teamID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "teams",
+                                ":teamID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"projects_count\": 0,\n    \"members_count\": 0,\n    \"issue_responsible\": {\n      \"id\": \"<string>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T10:57:15.000Z",
+                          "updatedAt": "2026-07-28T10:57:15.000Z",
+                          "uid": "35240-4c1f6ccf-431f-4cc9-9135-b292e3cd37e9"
+                        },
+                        {
+                          "id": "deba8bba-997e-4868-91e1-5d232599e483",
+                          "name": "400",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"Name\": \"<string>\",\n  \"issue_responsible\": {\n    \"id\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/teams/:teamID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "teams",
+                                ":teamID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T10:57:15.000Z",
+                          "updatedAt": "2026-07-28T10:57:15.000Z",
+                          "uid": "35240-deba8bba-997e-4868-91e1-5d232599e483"
+                        },
+                        {
+                          "id": "161b68ff-c3d4-4ec3-a24e-c277e1b35a10",
+                          "name": "401",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"Name\": \"<string>\",\n  \"issue_responsible\": {\n    \"id\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/teams/:teamID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "teams",
+                                ":teamID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T10:57:15.000Z",
+                          "updatedAt": "2026-07-28T10:57:15.000Z",
+                          "uid": "35240-161b68ff-c3d4-4ec3-a24e-c277e1b35a10"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T10:57:15.000Z",
+                      "updatedAt": "2026-07-28T10:57:15.000Z",
+                      "uid": "35240-bd018f1c-39e5-4a7c-b0d0-b2a7aa8ff3ec"
+                    },
+                    {
+                      "name": "Delete a Team",
+                      "id": "d2708b9f-0b6b-4b4d-b8eb-cfd74f1a824f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/teams/:teamID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "teams",
+                            ":teamID"
+                          ],
+                          "variable": [
+                            {
+                              "id": "de9c3025-852e-41a3-a28d-4044c65e9b43",
+                              "key": "teamID",
+                              "value": "<string>",
+                              "description": "(Required) Team ID"
+                            }
+                          ]
+                        },
+                        "description": "Delete a team by id"
+                      },
+                      "response": [
+                        {
+                          "id": "86cef718-bf05-49ef-8349-7b005fc067bd",
+                          "name": "204",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/teams/:teamID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "teams",
+                                ":teamID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/plain"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": \"\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T10:57:15.000Z",
+                          "updatedAt": "2026-07-28T10:57:15.000Z",
+                          "uid": "35240-86cef718-bf05-49ef-8349-7b005fc067bd"
+                        },
+                        {
+                          "id": "ab467bdd-7eea-4e14-9429-511f34aa8400",
+                          "name": "400",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/teams/:teamID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "teams",
+                                ":teamID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T10:57:15.000Z",
+                          "updatedAt": "2026-07-28T10:57:15.000Z",
+                          "uid": "35240-ab467bdd-7eea-4e14-9429-511f34aa8400"
+                        },
+                        {
+                          "id": "1532223c-b2a3-4d17-acf0-5b10394c8bdb",
+                          "name": "401",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/teams/:teamID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "teams",
+                                ":teamID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T10:57:15.000Z",
+                          "updatedAt": "2026-07-28T10:57:15.000Z",
+                          "uid": "35240-1532223c-b2a3-4d17-acf0-5b10394c8bdb"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T10:57:15.000Z",
+                      "updatedAt": "2026-07-28T10:57:15.000Z",
+                      "uid": "35240-d2708b9f-0b6b-4b4d-b8eb-cfd74f1a824f"
+                    }
+                  ],
+                  "id": "916e8ef3-60dd-4c1a-a9ac-83d363c23444",
+                  "createdAt": "2026-07-28T10:57:15.000Z",
+                  "updatedAt": "2026-07-28T10:57:15.000Z",
+                  "uid": "35240-916e8ef3-60dd-4c1a-a9ac-83d363c23444"
+                },
+                {
+                  "name": "Get Teams",
+                  "id": "02eca4ce-bdb3-4ec1-98c7-63fba49dcb02",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Personal Access Token",
+                        "key": "X-Cookie",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/teams/?start=0&limit=30&q=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "teams",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Offset for pagination",
+                          "key": "start",
+                          "value": "0"
+                        },
+                        {
+                          "description": "How many records will return",
+                          "key": "limit",
+                          "value": "30"
+                        },
+                        {
+                          "description": "Team Name (Contains)",
+                          "key": "q",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Return teams. Query teams by team name."
+                  },
+                  "response": [
+                    {
+                      "id": "2df6bc83-2c44-4c05-a48d-b0ed5f4be9fd",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Cookie",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/teams/?start=0&limit=30&q=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "teams",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Offset for pagination",
+                              "key": "start",
+                              "value": "0"
+                            },
+                            {
+                              "description": "How many records will return",
+                              "key": "limit",
+                              "value": "30"
+                            },
+                            {
+                              "description": "Team Name (Contains)",
+                              "key": "q",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"limit\": 0,\n  \"start\": 0,\n  \"total\": 0,\n  \"teams\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T10:57:15.000Z",
+                      "updatedAt": "2026-07-28T10:57:15.000Z",
+                      "uid": "35240-2df6bc83-2c44-4c05-a48d-b0ed5f4be9fd"
+                    },
+                    {
+                      "id": "d16d2bca-86af-4aa7-a11a-f0ee880bf907",
+                      "name": "401",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Cookie",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/teams/?start=0&limit=30&q=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "teams",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Offset for pagination",
+                              "key": "start",
+                              "value": "0"
+                            },
+                            {
+                              "description": "How many records will return",
+                              "key": "limit",
+                              "value": "30"
+                            },
+                            {
+                              "description": "Team Name (Contains)",
+                              "key": "q",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T10:57:15.000Z",
+                      "updatedAt": "2026-07-28T10:57:15.000Z",
+                      "uid": "35240-d16d2bca-86af-4aa7-a11a-f0ee880bf907"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T10:57:15.000Z",
+                  "updatedAt": "2026-07-28T10:57:15.000Z",
+                  "uid": "35240-02eca4ce-bdb3-4ec1-98c7-63fba49dcb02"
+                },
+                {
+                  "name": "Create a Team",
+                  "id": "8d371c88-b4f0-48da-9d69-c8de152b3a20",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Personal Access Token",
+                        "key": "X-Cookie",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"issue_responsible\": {\n    \"id\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/teams/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "teams",
+                        ""
+                      ]
+                    },
+                    "description": "Create a team through API"
+                  },
+                  "response": [
+                    {
+                      "id": "f6ccf2e8-ab47-4650-977a-60019e0ebee6",
+                      "name": "201",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Cookie",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"issue_responsible\": {\n    \"id\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/teams/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "teams",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"projects_count\": 0,\n  \"members_count\": 0,\n  \"issue_responsible\": {\n    \"id\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T10:57:15.000Z",
+                      "updatedAt": "2026-07-28T10:57:15.000Z",
+                      "uid": "35240-f6ccf2e8-ab47-4650-977a-60019e0ebee6"
+                    },
+                    {
+                      "id": "76d29ab5-9cac-4a74-b97f-639e15e1363f",
+                      "name": "400",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Cookie",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"issue_responsible\": {\n    \"id\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/teams/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "teams",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T10:57:15.000Z",
+                      "updatedAt": "2026-07-28T10:57:15.000Z",
+                      "uid": "35240-76d29ab5-9cac-4a74-b97f-639e15e1363f"
+                    },
+                    {
+                      "id": "5a4f5a7a-4667-4216-9714-0f363dcbe76a",
+                      "name": "401",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Cookie",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"issue_responsible\": {\n    \"id\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/teams/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "teams",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T10:57:15.000Z",
+                      "updatedAt": "2026-07-28T10:57:15.000Z",
+                      "uid": "35240-5a4f5a7a-4667-4216-9714-0f363dcbe76a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T10:57:15.000Z",
+                  "updatedAt": "2026-07-28T10:57:15.000Z",
+                  "uid": "35240-8d371c88-b4f0-48da-9d69-c8de152b3a20"
+                }
+              ],
+              "id": "37339704-1ddd-40d5-810d-f7e3f7827cc5",
+              "createdAt": "2026-07-28T10:57:15.000Z",
+              "updatedAt": "2026-07-28T10:57:15.000Z",
+              "uid": "35240-37339704-1ddd-40d5-810d-f7e3f7827cc5"
+            }
+          ],
+          "id": "543c286b-814d-4ebe-a6ca-f39d121e4322",
+          "createdAt": "2026-07-28T10:57:15.000Z",
+          "updatedAt": "2026-07-28T10:57:15.000Z",
+          "uid": "35240-543c286b-814d-4ebe-a6ca-f39d121e4322"
+        }
+      ],
+      "id": "c551268d-2aaf-4b9b-937f-0e8053f949c8",
+      "createdAt": "2026-07-28T10:57:15.000Z",
+      "updatedAt": "2026-07-28T10:57:15.000Z",
+      "uid": "35240-c551268d-2aaf-4b9b-937f-0e8053f949c8"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Cookie",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "hostname",
+      "value": "api.kondukto.io"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{hostname}}"
+    }
+  ]
+}

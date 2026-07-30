@@ -1,0 +1,51 @@
+generated: '2026-07-19'
+method: searched
+source: probe of /.well-known/ on every Kondukto host in apis.yml and the OpenAPI servers[]
+notes: >-
+  kondukto.io and www.kondukto.io 301-redirect to www.invicti.com following Invicti's acquisition of
+  Kondukto, so the security.txt served for the kondukto.io origin is Invicti's canonical document.
+  The API host api.kondukto.io answers 403 to unauthenticated requests including /.well-known/ paths.
+  docs.kondukto.io remains a live, independent documentation origin and publishes /llms.txt.
+hosts:
+- host: https://kondukto.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    redirects_to: https://www.invicti.com/.well-known/security.txt
+    file: kondukto-security.txt
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://docs.kondukto.io
+  documents:
+  - path: /llms.txt
+    status: 200
+    file: ../llms/kondukto-llms.txt
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://api.kondukto.io
+  note: All unauthenticated requests answer 403; no /.well-known/ document is publicly readable.
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+  - path: /.well-known/openid-configuration
+    status: 403
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+  - path: /.well-known/api-catalog
+    status: 403
+  - path: /.well-known/ai-plugin.json
+    status: 403

@@ -1,0 +1,43 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Invicti ASPM (Kondukto) REST API v2
+  version: 1.0.0
+extends: openapi/kondukto-aspm-openapi.yml
+x-generated: '2026-07-19'
+x-method: generated
+x-notes: 'Records the enhancements API Evangelist applied when assembling Kondukto''s per-operation OpenAPI
+  fragments into a single document: a described security scheme (the fragments declare no securitySchemes
+  even though every operation requires the X-Cookie token), a single templated server replacing twelve
+  per-resource server entries, and resource tags. Applied to the assembled spec; the original per-operation
+  definitions are unchanged.'
+actions:
+- target: $.info
+  update:
+    x-apievangelist-assembled-from: https://docs.kondukto.io/reference (51 per-operation OpenAPI 3.1 fragments)
+- target: $.components.securitySchemes
+  description: Add the X-Cookie API token scheme the published fragments omit.
+  update:
+    apiToken:
+      type: apiKey
+      in: header
+      name: X-Cookie
+      description: Kondukto-issued API token from Integrations > Personal Access Token.
+- target: $.servers
+  description: Replace the twelve per-resource server entries (each carrying its own path prefix) with
+    one templated deployment host; resource prefixes were folded into the path keys instead.
+  update:
+  - url: https://{hostname}
+    variables:
+      hostname:
+        default: app.kondukto.io
+- target: $.paths.*[?(@.operationId)]
+  description: Tag every operation by its resource family so the spec navigates by domain.
+  update:
+    x-apievangelist-tagged: true
+- target: $.paths..content.*.examples.*
+  description: >-
+    The provider publishes every response example as a stringified JSON blob, which fails the
+    oas3-valid-media-example rule. 119 of the 134 examples were parsed into real JSON objects;
+    content is unchanged. The remaining 15 are not strict JSON and were left verbatim.
+  update:
+    x-apievangelist-example-parsed: true

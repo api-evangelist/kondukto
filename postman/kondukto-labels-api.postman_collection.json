@@ -1,0 +1,807 @@
+{
+  "info": {
+    "_postman_id": "b39b17d0-acb5-4ae6-a68e-0996cb810c86",
+    "name": "Invicti ASPM (Kondukto) REST API v2 Authorization Managers Labels API",
+    "description": "Public REST API v2 for the Invicti ASPM platform (formerly Kondukto), an Application Security Posture Management platform that centralizes SAST, DAST, SCA, container and pentest findings from more than eighty scanners. The API manages projects, products, teams, labels, scans and vulnerabilities, and is the same public API the open-source KDT command-line client uses. Assembled by API Evangelist from the per-operation OpenAPI 3.1 definitions Kondukto publishes on each page of its API reference.\n\nContact Support:\n Name: Kondukto Support\n Email: support@kondukto.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:57:09.000Z",
+    "updatedAt": "2026-07-28T10:57:09.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b39b17d0-acb5-4ae6-a68e-0996cb810c86"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "business_unit_tags",
+              "item": [
+                {
+                  "name": "Get Business Unit Tags",
+                  "id": "2b3a6c62-8bbb-4ba0-b5ca-e9dd618c97f7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Personal Access Token",
+                        "key": "X-Cookie",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/business_unit_tags/?start=0&limit=30&q=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "business_unit_tags",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Offset for pagination",
+                          "key": "start",
+                          "value": "0"
+                        },
+                        {
+                          "description": "How many records will return",
+                          "key": "limit",
+                          "value": "30"
+                        },
+                        {
+                          "description": "Business Unit Tag Name (Contains)",
+                          "key": "q",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Return business unit tags. Query business unit tags by business unit tag name."
+                  },
+                  "response": [
+                    {
+                      "id": "d208f237-e01e-4e11-91a1-7afa040e610f",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Cookie",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/business_unit_tags/?start=0&limit=30&q=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "business_unit_tags",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Offset for pagination",
+                              "key": "start",
+                              "value": "0"
+                            },
+                            {
+                              "description": "How many records will return",
+                              "key": "limit",
+                              "value": "30"
+                            },
+                            {
+                              "description": "Business Unit Tag Name (Contains)",
+                              "key": "q",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"limit\": 0,\n  \"start\": 0,\n  \"total\": 0,\n  \"business_unit_tags\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"color\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"color\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T10:57:09.000Z",
+                      "updatedAt": "2026-07-28T10:57:09.000Z",
+                      "uid": "35240-d208f237-e01e-4e11-91a1-7afa040e610f"
+                    },
+                    {
+                      "id": "bdc1a977-1e12-4255-8d72-f0dd52d6152c",
+                      "name": "401",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Cookie",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/business_unit_tags/?start=0&limit=30&q=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "business_unit_tags",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Offset for pagination",
+                              "key": "start",
+                              "value": "0"
+                            },
+                            {
+                              "description": "How many records will return",
+                              "key": "limit",
+                              "value": "30"
+                            },
+                            {
+                              "description": "Business Unit Tag Name (Contains)",
+                              "key": "q",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T10:57:09.000Z",
+                      "updatedAt": "2026-07-28T10:57:09.000Z",
+                      "uid": "35240-bdc1a977-1e12-4255-8d72-f0dd52d6152c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T10:57:09.000Z",
+                  "updatedAt": "2026-07-28T10:57:09.000Z",
+                  "uid": "35240-2b3a6c62-8bbb-4ba0-b5ca-e9dd618c97f7"
+                }
+              ],
+              "id": "06325820-486f-4160-aed1-6f34034ccf69",
+              "createdAt": "2026-07-28T10:57:09.000Z",
+              "updatedAt": "2026-07-28T10:57:09.000Z",
+              "uid": "35240-06325820-486f-4160-aed1-6f34034ccf69"
+            },
+            {
+              "name": "labels",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "Delete Label",
+                      "id": "84213e4e-a741-46af-b408-ccdb819e06d0",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/labels/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "labels",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "71a2a4c3-95bc-4d7a-bb22-75f8b1f79ad7",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) Label ID to delete"
+                            }
+                          ]
+                        },
+                        "description": "Delete a label by ID"
+                      },
+                      "response": [
+                        {
+                          "id": "58ae98e9-9c43-4a02-a735-a2f7e1dbe392",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/labels/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "labels",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T10:57:09.000Z",
+                          "updatedAt": "2026-07-28T10:57:09.000Z",
+                          "uid": "35240-58ae98e9-9c43-4a02-a735-a2f7e1dbe392"
+                        },
+                        {
+                          "id": "0830769a-60dd-4e0c-a964-917f02dda81a",
+                          "name": "400",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/labels/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "labels",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T10:57:09.000Z",
+                          "updatedAt": "2026-07-28T10:57:09.000Z",
+                          "uid": "35240-0830769a-60dd-4e0c-a964-917f02dda81a"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T10:57:09.000Z",
+                      "updatedAt": "2026-07-28T10:57:09.000Z",
+                      "uid": "35240-84213e4e-a741-46af-b408-ccdb819e06d0"
+                    }
+                  ],
+                  "id": "2b2cdfef-078b-4788-8a61-73aed7027623",
+                  "createdAt": "2026-07-28T10:57:09.000Z",
+                  "updatedAt": "2026-07-28T10:57:09.000Z",
+                  "uid": "35240-2b2cdfef-078b-4788-8a61-73aed7027623"
+                },
+                {
+                  "name": "Get Labels",
+                  "id": "0ce21848-432b-4839-beab-cc68099b8b86",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Personal Access Token",
+                        "key": "X-Cookie",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/labels/?start=0&limit=30&name=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "labels",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Offset for pagination",
+                          "key": "start",
+                          "value": "0"
+                        },
+                        {
+                          "description": "How many records will return",
+                          "key": "limit",
+                          "value": "30"
+                        },
+                        {
+                          "description": "Label Name (Contains)",
+                          "key": "name",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Return labels. Query labels by label name."
+                  },
+                  "response": [
+                    {
+                      "id": "0f6c82af-9926-4623-b698-d90e82e843c9",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Cookie",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/labels/?start=0&limit=30&name=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "labels",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Offset for pagination",
+                              "key": "start",
+                              "value": "0"
+                            },
+                            {
+                              "description": "How many records will return",
+                              "key": "limit",
+                              "value": "30"
+                            },
+                            {
+                              "description": "Label Name (Contains)",
+                              "key": "name",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"start\": 0,\n  \"limit\": 0,\n  \"total\": 0,\n  \"labels\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T10:57:09.000Z",
+                      "updatedAt": "2026-07-28T10:57:09.000Z",
+                      "uid": "35240-0f6c82af-9926-4623-b698-d90e82e843c9"
+                    },
+                    {
+                      "id": "ce7aab92-ae03-4ea9-98a5-8a500eb1d36a",
+                      "name": "401",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Cookie",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/labels/?start=0&limit=30&name=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "labels",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Offset for pagination",
+                              "key": "start",
+                              "value": "0"
+                            },
+                            {
+                              "description": "How many records will return",
+                              "key": "limit",
+                              "value": "30"
+                            },
+                            {
+                              "description": "Label Name (Contains)",
+                              "key": "name",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T10:57:09.000Z",
+                      "updatedAt": "2026-07-28T10:57:09.000Z",
+                      "uid": "35240-ce7aab92-ae03-4ea9-98a5-8a500eb1d36a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T10:57:09.000Z",
+                  "updatedAt": "2026-07-28T10:57:09.000Z",
+                  "uid": "35240-0ce21848-432b-4839-beab-cc68099b8b86"
+                },
+                {
+                  "name": "Create Label",
+                  "id": "6e218589-c71e-4eaa-981d-e70ad17a2ac0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Personal Access Token",
+                        "key": "X-Cookie",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"label_name\",\n  \"color\": \"AA00FF\",\n  \"risk_value\": 2,\n  \"add_to_all_projects\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/labels/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "labels",
+                        ""
+                      ]
+                    },
+                    "description": "Create a label"
+                  },
+                  "response": [
+                    {
+                      "id": "e2414bf6-f5ff-4613-bffd-bd3c6b48e287",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Cookie",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"label_name\",\n  \"color\": \"AA00FF\",\n  \"risk_value\": 2,\n  \"add_to_all_projects\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/labels/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "labels",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": \"{\\n    \\\"data\\\": {\\n        \\\"id\\\": \\\"label_id\\\",\\n        \\\"name\\\": \\\"label_name\\\",\\n        \\\"color\\\": \\\"ff1f1f\\\",\\n        \\\"isActive\\\": 1,\\n        \\\"is_used_sc\\\": false,\\n        \\\"is_used_ic\\\": false,\\n        \\\"is_used_sla\\\": false,\\n        \\\"is_used_hv\\\": false,\\n        \\\"organization\\\": {\\n            \\\"id\\\": \\\"organization_id\\\"\\n        },\\n        \\\"risk_value\\\": risk_value,\\n        \\\"is_constant_risk_profile_label\\\": false,\\n        \\\"add_to_all_projects\\\": true,\\n        \\\"type\\\": \\\"user\\\",\\n        \\\"is_deactivated_from_user\\\": false,\\n        \\\"auto_label_keywords\\\": null\\n    },\\n    \\\"message\\\": \\\"label created successfully\\\"\\n}\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T10:57:09.000Z",
+                      "updatedAt": "2026-07-28T10:57:09.000Z",
+                      "uid": "35240-e2414bf6-f5ff-4613-bffd-bd3c6b48e287"
+                    },
+                    {
+                      "id": "51389c2e-48f2-47f2-9515-97c81e1b16cd",
+                      "name": "400",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Cookie",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"label_name\",\n  \"color\": \"AA00FF\",\n  \"risk_value\": 2,\n  \"add_to_all_projects\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/labels/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "labels",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T10:57:09.000Z",
+                      "updatedAt": "2026-07-28T10:57:09.000Z",
+                      "uid": "35240-51389c2e-48f2-47f2-9515-97c81e1b16cd"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T10:57:09.000Z",
+                  "updatedAt": "2026-07-28T10:57:09.000Z",
+                  "uid": "35240-6e218589-c71e-4eaa-981d-e70ad17a2ac0"
+                }
+              ],
+              "id": "16160d14-ff8e-48a3-9047-8d5213b72135",
+              "createdAt": "2026-07-28T10:57:09.000Z",
+              "updatedAt": "2026-07-28T10:57:09.000Z",
+              "uid": "35240-16160d14-ff8e-48a3-9047-8d5213b72135"
+            }
+          ],
+          "id": "241cb97a-a9c9-493a-9926-2aafd3df9143",
+          "createdAt": "2026-07-28T10:57:09.000Z",
+          "updatedAt": "2026-07-28T10:57:09.000Z",
+          "uid": "35240-241cb97a-a9c9-493a-9926-2aafd3df9143"
+        }
+      ],
+      "id": "e7b6d38e-c109-446f-99fe-7c1dcefeaee0",
+      "createdAt": "2026-07-28T10:57:09.000Z",
+      "updatedAt": "2026-07-28T10:57:09.000Z",
+      "uid": "35240-e7b6d38e-c109-446f-99fe-7c1dcefeaee0"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Cookie",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "hostname",
+      "value": "api.kondukto.io"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{hostname}}"
+    }
+  ]
+}

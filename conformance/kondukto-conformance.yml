@@ -1,0 +1,120 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/kondukto-aspm-openapi.yml
+notes: >-
+  Standards conformance for the Invicti ASPM (Kondukto) REST API v2, derived from the provider's own
+  published operation definitions and searched against the documentation. Kondukto's domain is
+  application security posture management, so the meaningful standards are the AppSec data formats
+  it ingests and emits (SARIF, CycloneDX, SPDX, CVE/CWE/CVSS, EPSS, VEX) rather than financial or
+  healthcare API profiles. Enterprise compliance certifications are tracked separately in
+  security/kondukto-trust-center.yml.
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: >-
+    The provider publishes an OpenAPI 3.1.0 definition on each API reference page; these were
+    assembled into openapi/kondukto-aspm-openapi.yml.
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 security scheme; the API uses a single apiKey token in the X-Cookie header.
+- id: oidc
+  conforms: false
+  evidence: >-
+    No OpenID Connect on the API. SAML 2.0 / Okta SSO governs interactive platform sign-in only.
+- id: saml-2.0
+  conforms: true
+  scope: interactive platform sign-in, not the REST API
+  evidence: Documented Azure AD and Google Workspace SAML 2.0 integrations, plus Okta.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors use a flat custom envelope ({"error": "..."} or {"message": "..."}) with content type
+    application/json, not application/problem+json.
+- id: rfc9116-security-txt
+  conforms: true
+  evidence: >-
+    kondukto.io serves a well-formed security.txt (Canonical, Contact, Expires, Encryption,
+    Preferred-Languages) via redirect to the Invicti canonical document.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset or Deprecation header support and no published deprecation policy.
+- id: idempotency-key
+  conforms: false
+  evidence: No idempotency key header or replay-safety contract is documented.
+- id: pagination
+  conforms: true
+  style: offset-limit
+  evidence: >-
+    Collection endpoints accept limit and start and return {limit, start, total, <collection>}.
+- id: llms-txt
+  conforms: true
+  evidence: docs.kondukto.io publishes /llms.txt (captured verbatim at llms/kondukto-llms.txt).
+- id: json-api
+  conforms: false
+  evidence: Responses are plain JSON objects, not JSON:API documents.
+- id: odata
+  conforms: false
+- id: scim-2.0
+  conforms: false
+  evidence: >-
+    User and team provisioning is exposed through native /api/v2/users and /api/v2/teams operations,
+    not a SCIM endpoint.
+- id: fhir-r4
+  conforms: false
+- id: fapi
+  conforms: false
+- id: psd2
+  conforms: false
+domain_standards:
+- id: sarif
+  conforms: true
+  role: ingest and report
+  evidence: >-
+    SARIF report handling is documented and appears in the release notes (code-snippet handling in
+    SARIF reports fixed in v1.110).
+- id: cyclonedx
+  conforms: true
+  role: ingest
+  evidence: SBOM import via kdt sbom import and the SBOM Radar integration.
+- id: spdx
+  conforms: true
+  role: ingest
+  evidence: SBOM import supports standard SBOM document types.
+- id: cve
+  conforms: true
+  role: correlate
+  evidence: Vulnerability records carry CVE identifiers; CISA KEV and EPSS feeds are integrated.
+- id: cwe
+  conforms: true
+  role: classify
+  evidence: >-
+    Vulnerabilities carry cwe_no and cwe_name; get-vulnerabilities filters on both, and an AI-based
+    CWE predictor was added in v1.112.0.
+- id: cvss-v3
+  conforms: true
+  role: score
+  evidence: cvss query filter and cvssv3.score in the webhook issue payload.
+- id: epss
+  conforms: true
+  role: enrich
+  evidence: CISA KEV + EPSS integration documented.
+- id: vex
+  conforms: true
+  role: ingest and display
+  evidence: >-
+    VEX support added in v1.112.0, ingesting applicability data from JFrog Xray, Snyk and BlackDuck.
+- id: euvd
+  conforms: true
+  role: enrich
+  evidence: EUVD threat-intelligence source added in v1.112.0.
+- id: openapi-ingest
+  conforms: true
+  role: ingest
+  evidence: >-
+    The platform ingests API endpoint inventories from Swagger/OpenAPI JSON via UI import or
+    kdt endpoint import.
+compliance_certifications: security/kondukto-trust-center.yml
+related:
+  authentication: authentication/kondukto-authentication.yml
+  errors: errors/kondukto-problem-types.yml
+  conventions: conventions/kondukto-conventions.yml

@@ -1,0 +1,255 @@
+{
+  "info": {
+    "_postman_id": "7c418c66-104b-4651-ba36-5833f31f3194",
+    "name": "Invicti ASPM (Kondukto) REST API v2 Authorization Managers API",
+    "description": "Public REST API v2 for the Invicti ASPM platform (formerly Kondukto), an Application Security Posture Management platform that centralizes SAST, DAST, SCA, container and pentest findings from more than eighty scanners. The API manages projects, products, teams, labels, scans and vulnerabilities, and is the same public API the open-source KDT command-line client uses. Assembled by API Evangelist from the per-operation OpenAPI 3.1 definitions Kondukto publishes on each page of its API reference.\n\nContact Support:\n Name: Kondukto Support\n Email: support@kondukto.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:57:05.000Z",
+    "updatedAt": "2026-07-28T10:57:06.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7c418c66-104b-4651-ba36-5833f31f3194"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "authmans",
+              "item": [
+                {
+                  "name": "active",
+                  "item": [
+                    {
+                      "name": "Get Active Authorization Managers",
+                      "id": "c51e17b4-bb00-4f63-aadf-d2df67bd8776",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/authmans/active?start=0&limit=30",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "authmans",
+                            "active"
+                          ],
+                          "query": [
+                            {
+                              "description": "Offset for pagination",
+                              "key": "start",
+                              "value": "0"
+                            },
+                            {
+                              "description": "How many records will return",
+                              "key": "limit",
+                              "value": "30"
+                            }
+                          ]
+                        },
+                        "description": "Return active authorization managers"
+                      },
+                      "response": [
+                        {
+                          "id": "25bbac54-47b2-45d5-8b01-17e24e369a91",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/authmans/active?start=0&limit=30",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "authmans",
+                                "active"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Offset for pagination",
+                                  "key": "start",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "How many records will return",
+                                  "key": "limit",
+                                  "value": "30"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"active_authmans\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"limit\": 0,\n  \"start\": 0,\n  \"total\": 0\n}",
+                          "createdAt": "2026-07-28T10:57:06.000Z",
+                          "updatedAt": "2026-07-28T10:57:06.000Z",
+                          "uid": "35240-25bbac54-47b2-45d5-8b01-17e24e369a91"
+                        },
+                        {
+                          "id": "39894b4b-1992-4b4f-94a7-7f0f726e6ef0",
+                          "name": "400",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/authmans/active?start=0&limit=30",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "authmans",
+                                "active"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Offset for pagination",
+                                  "key": "start",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "How many records will return",
+                                  "key": "limit",
+                                  "value": "30"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T10:57:06.000Z",
+                          "updatedAt": "2026-07-28T10:57:06.000Z",
+                          "uid": "35240-39894b4b-1992-4b4f-94a7-7f0f726e6ef0"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T10:57:06.000Z",
+                      "updatedAt": "2026-07-28T10:57:06.000Z",
+                      "uid": "35240-c51e17b4-bb00-4f63-aadf-d2df67bd8776"
+                    }
+                  ],
+                  "id": "a28d91e2-1757-4a61-81d6-788e8285c9cf",
+                  "createdAt": "2026-07-28T10:57:06.000Z",
+                  "updatedAt": "2026-07-28T10:57:06.000Z",
+                  "uid": "35240-a28d91e2-1757-4a61-81d6-788e8285c9cf"
+                }
+              ],
+              "id": "530a300a-33e6-43ca-8b0d-d9f8f7d50d6e",
+              "createdAt": "2026-07-28T10:57:06.000Z",
+              "updatedAt": "2026-07-28T10:57:06.000Z",
+              "uid": "35240-530a300a-33e6-43ca-8b0d-d9f8f7d50d6e"
+            }
+          ],
+          "id": "9f50ef32-9f33-4736-80b2-c64cb80c6615",
+          "createdAt": "2026-07-28T10:57:06.000Z",
+          "updatedAt": "2026-07-28T10:57:06.000Z",
+          "uid": "35240-9f50ef32-9f33-4736-80b2-c64cb80c6615"
+        }
+      ],
+      "id": "5c466475-2c2c-447b-9324-97499002050f",
+      "createdAt": "2026-07-28T10:57:06.000Z",
+      "updatedAt": "2026-07-28T10:57:06.000Z",
+      "uid": "35240-5c466475-2c2c-447b-9324-97499002050f"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Cookie",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "hostname",
+      "value": "api.kondukto.io"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{hostname}}"
+    }
+  ]
+}

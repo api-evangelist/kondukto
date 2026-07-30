@@ -1,0 +1,72 @@
+generated: '2026-07-19'
+method: searched
+source: https://github.com/kondukto-io/kdt
+notes: >-
+  Kondukto (now Invicti ASPM) ships one first-party client: KDT, an open-source Go command-line
+  client that talks to the same public REST API v2 documented at docs.kondukto.io/reference. There
+  are no first-party language SDKs published to npm, PyPI, Maven Central, NuGet, RubyGems, Packagist
+  or crates.io; KDT is distributed as a Go module, an install script at cli.kondukto.io, GitHub
+  release binaries, and a GitHub Action. Integration is otherwise done directly against the REST API.
+packages:
+- language: go
+  registry: go-modules
+  name: github.com/kondukto-io/kdt
+  url: https://pkg.go.dev/github.com/kondukto-io/kdt
+  repository: https://github.com/kondukto-io/kdt
+  install: go get github.com/kondukto-io/kdt
+  kind: cli
+  official: true
+  description: KDT, the open-source Invicti ASPM (Kondukto) command-line client, written in Go.
+- language: shell
+  registry: vendor-script
+  name: kdt
+  url: https://cli.kondukto.io
+  install: curl -sSL https://cli.kondukto.io | sudo sh
+  kind: cli
+  official: true
+  description: Vendor install script for the KDT binary on Linux and macOS.
+- language: binary
+  registry: github-releases
+  name: kdt-cli
+  url: https://github.com/kondukto-io/kdt/releases
+  install: Download kdt-cli.exe (Windows) or the platform archive from GitHub Releases.
+  kind: cli
+  official: true
+  description: Prebuilt KDT release binaries, including the Windows executable.
+- language: yaml
+  registry: github-actions
+  name: kondukto-io/kdt-action
+  url: https://github.com/kondukto-io/kdt-action
+  repository: https://github.com/kondukto-io/kdt-action
+  install: 'uses: kondukto-io/kdt-action@main'
+  kind: ci-action
+  official: true
+  description: GitHub Action wrapper that runs KDT scans and release gates inside GitHub workflows.
+- language: yaml
+  registry: github-actions
+  name: kondukto-io/kntrl-action
+  url: https://github.com/kondukto-io/kntrl-action
+  repository: https://github.com/kondukto-io/kntrl-action
+  install: 'uses: kondukto-io/kntrl-action@main'
+  kind: ci-action
+  official: true
+  description: >-
+    GitHub Action for kntrl, Kondukto's open-source eBPF runtime agent that monitors and blocks
+    anomalous egress from CI/CD pipelines.
+registries_checked:
+- registry: npm
+  result: no first-party package found
+- registry: pypi
+  result: no first-party package found
+- registry: maven-central
+  result: no first-party package found
+- registry: nuget
+  result: no first-party package found
+- registry: rubygems
+  result: no first-party package found
+- registry: packagist
+  result: no first-party package found
+- registry: crates.io
+  result: no first-party package found
+- registry: go-modules
+  result: github.com/kondukto-io/kdt found

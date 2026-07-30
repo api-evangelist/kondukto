@@ -1,0 +1,70 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.kondukto.io/changelog
+url: https://docs.kondukto.io/changelog
+notes: >-
+  Dated product release notes published on the Kondukto documentation site, branded "Invicti ASPM"
+  following the acquisition. Releases ship roughly every 4-8 weeks and each entry is split into New
+  Features / Improvements / Bug Fixes. This artifact captures the recent window only; the live
+  changelog is the source of truth. Note the platform release train is distinct from the REST API
+  version (v2) and from the KDT client version.
+scheme: semver-minor
+current_version: v1.112.0
+current_version_date: '2026-05-27'
+cadence: approximately every 4-8 weeks
+entries:
+- version: v1.112.0
+  date: '2026-05-27'
+  url: https://docs.kondukto.io/changelog/invicti-aspm-release-v11120
+  breaking: false
+  highlights:
+  - CheckmarxOne API Security integration ingests API security findings alongside SAST results.
+  - Multi-provider AI support for pull-request remediation advice, replacing the single-provider implementation.
+  - EUVD (European Union Vulnerability Database) added as a Threat Intelligence source.
+  - VEX (Vulnerability Exploitability eXchange) support ingesting applicability data from JFrog Xray, Snyk and BlackDuck.
+  - AI-based CWE predictor fills missing CWE classifications via vector similarity matching.
+  - Wiz tag filtering plus finding status, CVSS score and detection date cloud filters.
+  - Infrastructure group severity and name filters added to the infrastructure vulnerability search endpoint.
+  - Runtime Exposure page redesigned to match the DAST-SAST Correlation design.
+- version: v1.111
+  date: '2026-04-06'
+  url: https://docs.kondukto.io/changelog/invicti-aspm-release-v1111-6th-april-2026
+  breaking: false
+  highlights:
+  - Runtime Exposure API released under Projects, correlating SAST and DAST findings.
+  - Product chatbot added to the UI.
+  - New Reachable, hasExploit and Cloud Deployed filters.
+  - Rapid7 VM Insight / Nexpose integration performance and data accuracy improved.
+  - WCAG accessibility and keyboard navigation added across more than 40 pages.
+- version: v1.110
+  date: '2026-02-27'
+  url: https://docs.kondukto.io/changelog/invicti-aspm-release-v1110-27th-february-2026
+  breaking: false
+  highlights:
+  - Product column added to the Vulnerability Database.
+  - Start Scan option added to Acunetix 360, making platform-initiated scans configurable.
+  - "\"Group by Issue\" toggle for fAST Static and fAST SCA to control deduplication behaviour."
+  - Deeplink support added for Semgrep Enterprise.
+  - Pagination added to AppSec Duplicates and Roles pages.
+- version: v1.109
+  date: '2026-01-27'
+  url: https://docs.kondukto.io/changelog/invicti-aspm-release-v1109-27th-jan-2026
+  breaking: false
+  highlights:
+  - Qwiet AI SAST integration added.
+  - Native JFrog SCA integration added, previously import-only.
+  - Assign To option added to Issue Criteria rules.
+  - Reachability Analysis and license extraction introduced for the OSV Scanner.
+  - SBOM endpoint in API v3 now restricted to projects the token owner may access.
+- version: v1.108
+  date: '2025-12-15'
+  url: https://docs.kondukto.io/changelog/invicti-aspm-release-v1108-15th-dec-2025
+  breaking: false
+  highlights:
+  - Dark theme released.
+  - Dependency-Track and Opengrep integrations added.
+  - Export action added to the Scans page.
+  - Bitbucket integration migrated from App Password to API Tokens.
+related:
+  lifecycle: lifecycle/kondukto-lifecycle.yml
+  cli_releases: https://github.com/kondukto-io/kdt/releases

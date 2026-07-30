@@ -1,0 +1,37 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/kondukto-aspm-openapi.yml
+notes: >-
+  Packaged Agent Skills for the Invicti ASPM (Kondukto) REST API v2. Every operationId referenced in
+  these skills was verified verbatim against openapi/kondukto-aspm-openapi.yml, which was itself
+  assembled from the provider's own published per-operation OpenAPI definitions. Kondukto publishes
+  no AGENTS.md or first-party skill files; these are generated. Each skill carries the cross-cutting
+  rules an agent needs: the X-Cookie header, the offset/limit pagination envelope, the flat error
+  envelope, and the fact that the API has no idempotency contract so writes must not be blindly
+  retried.
+skills:
+- file: kondukto-onboard-project-and-scan.md
+  name: Onboard a project and run its first scan
+  api: openapi/kondukto-aspm-openapi.yml
+  operations: [check-alm-if-it-exists, create-a-project, get-active-scanners, create-new-scan,
+    get-event-status, get-scan-detail, get-project-vulnerabilities]
+- file: kondukto-gate-release-on-security-criteria.md
+  name: Gate a release on security criteria
+  api: openapi/kondukto-aspm-openapi.yml
+  operations: [get-project-detail, create-new-scan, get-event-status, get-scan-release-status,
+    project-security-criteria-status, get-project-vulnerabilities]
+- file: kondukto-triage-vulnerabilities.md
+  name: Search and triage vulnerabilities
+  api: openapi/kondukto-aspm-openapi.yml
+  operations: [get-vulnerabilities, get-vulnerability-details, get-project-vulnerabilities,
+    upload-screenshots, delete-a-screenshot, get-labels, get-teams]
+- file: kondukto-manage-teams-and-ownership.md
+  name: Manage teams, products and finding ownership
+  api: openapi/kondukto-aspm-openapi.yml
+  operations: [get-users, get-teams, create-a-team, update-team-members, get-team-members,
+    create-label, get-labels, create-a-product, update-a-product, update-a-project]
+related:
+  conventions: conventions/kondukto-conventions.yml
+  errors: errors/kondukto-problem-types.yml
+  authentication: authentication/kondukto-authentication.yml
+  mcp: mcp/kondukto-mcp.yml

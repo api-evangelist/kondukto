@@ -1,0 +1,30 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.kondukto.io/docs/recommended-fair-usage-limits
+notes: >-
+  Invicti ASPM (Kondukto) is sold as an enterprise product with quote-based pricing; no public price
+  list or self-serve sign-up exists. The two named commercial tiers below are the ones the
+  documentation distinguishes by their recommended fair-usage limits. Limits are guidance on dataset
+  size per project, not enforced API quotas: the docs state the platform "might experience
+  performance and usability issues if these limits are exceeded in a single project".
+pricing_model: quote-based
+public_pricing: false
+self_serve_signup: false
+contact: https://www.invicti.com/get-demo
+pricing_page: https://www.invicti.com/pricing
+plans:
+- name: PRO
+  plan_count_note: recommended fair-usage limits per project
+  limits:
+  - metric: vulnerabilities per project
+    value: 5000
+  - metric: scan parameters (scanparams) per project
+    value: 100
+- name: Enterprise
+  limits:
+  - metric: vulnerabilities per project
+    value: 25000
+  - metric: scan parameters (scanparams) per project
+    value: 500
+related:
+  conventions: conventions/kondukto-conventions.yml

@@ -1,0 +1,486 @@
+{
+  "info": {
+    "_postman_id": "0d942b3f-2f82-4ae5-8fb7-7108840e13f3",
+    "name": "Invicti ASPM (Kondukto) REST API v2 Authorization Managers Users API",
+    "description": "Public REST API v2 for the Invicti ASPM platform (formerly Kondukto), an Application Security Posture Management platform that centralizes SAST, DAST, SCA, container and pentest findings from more than eighty scanners. The API manages projects, products, teams, labels, scans and vulnerabilities, and is the same public API the open-source KDT command-line client uses. Assembled by API Evangelist from the per-operation OpenAPI 3.1 definitions Kondukto publishes on each page of its API reference.\n\nContact Support:\n Name: Kondukto Support\n Email: support@kondukto.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:57:17.000Z",
+    "updatedAt": "2026-07-28T10:57:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0d942b3f-2f82-4ae5-8fb7-7108840e13f3"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "users",
+              "item": [
+                {
+                  "name": "{userID}",
+                  "item": [
+                    {
+                      "name": "Get User Details",
+                      "id": "1dae9649-86e2-4e3e-a9c2-9b805d48a8ef",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/users/:userID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "users",
+                            ":userID"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e6a2494b-f039-4543-a162-7717248db701",
+                              "key": "userID"
+                            },
+                            {
+                              "id": "ecf18a51-63e2-43ab-862d-ee99e6717baa",
+                              "key": "userD",
+                              "value": "<string>",
+                              "description": "(Required) User ID"
+                            }
+                          ]
+                        },
+                        "description": "Returns a user's details"
+                      },
+                      "response": [
+                        {
+                          "id": "76e17fd4-6ff1-46b3-8fe1-5b73f0f1e9c1",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/users/:userID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "users",
+                                ":userID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "userID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"username\": \"<string>\",\n  \"email\": \"<string>\",\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "createdAt": "2026-07-28T10:57:18.000Z",
+                          "updatedAt": "2026-07-28T10:57:18.000Z",
+                          "uid": "35240-76e17fd4-6ff1-46b3-8fe1-5b73f0f1e9c1"
+                        },
+                        {
+                          "id": "05933c85-3027-44f5-8f7d-62c9aaf4126e",
+                          "name": "400",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/users/:userID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "users",
+                                ":userID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "userID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T10:57:18.000Z",
+                          "updatedAt": "2026-07-28T10:57:18.000Z",
+                          "uid": "35240-05933c85-3027-44f5-8f7d-62c9aaf4126e"
+                        },
+                        {
+                          "id": "7415c864-cd87-4600-83a4-7994b92d7daa",
+                          "name": "401",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/users/:userID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "users",
+                                ":userID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "userID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T10:57:18.000Z",
+                          "updatedAt": "2026-07-28T10:57:18.000Z",
+                          "uid": "35240-7415c864-cd87-4600-83a4-7994b92d7daa"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T10:57:18.000Z",
+                      "updatedAt": "2026-07-28T10:57:18.000Z",
+                      "uid": "35240-1dae9649-86e2-4e3e-a9c2-9b805d48a8ef"
+                    }
+                  ],
+                  "id": "7d28129b-4d57-409d-9eb8-63a203a8f656",
+                  "createdAt": "2026-07-28T10:57:18.000Z",
+                  "updatedAt": "2026-07-28T10:57:18.000Z",
+                  "uid": "35240-7d28129b-4d57-409d-9eb8-63a203a8f656"
+                },
+                {
+                  "name": "Get Users",
+                  "id": "8e6575b5-37a2-4288-9955-584a674841cd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Personal Access Token",
+                        "key": "X-Cookie",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/users/?start=0&limit=30&q=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "users",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Offset for pagination",
+                          "key": "start",
+                          "value": "0"
+                        },
+                        {
+                          "description": "How many records will return",
+                          "key": "limit",
+                          "value": "30"
+                        },
+                        {
+                          "description": "Username or email (Contains)",
+                          "key": "q",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Return users. Query users by username or email"
+                  },
+                  "response": [
+                    {
+                      "id": "4b01efa8-5f0d-4440-98c8-ccec48f1c6ca",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Cookie",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/users/?start=0&limit=30&q=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "users",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Offset for pagination",
+                              "key": "start",
+                              "value": "0"
+                            },
+                            {
+                              "description": "How many records will return",
+                              "key": "limit",
+                              "value": "30"
+                            },
+                            {
+                              "description": "Username or email (Contains)",
+                              "key": "q",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"limit\": 0,\n  \"start\": 0,\n  \"total\": 0,\n  \"users\": [\n    {\n      \"id\": \"<string>\",\n      \"username\": \"<string>\",\n      \"email\": \"<string>\",\n      \"teams\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"username\": \"<string>\",\n      \"email\": \"<string>\",\n      \"teams\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T10:57:18.000Z",
+                      "updatedAt": "2026-07-28T10:57:18.000Z",
+                      "uid": "35240-4b01efa8-5f0d-4440-98c8-ccec48f1c6ca"
+                    },
+                    {
+                      "id": "b4dc2594-e060-4be5-a162-e27aba0e9868",
+                      "name": "401",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Cookie",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/users/?start=0&limit=30&q=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "users",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Offset for pagination",
+                              "key": "start",
+                              "value": "0"
+                            },
+                            {
+                              "description": "How many records will return",
+                              "key": "limit",
+                              "value": "30"
+                            },
+                            {
+                              "description": "Username or email (Contains)",
+                              "key": "q",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T10:57:18.000Z",
+                      "updatedAt": "2026-07-28T10:57:18.000Z",
+                      "uid": "35240-b4dc2594-e060-4be5-a162-e27aba0e9868"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T10:57:18.000Z",
+                  "updatedAt": "2026-07-28T10:57:18.000Z",
+                  "uid": "35240-8e6575b5-37a2-4288-9955-584a674841cd"
+                }
+              ],
+              "id": "38509550-df13-4d7e-8a83-af9027152ce5",
+              "createdAt": "2026-07-28T10:57:18.000Z",
+              "updatedAt": "2026-07-28T10:57:18.000Z",
+              "uid": "35240-38509550-df13-4d7e-8a83-af9027152ce5"
+            }
+          ],
+          "id": "493b6d1d-6552-482b-8f02-f46dc50b6a0f",
+          "createdAt": "2026-07-28T10:57:18.000Z",
+          "updatedAt": "2026-07-28T10:57:18.000Z",
+          "uid": "35240-493b6d1d-6552-482b-8f02-f46dc50b6a0f"
+        }
+      ],
+      "id": "259c7d6c-329a-4419-acca-992c511869b3",
+      "createdAt": "2026-07-28T10:57:18.000Z",
+      "updatedAt": "2026-07-28T10:57:18.000Z",
+      "uid": "35240-259c7d6c-329a-4419-acca-992c511869b3"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Cookie",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "hostname",
+      "value": "api.kondukto.io"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{hostname}}"
+    }
+  ]
+}

@@ -1,0 +1,1264 @@
+{
+  "info": {
+    "_postman_id": "0d0a0ea9-2f02-4d37-b2f2-618c81382c52",
+    "name": "Invicti ASPM (Kondukto) REST API v2 Authorization Managers Products API",
+    "description": "Public REST API v2 for the Invicti ASPM platform (formerly Kondukto), an Application Security Posture Management platform that centralizes SAST, DAST, SCA, container and pentest findings from more than eighty scanners. The API manages projects, products, teams, labels, scans and vulnerabilities, and is the same public API the open-source KDT command-line client uses. Assembled by API Evangelist from the per-operation OpenAPI 3.1 definitions Kondukto publishes on each page of its API reference.\n\nContact Support:\n Name: Kondukto Support\n Email: support@kondukto.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:57:10.000Z",
+    "updatedAt": "2026-07-28T10:57:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0d0a0ea9-2f02-4d37-b2f2-618c81382c52"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "products",
+              "item": [
+                {
+                  "name": "{productID}",
+                  "item": [
+                    {
+                      "name": "Update a Product",
+                      "id": "db8ee528-20ef-4bf7-84d2-8d3c769b1623",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"projects\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"default_team\": {\n    \"id\": \"<string>\"\n  },\n  \"business_unit_tags\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/products/:productID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "products",
+                            ":productID"
+                          ],
+                          "variable": [
+                            {
+                              "id": "138675d9-d167-4f3e-ba08-624893b534c7",
+                              "key": "productID",
+                              "value": "<string>",
+                              "description": "(Required) Product ID"
+                            }
+                          ]
+                        },
+                        "description": "Overwrites the projects of a product by the given values."
+                      },
+                      "response": [
+                        {
+                          "id": "3eeb33bd-a48e-46bd-9c3d-18575ccad8a8",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"projects\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"default_team\": {\n    \"id\": \"<string>\"\n  },\n  \"business_unit_tags\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/products/:productID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "products",
+                                ":productID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "productID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": \"{\\n    \\\"product\\\": {\\n        \\\"id\\\": \\\"{productID}\\\",\\n        \\\"name\\\": \\\"{productName}\\\",\\n        \\\"projects_count\\\": {projectCount},\\n        \\\"business_unit_tags\\\": [\\n            {\\n                \\\"id\\\": \\\"{businessUnitTagID}\\\",\\n                \\\"name\\\": \\\"{businessUnitTagName}\\\",\\n                \\\"color\\\": \\\"{businessUnitTagColor}\\\"\\n            }\\n        ],\\n        \\\"default_team\\\": {\\n            \\\"id\\\": \\\"{defaultTeamID}\\\"\\n        },\\n        \\\"projects\\\": [\\n            {\\n                \\\"id\\\": \\\"{projectID}\\\",\\n                \\\"name\\\": \\\"{projectName}\\\"\\n            },\\n            {\\n                \\\"id\\\": \\\"{projectID}\\\",\\n                \\\"name\\\": \\\"{projectName}\\\"\\n            }\\n        ],\\n        \\\"links\\\": {\\n            \\\"html\\\": \\\"http://{hostname}/products/view/{productID}/details/appsec\\\"\\n        }\\n    }\\n}\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T10:57:10.000Z",
+                          "updatedAt": "2026-07-28T10:57:10.000Z",
+                          "uid": "35240-3eeb33bd-a48e-46bd-9c3d-18575ccad8a8"
+                        },
+                        {
+                          "id": "6ba04fcc-b5b8-444f-8529-0d814341e9d4",
+                          "name": "400",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"projects\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"default_team\": {\n    \"id\": \"<string>\"\n  },\n  \"business_unit_tags\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/products/:productID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "products",
+                                ":productID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "productID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T10:57:10.000Z",
+                          "updatedAt": "2026-07-28T10:57:10.000Z",
+                          "uid": "35240-6ba04fcc-b5b8-444f-8529-0d814341e9d4"
+                        },
+                        {
+                          "id": "34cdebec-e9b1-4414-acf6-be6abc0d97a3",
+                          "name": "401",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"projects\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"default_team\": {\n    \"id\": \"<string>\"\n  },\n  \"business_unit_tags\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/products/:productID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "products",
+                                ":productID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "productID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T10:57:10.000Z",
+                          "updatedAt": "2026-07-28T10:57:10.000Z",
+                          "uid": "35240-34cdebec-e9b1-4414-acf6-be6abc0d97a3"
+                        },
+                        {
+                          "id": "60ee88f1-de0d-4aca-a8f4-ba3deee1021d",
+                          "name": "403",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"projects\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"default_team\": {\n    \"id\": \"<string>\"\n  },\n  \"business_unit_tags\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/products/:productID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "products",
+                                ":productID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "productID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T10:57:10.000Z",
+                          "updatedAt": "2026-07-28T10:57:10.000Z",
+                          "uid": "35240-60ee88f1-de0d-4aca-a8f4-ba3deee1021d"
+                        },
+                        {
+                          "id": "82b017b6-e1ca-456b-a99e-0a9018082a06",
+                          "name": "404",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"projects\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"default_team\": {\n    \"id\": \"<string>\"\n  },\n  \"business_unit_tags\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/products/:productID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "products",
+                                ":productID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "productID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T10:57:10.000Z",
+                          "updatedAt": "2026-07-28T10:57:10.000Z",
+                          "uid": "35240-82b017b6-e1ca-456b-a99e-0a9018082a06"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T10:57:10.000Z",
+                      "updatedAt": "2026-07-28T10:57:10.000Z",
+                      "uid": "35240-db8ee528-20ef-4bf7-84d2-8d3c769b1623"
+                    },
+                    {
+                      "name": "Get Product Details",
+                      "id": "3275919f-2f6d-40ac-bef2-6caee367eb22",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "Token"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/products/:productID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "products",
+                            ":productID"
+                          ],
+                          "variable": [
+                            {
+                              "id": "7ced027e-b799-4f75-a788-94bb881496ca",
+                              "key": "productID",
+                              "value": "<string>",
+                              "description": "(Required) Product ID"
+                            }
+                          ]
+                        },
+                        "description": "Returns the details of a product."
+                      },
+                      "response": [
+                        {
+                          "id": "60a7eb6a-1462-4de3-aa9b-3ad6e706321b",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "Token"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/products/:productID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "products",
+                                ":productID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "productID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"product\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"projects_count\": 0,\n    \"business_unit_tags\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"color\": \"<string>\",\n        \"isActive\": 0,\n        \"required\": true\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"color\": \"<string>\",\n        \"isActive\": 0,\n        \"required\": true\n      }\n    ],\n    \"accessible_for\": {\n      \"owner_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"team_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"default_team\": {\n      \"id\": \"<string>\"\n    },\n    \"projects\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"links\": {\n      \"html\": \"<string>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T10:57:10.000Z",
+                          "updatedAt": "2026-07-28T10:57:10.000Z",
+                          "uid": "35240-60a7eb6a-1462-4de3-aa9b-3ad6e706321b"
+                        },
+                        {
+                          "id": "27bb1450-e961-46fa-93e6-18871d7df0f9",
+                          "name": "400",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "Token"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/products/:productID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "products",
+                                ":productID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "productID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T10:57:10.000Z",
+                          "updatedAt": "2026-07-28T10:57:10.000Z",
+                          "uid": "35240-27bb1450-e961-46fa-93e6-18871d7df0f9"
+                        },
+                        {
+                          "id": "3b95bc8d-1d24-4996-b5c2-1054a810e5a2",
+                          "name": "401",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Personal Access Token",
+                                "key": "X-Cookie",
+                                "value": "Token"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Cookie",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/products/:productID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "products",
+                                ":productID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "productID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T10:57:10.000Z",
+                          "updatedAt": "2026-07-28T10:57:10.000Z",
+                          "uid": "35240-3b95bc8d-1d24-4996-b5c2-1054a810e5a2"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T10:57:10.000Z",
+                      "updatedAt": "2026-07-28T10:57:10.000Z",
+                      "uid": "35240-3275919f-2f6d-40ac-bef2-6caee367eb22"
+                    }
+                  ],
+                  "id": "a92c1630-0e42-4665-b414-e4ac3dc84d21",
+                  "createdAt": "2026-07-28T10:57:10.000Z",
+                  "updatedAt": "2026-07-28T10:57:10.000Z",
+                  "uid": "35240-a92c1630-0e42-4665-b414-e4ac3dc84d21"
+                },
+                {
+                  "name": "Create a Product",
+                  "id": "eaa276e0-77ff-4c7f-9540-ffd4ccfb814f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Personal Access Token",
+                        "key": "X-Cookie",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"projects\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"default_team\": {\n    \"id\": \"<string>\"\n  },\n  \"business_unit_tags\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/products/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "products",
+                        ""
+                      ]
+                    },
+                    "description": "This endpoint lets you create a new product. The product name should be unique and should not contain any spaces."
+                  },
+                  "response": [
+                    {
+                      "id": "3d9c8cd4-f46f-4055-9bb4-d031031180b9",
+                      "name": "201",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Cookie",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"projects\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"default_team\": {\n    \"id\": \"<string>\"\n  },\n  \"business_unit_tags\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/products/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "products",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": \"{\\n    \\\"product\\\": {\\n        \\\"id\\\": \\\"{productID}\\\",\\n        \\\"name\\\": \\\"{productName}\\\",\\n        \\\"projects_count\\\": {projectCount},\\n        \\\"business_unit_tags\\\": [\\n            {\\n                \\\"id\\\": \\\"{businessUnitTagID}\\\",\\n                \\\"name\\\": \\\"{businessUnitTagName}\\\",\\n                \\\"color\\\": \\\"{businessUnitTagColor}\\\"\\n            }\\n        ],\\n        \\\"default_team\\\": {\\n            \\\"id\\\": \\\"{defaultTeamID}\\\"\\n        },\\n        \\\"projects\\\": [\\n            {\\n                \\\"id\\\": \\\"{projectID}\\\",\\n                \\\"name\\\": \\\"{projectName}\\\"\\n            },\\n            {\\n                \\\"id\\\": \\\"{projectID}\\\",\\n                \\\"name\\\": \\\"{projectName}\\\"\\n            }\\n        ],\\n        \\\"links\\\": {\\n            \\\"html\\\": \\\"http://{hostname}/products/view/{productID}/details/appsec\\\"\\n        }\\n    }\\n}\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T10:57:10.000Z",
+                      "updatedAt": "2026-07-28T10:57:10.000Z",
+                      "uid": "35240-3d9c8cd4-f46f-4055-9bb4-d031031180b9"
+                    },
+                    {
+                      "id": "532105ac-5498-4269-b36d-ac0a108fbeae",
+                      "name": "400",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Cookie",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"projects\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"default_team\": {\n    \"id\": \"<string>\"\n  },\n  \"business_unit_tags\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/products/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "products",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T10:57:10.000Z",
+                      "updatedAt": "2026-07-28T10:57:10.000Z",
+                      "uid": "35240-532105ac-5498-4269-b36d-ac0a108fbeae"
+                    },
+                    {
+                      "id": "76abaf7c-6f41-46e9-b4f3-1f0949378c3d",
+                      "name": "401",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Cookie",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"projects\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"default_team\": {\n    \"id\": \"<string>\"\n  },\n  \"business_unit_tags\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/products/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "products",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T10:57:10.000Z",
+                      "updatedAt": "2026-07-28T10:57:10.000Z",
+                      "uid": "35240-76abaf7c-6f41-46e9-b4f3-1f0949378c3d"
+                    },
+                    {
+                      "id": "7bc8c690-e3bd-417d-8e48-0961e2ca8720",
+                      "name": "403",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Cookie",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"projects\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"default_team\": {\n    \"id\": \"<string>\"\n  },\n  \"business_unit_tags\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/products/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "products",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T10:57:10.000Z",
+                      "updatedAt": "2026-07-28T10:57:10.000Z",
+                      "uid": "35240-7bc8c690-e3bd-417d-8e48-0961e2ca8720"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T10:57:10.000Z",
+                  "updatedAt": "2026-07-28T10:57:10.000Z",
+                  "uid": "35240-eaa276e0-77ff-4c7f-9540-ffd4ccfb814f"
+                },
+                {
+                  "name": "Get Products",
+                  "id": "6c85ae95-466d-4920-9265-410134ad5ebf",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Personal Access Token",
+                        "key": "X-Cookie",
+                        "value": "Token"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/products/?limit=<string>&start=<string>&name=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "products",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "How many records will return",
+                          "key": "limit",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Offset for pagination",
+                          "key": "start",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Product name to filter. Works as \"contains\"",
+                          "key": "name",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Returns the list of products."
+                  },
+                  "response": [
+                    {
+                      "id": "cb26825f-de27-4ce4-8097-2dacee192027",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "Token"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Cookie",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/products/?limit=<string>&start=<string>&name=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "products",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "How many records will return",
+                              "key": "limit",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Offset for pagination",
+                              "key": "start",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Product name to filter. Works as \"contains\"",
+                              "key": "name",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"limit\": 0,\n  \"start\": 0,\n  \"total\": 0,\n  \"products\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"projects_count\": 0,\n      \"links\": {\n        \"html\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"projects_count\": 0,\n      \"links\": {\n        \"html\": \"<string>\"\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T10:57:10.000Z",
+                      "updatedAt": "2026-07-28T10:57:10.000Z",
+                      "uid": "35240-cb26825f-de27-4ce4-8097-2dacee192027"
+                    },
+                    {
+                      "id": "c94813df-fb4d-412b-bd94-be7414ec94c9",
+                      "name": "400",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "Token"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Cookie",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/products/?limit=<string>&start=<string>&name=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "products",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "How many records will return",
+                              "key": "limit",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Offset for pagination",
+                              "key": "start",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Product name to filter. Works as \"contains\"",
+                              "key": "name",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T10:57:10.000Z",
+                      "updatedAt": "2026-07-28T10:57:10.000Z",
+                      "uid": "35240-c94813df-fb4d-412b-bd94-be7414ec94c9"
+                    },
+                    {
+                      "id": "a98ff9dc-7660-40ae-8a92-e4104bb31075",
+                      "name": "401",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Personal Access Token",
+                            "key": "X-Cookie",
+                            "value": "Token"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Cookie",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/products/?limit=<string>&start=<string>&name=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "products",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "How many records will return",
+                              "key": "limit",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Offset for pagination",
+                              "key": "start",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Product name to filter. Works as \"contains\"",
+                              "key": "name",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T10:57:10.000Z",
+                      "updatedAt": "2026-07-28T10:57:10.000Z",
+                      "uid": "35240-a98ff9dc-7660-40ae-8a92-e4104bb31075"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T10:57:10.000Z",
+                  "updatedAt": "2026-07-28T10:57:10.000Z",
+                  "uid": "35240-6c85ae95-466d-4920-9265-410134ad5ebf"
+                }
+              ],
+              "id": "d4329a75-49e6-476f-9bfc-97f3a5407d55",
+              "createdAt": "2026-07-28T10:57:10.000Z",
+              "updatedAt": "2026-07-28T10:57:10.000Z",
+              "uid": "35240-d4329a75-49e6-476f-9bfc-97f3a5407d55"
+            }
+          ],
+          "id": "902104bd-98f7-4029-b26e-dfeb16ac6767",
+          "createdAt": "2026-07-28T10:57:10.000Z",
+          "updatedAt": "2026-07-28T10:57:10.000Z",
+          "uid": "35240-902104bd-98f7-4029-b26e-dfeb16ac6767"
+        }
+      ],
+      "id": "fffd6460-3686-45ca-b54e-e5c8e77efd1f",
+      "createdAt": "2026-07-28T10:57:10.000Z",
+      "updatedAt": "2026-07-28T10:57:10.000Z",
+      "uid": "35240-fffd6460-3686-45ca-b54e-e5c8e77efd1f"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Cookie",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "hostname",
+      "value": "api.kondukto.io"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{hostname}}"
+    }
+  ]
+}

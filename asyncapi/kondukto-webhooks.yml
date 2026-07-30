@@ -1,0 +1,101 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.kondukto.io/docs/webhook-integrations
+notes: >-
+  Invicti ASPM (Kondukto) publishes no AsyncAPI document. It does document a real, two-directional
+  webhook surface, captured here: (1) OUTBOUND webhooks the platform sends to a subscriber URL when
+  a selected platform event fires, and (2) an INBOUND webhook contract a customer implements so the
+  platform can drive a custom issue-management system as if it were a native Jira/GitLab integration.
+  The second is unusual: it is a six-endpoint REST contract that the customer hosts and Kondukto
+  calls. No AsyncAPI is fabricated for either.
+spec_type: none
+asyncapi_published: false
+outbound:
+  description: >-
+    Configured per webhook in the UI under Integrations > Webhooks. Each webhook has a name, a target
+    URL, optional custom HTTP headers, a set of subscribed events, and a Secure mode toggle.
+  transport: https
+  method: POST
+  format: application/json
+  docs: https://docs.kondukto.io/docs/webhook-integration-capturing-audit-log-events
+  configuration:
+    location: Integrations > Webhooks > Add New Webhook
+    fields:
+    - name: Webhook Name
+      description: Descriptive name used to manage and distinguish the webhook.
+    - name: Webhook URL
+      description: Target URL the platform POSTs events to.
+    - name: HTTP Headers
+      description: Arbitrary key/value headers added to every request; used to carry a shared secret.
+    - name: Events
+      description: Which platform events trigger the webhook.
+    - name: Mode
+      description: Secure mode toggle.
+  events:
+  - name: Audit Log Creation
+    description: >-
+      Fired when an audit log record is created on the platform, transmitting the audit record to
+      the subscriber in real time.
+    docs: https://docs.kondukto.io/docs/webhook-integration-capturing-audit-log-events
+  events_note: >-
+    Audit Log Creation is the only event named in the published documentation; the UI presents the
+    event set as a selectable list, so others may exist on a given release.
+inbound_issue_manager:
+  description: >-
+    The Webhook Issue Manager contract. A customer stands up an HTTP service implementing these six
+    endpoints and registers it as an issue manager; Kondukto then calls it to open and track issues
+    for vulnerabilities, the same way it drives Jira or GitLab.
+  docs: https://docs.kondukto.io/docs/integrating-with-webhooks
+  api_reference: https://docs.kondukto.io/docs/webhook-issue-manager-api
+  reference_implementation: https://github.com/kondukto-io/webhook-issue-manager
+  authentication:
+    header: X-Kondukto-Secret
+    value: the IssueManagerToken configured on the integration
+    missing_header_response:
+      status: 403
+      body: '{"message": "missing secret key"}'
+  base_url_variable: '{IssueManagerURL}'
+  operations:
+  - name: Test connection
+    method: GET
+    path: /api/v1/test
+    success_status: 200
+    success_body: '{"connection": true}'
+    description: Verifies the integration is reachable and the secret is accepted.
+  - name: Create Issue
+    method: POST
+    path: /api/v1/issues
+    success_status: 201
+    description: >-
+      Creates an issue for a vulnerability. Payload carries status, title, name, path, severity, fp,
+      link, project_name, due_date, assignee{email,username}, labels[], a rendered markdown
+      description (template_md) and a nested vulnerability object including cvssv3.score and scan
+      parameters such as branch.
+  - name: Get Issue Details
+    method: GET
+    description: Returns the current state of a previously created issue.
+  - name: Update Issue Status
+    method: PUT
+    description: Synchronises issue status changes back into the platform.
+  - name: Add Attachment
+    method: POST
+    description: Attaches a file to an existing issue.
+  - name: Get Issue Comments
+    method: GET
+    description: Retrieves comments on an issue.
+notification_channels:
+  description: Non-webhook outbound notification integrations documented alongside webhooks.
+  channels:
+  - name: Slack
+    docs: https://docs.kondukto.io/docs/slack
+  - name: Microsoft Teams
+    docs: https://docs.kondukto.io/docs/microsoft-teams
+  - name: Mattermost
+    docs: https://docs.kondukto.io/docs/mattermost
+  - name: Email
+    docs: https://docs.kondukto.io/docs/email
+  - name: Microsoft Azure Mail
+    docs: https://docs.kondukto.io/docs/microsoft-azure-mail
+related:
+  conventions: conventions/kondukto-conventions.yml
+  authentication: authentication/kondukto-authentication.yml

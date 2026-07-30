@@ -1,0 +1,163 @@
+generated: '2026-07-19'
+method: searched
+source: https://github.com/kondukto-io/kdt/blob/master/README.md
+name: KDT
+description: >-
+  KDT is the open-source, first-party command-line client for Invicti ASPM (formerly Kondukto),
+  written in Go. It drives the same public REST API v2 documented at docs.kondukto.io/reference:
+  triggering scans with any configured scanner, importing scan results and SBOMs, managing projects,
+  products, teams and labels, and breaking CI/CD builds when release criteria are not met.
+repository: https://github.com/kondukto-io/kdt
+license_url: https://github.com/kondukto-io/kdt/blob/master/LICENSE
+latest_release: v1.46.4
+latest_release_date: '2026-07-13'
+releases_url: https://github.com/kondukto-io/kdt/releases
+install:
+- method: shell
+  command: curl -sSL https://cli.kondukto.io | sudo sh
+  platforms: [linux, macos]
+  note: Installs system-wide; drop sudo for a user-local install.
+- method: github-release
+  command: Download kdt-cli.exe from https://github.com/kondukto-io/kdt/releases
+  platforms: [windows]
+- method: go
+  command: go get github.com/kondukto-io/kdt
+  platforms: [any]
+- method: source
+  command: git clone https://github.com/kondukto-io/kdt.git && cd kdt && make all
+  platforms: [any]
+configuration:
+  precedence: command-line flags > environment variables > configuration file
+  environment_variables:
+  - name: INVICTI_ASPM_HOST
+    description: Base URL of the Invicti ASPM instance.
+  - name: INVICTI_ASPM_TOKEN
+    description: API token generated in the UI under Integrations > API Tokens.
+  - name: KONDUKTO_HOST
+    description: Legacy host variable, still supported but deprecated (emits a deprecation warning).
+    deprecated: true
+  - name: KONDUKTO_TOKEN
+    description: Legacy token variable, still supported but deprecated (emits a deprecation warning).
+    deprecated: true
+  config_file:
+    default_path: $HOME/.kdt.yaml
+    keys: [host, token, insecure, verbose]
+global_flags:
+- flag: --config
+  description: Path to configuration file.
+  default: $HOME/.kdt.yaml
+- flag: --host
+  description: Invicti ASPM server host URL.
+- flag: --token
+  description: Invicti ASPM API token.
+- flag: --insecure
+  description: Skip TLS certificate verification (not recommended for production).
+  default: 'false'
+- flag: -v, --verbose
+  description: Enable verbose logging for debugging.
+  default: 'false'
+- flag: --exit-code
+  description: Override the process exit code.
+  default: '0'
+commands:
+- group: health
+  commands:
+  - command: kdt ping
+    description: Verify connectivity to the Invicti ASPM service.
+  - command: kdt ping -a
+    description: Verify connectivity and validate the API token.
+- group: scan
+  description: >-
+    Primary command; triggers scans, imports results, applies vulnerability thresholds to break the
+    build, and can create the project on the fly.
+  commands:
+  - command: kdt scan -p <project> -t <tool> -b <branch>
+    description: Trigger a scan with a configured scanner on a project branch.
+  - command: kdt scan -s <scan_id>
+    description: Restart an existing scan by scan id.
+  - command: kdt scan -p <project> -t <tool> -b <branch> -f <file>
+    description: Import scan results from a scanner output file.
+  - command: kdt scan -p <project> -t trivy -I <image>
+    description: Scan a container image.
+  - command: kdt scan --dast-target "<name>"
+    description: Run a scan against a named DAST target.
+  flag_groups:
+  - name: core
+    flags: ['--async', '-p/--project', '-t/--tool', '-s/--scan-id', '-b/--branch', '-f/--file',
+      '-I/--image', '-a/--agent', '-m/--meta', '--scan-tag', '--env', '--timeout', '--release-timeout']
+  - name: pull-request
+    flags: ['-M/--merge-target', '--pr-number', '--pr-decoration-scanner-types', '--override',
+      '--no-decoration']
+  - name: fork
+    flags: ['-B/--fork-scan', '--fork-source', '--override-fork-source']
+  - name: thresholds
+    flags: ['--threshold-crit', '--threshold-high', '--threshold-med', '--threshold-low',
+      '--threshold-risk', '--break-by-scanner-type']
+  - name: project-creation
+    flags: ['--create-project', '--project-name', '-r/--repo-id', '-A/--alm-tool', '-T/--team',
+      '-l/--labels', '-P/--product-name', '--default-branch', '--disable-clone',
+      '--criticality-level', '--feature-branch-retention', '--feature-branch-infinite-retention',
+      '--scope-include-empty', '--scope-included-paths', '--scope-included-files']
+  - name: custom
+    flags: ['--params', '-i/--incremental-scan']
+- group: release
+  commands:
+  - command: kdt release -p <project> -b <branch> --sast --sca --dast
+    description: Check the project's security criteria and fail the build when criteria are not met.
+- group: list
+  commands:
+  - command: kdt list projects
+  - command: kdt list scanners
+  - command: kdt list agents
+  - command: kdt list products [--name <name>]
+  - command: kdt list dast-targets ["<name>"]
+- group: create
+  commands:
+  - command: kdt create project
+  - command: kdt create team --name <name> --responsible <user>
+  - command: kdt create label --name <name> [--color <hex>]
+  - command: kdt create product --name <name> [--projects <csv>]
+  - command: kdt create dast-target
+- group: update
+  commands:
+  - command: kdt update project --project-id <project> --criticality-level <n>
+  - command: kdt update project --project-id <project> --label "<csv>"
+- group: sbom
+  commands:
+  - command: kdt sbom import -f <sbom.json> -p <project> -b <branch> --sbom-type <type>
+    description: Import a CycloneDX/SPDX SBOM against a project branch.
+- group: endpoint
+  commands:
+  - command: kdt endpoint import -f <swagger.json> -p <project>
+    description: Import API endpoints from a Swagger/OpenAPI JSON file into the project's API inventory.
+- group: status
+  commands:
+  - command: kdt status -p <project> -b <branch>
+  - command: kdt status -e <event_id>
+- group: project
+  commands:
+  - command: kdt project available
+    description: Check whether a project name/repository is available on the instance.
+- group: scanparams
+  commands:
+  - command: kdt scanparams delete -p <project> -t <tool> -b <branch> --force
+exit_codes:
+- code: 0
+  meaning: Success
+- code: 1
+  meaning: General error
+- code: 2
+  meaning: Warning
+- code: 100
+  meaning: Not authorized
+- code: 255
+  meaning: Negative response (for example, project not available); reported as -1
+ci_integrations:
+- github-actions
+- gitlab-ci
+- jenkins
+- azure-pipelines
+related:
+  packages: packages/kondukto-packages.yml
+  api: openapi/kondukto-aspm-openapi.yml
+  authentication: authentication/kondukto-authentication.yml

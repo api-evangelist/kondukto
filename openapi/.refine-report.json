@@ -1,0 +1,34 @@
+{
+  "provider": "kondukto",
+  "sources": [
+    "kondukto-authorization-managers-api-openapi.yml",
+    "kondukto-events-api-openapi.yml",
+    "kondukto-health-api-openapi.yml",
+    "kondukto-labels-api-openapi.yml",
+    "kondukto-products-api-openapi.yml",
+    "kondukto-projects-api-openapi.yml",
+    "kondukto-scanners-api-openapi.yml",
+    "kondukto-scans-api-openapi.yml",
+    "kondukto-teams-api-openapi.yml",
+    "kondukto-users-api-openapi.yml",
+    "kondukto-vulnerabilities-api-openapi.yml"
+  ],
+  "outputs": [
+    "kondukto-authorization-managers-api-openapi.yml",
+    "kondukto-events-api-openapi.yml",
+    "kondukto-health-api-openapi.yml",
+    "kondukto-labels-api-openapi.yml",
+    "kondukto-products-api-openapi.yml",
+    "kondukto-projects-api-openapi.yml",
+    "kondukto-scanners-api-openapi.yml",
+    "kondukto-scans-api-openapi.yml",
+    "kondukto-teams-api-openapi.yml",
+    "kondukto-users-api-openapi.yml",
+    "kondukto-vulnerabilities-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

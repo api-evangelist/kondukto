@@ -1,0 +1,335 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: openapi/kondukto-aspm-openapi.yml
+notes: No official hosted or remote MCP server is published by Kondukto or Invicti; the kondukto-io GitHub
+  org, the documentation site and the public MCP registries were checked and none lists one. This is a
+  CANDIDATE tool surface derived one-to-one from the 51 published REST API v2 operations, offered as a
+  starting point for an MCP server fronting an Invicti ASPM deployment. Because the platform is deployed
+  per customer, any server would be self-hosted and configured with INVICTI_ASPM_HOST plus an X-Cookie
+  API token. Note that 20 of these tools mutate security data (creating projects, importing vulnerabilities,
+  triggering scans) and the API publishes no idempotency contract, so write tools should require confirmation.
+server:
+  name: kondukto
+  transport: stdio
+  url: null
+  published: false
+  configuration:
+  - name: INVICTI_ASPM_HOST
+    description: Base URL of the Invicti ASPM deployment.
+  - name: INVICTI_ASPM_TOKEN
+    description: API token sent as the X-Cookie header.
+tool_count: 51
+read_only_tool_count: 30
+write_tool_count: 21
+tools:
+- name: get_active_auth_managers
+  description: Get Active Authorization Managers
+  method: GET
+  path: /api/v2/authmans/active
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-active-auth-managers
+- name: get_business_unit_tags
+  description: Get Business Unit Tags
+  method: GET
+  path: /api/v2/business_unit_tags/
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-business-unit-tags
+- name: get_event_status
+  description: Get Event Status
+  method: GET
+  path: /api/v2/events/{eventID}/status
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-event-status
+- name: health_check
+  description: Health Check
+  method: GET
+  path: /api/v2/health/check/
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#health-check
+- name: get_labels
+  description: Get Labels
+  method: GET
+  path: /api/v2/labels/
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-labels
+- name: create_label
+  description: Create Label
+  method: POST
+  path: /api/v2/labels/
+  read_only: false
+  source_operation: openapi/kondukto-aspm-openapi.yml#create-label
+- name: delete_label
+  description: Delete Label
+  method: DELETE
+  path: /api/v2/labels/{id}
+  read_only: false
+  source_operation: openapi/kondukto-aspm-openapi.yml#delete-label
+- name: create_a_product
+  description: Create a Product
+  method: POST
+  path: /api/v2/products/
+  read_only: false
+  source_operation: openapi/kondukto-aspm-openapi.yml#create-a-product
+- name: get_products
+  description: Get Products
+  method: GET
+  path: /api/v2/products/
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-products
+- name: update_a_product
+  description: Update a Product
+  method: PATCH
+  path: /api/v2/products/{productID}
+  read_only: false
+  source_operation: openapi/kondukto-aspm-openapi.yml#update-a-product
+- name: get_a_product_details
+  description: Get Product Details
+  method: GET
+  path: /api/v2/products/{productID}
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-a-product-details
+- name: create_a_project
+  description: Create a Project
+  method: POST
+  path: /api/v2/projects/
+  read_only: false
+  source_operation: openapi/kondukto-aspm-openapi.yml#create-a-project
+- name: get_project_list
+  description: Get Project List
+  method: GET
+  path: /api/v2/projects/
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-project-list
+- name: check_alm_if_it_exists
+  description: Check if ALM Project exists on Kondukto
+  method: GET
+  path: /api/v2/projects/check/{alm}/{repositoryID}
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#check-alm-if-it-exists
+- name: update_a_project
+  description: Update a Project
+  method: PATCH
+  path: /api/v2/projects/{projectID}
+  read_only: false
+  source_operation: openapi/kondukto-aspm-openapi.yml#update-a-project
+- name: get_project_detail
+  description: Get Project Detail
+  method: GET
+  path: /api/v2/projects/{projectID}
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-project-detail
+- name: project_security_criteria_status
+  description: Project Security Criteria Status
+  method: GET
+  path: /api/v2/projects/{projectID}/release
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#project-security-criteria-status
+- name: create_project_scan_configuration
+  description: Create Project Scan Configuration
+  method: POST
+  path: /api/v2/projects/{projectID}/scanparams
+  read_only: false
+  source_operation: openapi/kondukto-aspm-openapi.yml#create-project-scan-configuration
+- name: get_project_scan_configuration
+  description: Get Project Scan Configuration
+  method: GET
+  path: /api/v2/projects/{projectID}/scanparams
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-project-scan-configuration
+- name: get_project_scans
+  description: Get Project Scans
+  method: GET
+  path: /api/v2/projects/{projectID}/scans
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-project-scans
+- name: get_project_vulnerabilities
+  description: Get Project Vulnerabilities
+  method: GET
+  path: /api/v2/projects/{projectID}/vulnerabilities
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-project-vulnerabilities
+- name: get_active_scanners
+  description: Get Active Scanners
+  method: GET
+  path: /api/v2/scanners/active/
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-active-scanners
+- name: get_scans_that_completed
+  description: Get Completed Scans
+  method: GET
+  path: /api/v2/scans/completed
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-scans-that-completed
+- name: create_new_scan
+  description: Create New Scan
+  method: POST
+  path: /api/v2/scans/create
+  read_only: false
+  source_operation: openapi/kondukto-aspm-openapi.yml#create-new-scan
+- name: get_scans_that_failed
+  description: Get Failed Scans
+  method: GET
+  path: /api/v2/scans/failed
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-scans-that-failed
+- name: image_scan
+  description: Image Scan
+  method: POST
+  path: /api/v2/scans/image
+  read_only: false
+  source_operation: openapi/kondukto-aspm-openapi.yml#image-scan
+- name: import_scan_result
+  description: Import Scan Result
+  method: POST
+  path: /api/v2/scans/import
+  read_only: false
+  source_operation: openapi/kondukto-aspm-openapi.yml#import-scan-result
+- name: get_scans_that_imported
+  description: Get Imported Scans
+  method: GET
+  path: /api/v2/scans/imported
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-scans-that-imported
+- name: get_scans_in_the_queue
+  description: Get Scans in the Queue
+  method: GET
+  path: /api/v2/scans/queue
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-scans-in-the-queue
+- name: get_scan_detail
+  description: Get Scan Details
+  method: GET
+  path: /api/v2/scans/{scan_id}
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-scan-detail
+- name: restart_a_scan
+  description: Restart A Scan
+  method: GET
+  path: /api/v2/scans/{scan_id}/restart
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#restart-a-scan
+- name: get_scan_release_status
+  description: Get Scan Security Criteria
+  method: GET
+  path: /api/v2/scans/{scan_id}/status
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-scan-release-status
+- name: get_teams
+  description: Get Teams
+  method: GET
+  path: /api/v2/teams/
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-teams
+- name: create_a_team
+  description: Create a Team
+  method: POST
+  path: /api/v2/teams/
+  read_only: false
+  source_operation: openapi/kondukto-aspm-openapi.yml#create-a-team
+- name: get_teams_with_members
+  description: Get Teams With Members
+  method: GET
+  path: /api/v2/teams/members/
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-teams-with-members
+- name: get_team_details
+  description: Get Team Details
+  method: GET
+  path: /api/v2/teams/{teamID}
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-team-details
+- name: update_a_team
+  description: Update a Team
+  method: PATCH
+  path: /api/v2/teams/{teamID}
+  read_only: false
+  source_operation: openapi/kondukto-aspm-openapi.yml#update-a-team
+- name: delete_a_team
+  description: Delete a Team
+  method: DELETE
+  path: /api/v2/teams/{teamID}
+  read_only: false
+  source_operation: openapi/kondukto-aspm-openapi.yml#delete-a-team
+- name: update_team_members
+  description: Update Team Members
+  method: PATCH
+  path: /api/v2/teams/{teamID}/members
+  read_only: false
+  source_operation: openapi/kondukto-aspm-openapi.yml#update-team-members
+- name: get_team_members
+  description: Get Team Members
+  method: GET
+  path: /api/v2/teams/{teamID}/members/
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-team-members
+- name: get_users
+  description: Get Users
+  method: GET
+  path: /api/v2/users/
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-users
+- name: get_user_details
+  description: Get User Details
+  method: GET
+  path: /api/v2/users/{userID}
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-user-details
+- name: get_vulnerabilities
+  description: Get Vulnerabilities
+  method: GET
+  path: /api/v2/vulnerabilities/
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-vulnerabilities
+- name: create_a_dast_vulnerability
+  description: Create a DAST Vulnerability
+  method: POST
+  path: /api/v2/vulnerabilities/import/dast
+  read_only: false
+  source_operation: openapi/kondukto-aspm-openapi.yml#create-a-dast-vulnerability
+- name: create_an_infra_vulnerability
+  description: Create an Infra Vulnerability
+  method: POST
+  path: /api/v2/vulnerabilities/import/infra
+  read_only: false
+  source_operation: openapi/kondukto-aspm-openapi.yml#create-an-infra-vulnerability
+- name: create_a_pentest_vulnerability
+  description: Create a PENTEST Vulnerability
+  method: POST
+  path: /api/v2/vulnerabilities/import/pentest
+  read_only: false
+  source_operation: openapi/kondukto-aspm-openapi.yml#create-a-pentest-vulnerability
+- name: create_a_sast_vulnerability
+  description: Create a SAST Vulnerability
+  method: POST
+  path: /api/v2/vulnerabilities/import/sast
+  read_only: false
+  source_operation: openapi/kondukto-aspm-openapi.yml#create-a-sast-vulnerability
+- name: create_a_sca_vulnerability
+  description: Create a SCA Vulnerability
+  method: POST
+  path: /api/v2/vulnerabilities/import/sca
+  read_only: false
+  source_operation: openapi/kondukto-aspm-openapi.yml#create-a-sca-vulnerability
+- name: get_vulnerability_details
+  description: Get Vulnerability Details
+  method: GET
+  path: /api/v2/vulnerabilities/{vulnerabilityID}
+  read_only: true
+  source_operation: openapi/kondukto-aspm-openapi.yml#get-vulnerability-details
+- name: upload_screenshots
+  description: Upload Attachments
+  method: POST
+  path: /api/v2/vulnerabilities/{vulnerabilityID}/screenshots
+  read_only: false
+  source_operation: openapi/kondukto-aspm-openapi.yml#upload-screenshots
+- name: delete_a_screenshot
+  description: Delete An Attachment
+  method: DELETE
+  path: /api/v2/vulnerabilities/{vulnerabilityID}/screenshots/{attachmentID}
+  read_only: false
+  source_operation: openapi/kondukto-aspm-openapi.yml#delete-a-screenshot
+related:
+  authentication: authentication/kondukto-authentication.yml
+  skills: skills/_index.yml
+  cli: cli/kondukto-cli.yml

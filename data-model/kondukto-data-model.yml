@@ -1,0 +1,200 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/kondukto-aspm-openapi.yml
+notes: Entity graph derived from the resource paths, path parameters and filter parameters of the Invicti
+  ASPM (Kondukto) REST API v2. Resource ids are 24-character MongoDB ObjectId hex strings (per the published
+  response examples); the API does not use typed id prefixes.
+id_format:
+  style: objectid-hex-24
+  example: 60a7c9be9f9d339dd28e0583
+  evidence: get-vulnerabilities response example
+entities:
+- name: project
+  description: An application/repository tracked in Invicti ASPM; the unit scans and vulnerabilities attach
+    to.
+  id_parameter: projectID
+  path_prefix: /api/v2/projects
+  operations:
+  - check-alm-if-it-exists
+  - create-a-project
+  - create-project-scan-configuration
+  - get-project-detail
+  - get-project-list
+  - get-project-scan-configuration
+  - get-project-scans
+  - get-project-vulnerabilities
+  - project-security-criteria-status
+  - update-a-project
+- name: product
+  description: A grouping of projects representing a shipped product.
+  id_parameter: productID
+  path_prefix: /api/v2/products
+  operations:
+  - create-a-product
+  - get-a-product-details
+  - get-products
+  - update-a-product
+- name: team
+  description: A group of users that owns projects and receives issue assignments.
+  id_parameter: teamID
+  path_prefix: /api/v2/teams
+  operations:
+  - create-a-team
+  - delete-a-team
+  - get-team-details
+  - get-team-members
+  - get-teams
+  - get-teams-with-members
+  - update-a-team
+  - update-team-members
+- name: user
+  description: A platform user, authenticated locally or through an SSO authorization manager.
+  id_parameter: userID
+  path_prefix: /api/v2/users
+  operations:
+  - get-user-details
+  - get-users
+- name: label
+  description: A free-form tag applied to projects and vulnerabilities for filtering.
+  id_parameter: id
+  path_prefix: /api/v2/labels
+  operations:
+  - create-label
+  - delete-label
+  - get-labels
+- name: scan
+  description: One execution (or import) of a scanner against a project branch.
+  id_parameter: scan_id
+  path_prefix: /api/v2/scans
+  operations:
+  - create-new-scan
+  - get-scan-detail
+  - get-scan-release-status
+  - get-scans-in-the-queue
+  - get-scans-that-completed
+  - get-scans-that-failed
+  - get-scans-that-imported
+  - image-scan
+  - import-scan-result
+  - restart-a-scan
+- name: vulnerability
+  description: A deduplicated finding correlated across scanners, with CWE/CVSS and status.
+  id_parameter: vulnerabilityID
+  path_prefix: /api/v2/vulnerabilities
+  operations:
+  - create-a-dast-vulnerability
+  - create-a-pentest-vulnerability
+  - create-a-sast-vulnerability
+  - create-a-sca-vulnerability
+  - create-an-infra-vulnerability
+  - delete-a-screenshot
+  - get-vulnerabilities
+  - get-vulnerability-details
+  - upload-screenshots
+- name: scanner
+  description: A configured security tool (SAST/DAST/SCA/CS/Infra) available on the deployment.
+  id_parameter: null
+  path_prefix: /api/v2/scanners
+  operations:
+  - get-active-scanners
+- name: event
+  description: An asynchronous platform job (such as a triggered scan) whose status can be polled.
+  id_parameter: eventID
+  path_prefix: /api/v2/events
+  operations:
+  - get-event-status
+- name: business_unit_tag
+  description: A business-unit classification tag.
+  id_parameter: null
+  path_prefix: /api/v2/business_unit_tags
+  operations:
+  - get-business-unit-tags
+- name: authorization_manager
+  description: A configured SSO/authorization provider (Okta, Azure AD, Google SAML).
+  id_parameter: null
+  path_prefix: /api/v2/authmans
+  operations:
+  - get-active-auth-managers
+- name: attachment
+  description: A file (pdf/html/jpg/png/avi/txt/mp4) attached to a vulnerability.
+  id_parameter: attachmentID
+  path_prefix: /api/v2/vulnerabilities/{vulnerabilityID}/screenshots
+  operations:
+  - delete-a-screenshot
+  - upload-screenshots
+relationships:
+- from: product
+  to: project
+  kind: has_many
+  via: projects
+  evidence: update-a-product overwrites the projects of a product
+- from: project
+  to: product
+  kind: belongs_to
+  via: product_name
+  evidence: create-a-project / kdt --product-name
+- from: project
+  to: team
+  kind: belongs_to
+  via: team
+  evidence: create-a-project team parameter
+- from: project
+  to: label
+  kind: has_many
+  via: labels
+  evidence: get-project-list labels filter; project payload labels[]
+- from: project
+  to: scan
+  kind: has_many
+  via: projectID
+  evidence: get-project-scans
+- from: project
+  to: vulnerability
+  kind: has_many
+  via: projectID
+  evidence: get-project-vulnerabilities
+- from: scan
+  to: project
+  kind: belongs_to
+  via: project
+  evidence: create-new-scan project parameter
+- from: scan
+  to: scanner
+  kind: belongs_to
+  via: tool
+  evidence: create-new-scan tool parameter; get-active-scanners
+- from: scan
+  to: vulnerability
+  kind: has_many
+  via: scan_id
+  evidence: vulnerability import operations carry scan details
+- from: scan
+  to: event
+  kind: has_one
+  via: eventID
+  evidence: restart-a-scan creates an event; get-event-status
+- from: vulnerability
+  to: attachment
+  kind: has_many
+  via: vulnerabilityID
+  evidence: upload-screenshots / delete-a-screenshot
+- from: vulnerability
+  to: label
+  kind: has_many
+  via: label_ids
+  evidence: get-vulnerabilities label_ids filter
+- from: vulnerability
+  to: team
+  kind: has_many
+  via: team_ids
+  evidence: get-vulnerabilities team_ids filter
+- from: team
+  to: user
+  kind: has_many
+  via: members
+  evidence: get-team-members / update-team-members
+- from: user
+  to: authorization_manager
+  kind: belongs_to
+  via: authman
+  evidence: get-active-auth-managers

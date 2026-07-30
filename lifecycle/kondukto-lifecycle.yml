@@ -1,0 +1,77 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.kondukto.io/changelog
+notes: >-
+  Kondukto was acquired by Invicti and the product is now shipped as Invicti ASPM. kondukto.io and
+  www.kondukto.io 301-redirect to www.invicti.com; docs.kondukto.io and the kondukto-io GitHub org
+  remain live and are still the canonical developer surface for the ASPM REST API and the KDT CLI.
+  Operational transparency (status page, security contact) has moved to the Invicti properties.
+corporate_lifecycle:
+  status: acquired
+  acquirer: Invicti Security
+  product_name_now: Invicti ASPM
+  former_name: Kondukto
+  announcement: https://www.invicti.com/blog/news/invicti-acquires-kondukto-to-deliver-proof-based-aspm
+  evidence:
+  - kondukto.io returns 301 to https://www.invicti.com/
+  - Documentation changelog entries are titled "Invicti ASPM Release vX.Y"
+  - KDT README describes itself as the CLI for Invicti ASPM and renamed its env vars to INVICTI_ASPM_*
+  surviving_developer_surfaces:
+  - https://docs.kondukto.io
+  - https://github.com/kondukto-io
+  - https://cli.kondukto.io
+versioning:
+  scheme: uri-path
+  current: v2
+  docs: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  platform_release_train:
+    scheme: semver-minor
+    current: v1.112.0
+    date: '2026-05-27'
+    cadence: approximately every 4-8 weeks
+    changelog: https://docs.kondukto.io/changelog
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    No RFC 8594 Sunset/Deprecation header support and no formal API deprecation policy are published.
+    Deprecations are announced in the release notes and, for the CLI, as runtime warnings.
+  observed_deprecations:
+  - item: KONDUKTO_HOST / KONDUKTO_TOKEN environment variables
+    replaced_by: INVICTI_ASPM_HOST / INVICTI_ASPM_TOKEN
+    status: deprecated, still supported, emits a deprecation warning
+    source: https://github.com/kondukto-io/kdt
+  - item: kdt scan --no-decoration flag
+    status: deprecated
+    source: https://github.com/kondukto-io/kdt
+  - item: Bitbucket App Password authentication
+    replaced_by: API Tokens
+    status: replaced in platform release v1.108
+    source: https://docs.kondukto.io/changelog/invicti-aspm-release-v1108-15th-dec-2025
+deprecated_operations: []
+deprecated_operations_note: >-
+  No operation in the published API reference carries deprecated: true; every one of the 51
+  operation definitions sets deprecated: false explicitly.
+status_page:
+  url: https://status.invicti.com
+  status: 200
+  scope: Invicti platform status, covering the ASPM product post-acquisition
+  note: No kondukto.io-branded status page exists; status has consolidated onto Invicti.
+sla:
+  url: null
+  uptime_target: null
+  published: false
+support:
+  email: support@kondukto.io
+  docs: https://docs.kondukto.io
+deployment_model:
+  types: [self-hosted, dedicated-tenant]
+  note: >-
+    Invicti ASPM is deployed per customer, so the API host is deployment-specific rather than a
+    single shared public endpoint. Host requirements are published.
+  host_requirements: https://docs.kondukto.io/docs/kondukto-host-requirements
+related:
+  changelog: changelog/kondukto-changelog.yml
+  conventions: conventions/kondukto-conventions.yml

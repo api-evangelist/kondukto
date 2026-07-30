@@ -1,0 +1,279 @@
+# Kondukto Documentation
+
+> Official Documentation and API reference of Kondukto Application Security Orchestration and Correlation Platform
+
+## Guides
+- [Server Host Requirements](https://docs.kondukto.io/docs/kondukto-host-requirements.md)
+- [User Permission Matrix](https://docs.kondukto.io/docs/user-permission-matrix.md)
+- [FAQs](https://docs.kondukto.io/docs/faqs.md)
+- [Recommended Fair Usage Limits](https://docs.kondukto.io/docs/recommended-fair-usage-limits.md)
+- [Dashboard at a Glance](https://docs.kondukto.io/docs/dashboard-at-a-glance.md)
+- [Metrics](https://docs.kondukto.io/docs/metrics.md)
+- [Scanners](https://docs.kondukto.io/docs/scanners.md)
+- [Issue Assignment](https://docs.kondukto.io/docs/issue-assignment.md)
+- [CI/CD Security Criteria](https://docs.kondukto.io/docs/project-security-criteria.md)
+- [Alerts](https://docs.kondukto.io/docs/alerts.md)
+- [Feature Branch Mgmt.](https://docs.kondukto.io/docs/feature-branch-mgmt.md)
+- [Threat Intelligence](https://docs.kondukto.io/docs/threat-intelligence.md)
+- [DAST-to-SAST Correlation](https://docs.kondukto.io/docs/dast-to-sast-correlation.md)
+- [Project Files](https://docs.kondukto.io/docs/project-files.md)
+- [API Endpoints](https://docs.kondukto.io/docs/api-endpoints.md)
+- [Pentests](https://docs.kondukto.io/docs/pentests.md)
+- [Teams](https://docs.kondukto.io/docs/teams.md)
+- [Users](https://docs.kondukto.io/docs/users.md)
+- [Roles](https://docs.kondukto.io/docs/roles.md)
+- [Severity Score](https://docs.kondukto.io/docs/severity-score.md)
+- [Highlighted Vulnerabilities](https://docs.kondukto.io/docs/highlighted-vulnerabilities.md)
+- [Global Settings](https://docs.kondukto.io/docs/global-settings.md)
+- [Infra Profiles](https://docs.kondukto.io/docs/infra-profiles.md)
+- [Correlation Assistant](https://docs.kondukto.io/docs/correlation-assistant.md)
+- [Flags](https://docs.kondukto.io/docs/flags.md)
+- [Workflows](https://docs.kondukto.io/docs/workflows.md)
+- [Automation Rules](https://docs.kondukto.io/docs/automation-rules.md)
+- [Actions](https://docs.kondukto.io/docs/actions.md)
+- [System Log](https://docs.kondukto.io/docs/logs.md)
+- [Audit Log](https://docs.kondukto.io/docs/audit-log.md)
+- [SSL Certificate Installation](https://docs.kondukto.io/docs/ssl-certificate-installation.md)
+- [Managing and Cleaning Up Scans on Deleted Branches](https://docs.kondukto.io/docs/managing-and-cleaning-up-old-branch-scans-in-kondukto.md)
+- [Environment field](https://docs.kondukto.io/docs/environment-field.md)
+- [PR Decoration and PR Scans](https://docs.kondukto.io/docs/pr-decoration-and-pr-scans.md)
+- [Get started with integrations](https://docs.kondukto.io/docs/get-started-with-integrations.md)
+- [Integrations overview](https://docs.kondukto.io/docs/integrations-overview.md)
+- [Adding Custom Integrations](https://docs.kondukto.io/docs/adding-custom-integrations.md)
+- [Daily Automated Sync](https://docs.kondukto.io/docs/daily-automated-sync.md)
+- [SBOM Radar](https://docs.kondukto.io/docs/new.md)
+- [Deactivate an integration](https://docs.kondukto.io/docs/deactivate-an-integration.md)
+- [Security scanners](https://docs.kondukto.io/docs/scanners-1.md)
+- [Security scanners overview](https://docs.kondukto.io/docs/security-scanners-overview.md)
+- [Third-party scanners overview](https://docs.kondukto.io/docs/third-party-scanners-overview.md)
+- [Docker-hosted scanners](https://docs.kondukto.io/docs/docker-hosted-scanners.md)
+- [SAST (Static Application Security Testing)](https://docs.kondukto.io/docs/sast-static-application-security-testing.md)
+- [SAST overview](https://docs.kondukto.io/docs/sast-overview.md)
+- [SonarCloud SAST](https://docs.kondukto.io/docs/sonarcloud-sast.md)
+- [Polaris fAST Static](https://docs.kondukto.io/docs/polaris-fast-static.md)
+- [Parasoft SAST](https://docs.kondukto.io/docs/parasoft-sast.md)
+- [Checkmarx Integration](https://docs.kondukto.io/docs/checkmarx-integration.md)
+- [Semgrep CE Integration](https://docs.kondukto.io/docs/semgrep-ce-integration.md)
+- [Snyk SAST Integration](https://docs.kondukto.io/docs/snyk-sast-integration.md)
+- [Mend SAST Integration](https://docs.kondukto.io/docs/mend-sast-integration.md)
+- [SonarQube SAST](https://docs.kondukto.io/docs/sonarqube-sast.md)
+- [Semgrep Enterprise SAST](https://docs.kondukto.io/docs/semgrep-enterprise-sast.md)
+- [GitGuardian SAST](https://docs.kondukto.io/docs/gitguardian-sast.md)
+- [Coverity SAST](https://docs.kondukto.io/docs/coverity-sast.md)
+- [Fortify SAST](https://docs.kondukto.io/docs/fortify-sast.md)
+- [Fortify On Demand SAST](https://docs.kondukto.io/docs/fortify-on-demand-sast.md)
+- [MobSF SAST](https://docs.kondukto.io/docs/mobsf-sast.md)
+- [Veracode SAST](https://docs.kondukto.io/docs/veracode-sast.md)
+- [CodeThreat SAST](https://docs.kondukto.io/docs/codethreat-sast.md)
+- [CodeQL SAST](https://docs.kondukto.io/docs/codeql-sast.md)
+- [Checkmarx One SAST](https://docs.kondukto.io/docs/checkmarx-one-sast.md)
+- [DAST (Dynamic Application Security Testing)](https://docs.kondukto.io/docs/dast-dynamic-application-security-testing.md)
+- [DAST overview](https://docs.kondukto.io/docs/dast-overview.md)
+- [Burp Suite Integration](https://docs.kondukto.io/docs/burp-suite-integration.md)
+- [Burp Suite Enterprise Integration](https://docs.kondukto.io/docs/burp-suite-enterprise-integration.md)
+- [Acunetix 360 DAST/API Integration](https://docs.kondukto.io/docs/acunetix-360-dastapi-integration.md)
+- [Acunetix Premium DAST/API Integration](https://docs.kondukto.io/docs/acunetix-premium-dastapi-integration.md)
+- [Akto DAST/API Integration](https://docs.kondukto.io/docs/akto-dastapi-integration.md)
+- [AppSpider Pro DAST/API Integration](https://docs.kondukto.io/docs/appspider-pro-dastapi-integration.md)
+- [Fortify On Demand DAST Integration](https://docs.kondukto.io/docs/fortify-on-demand-dast-integration.md)
+- [Fortify WebInspect DAST/API Integration](https://docs.kondukto.io/docs/fortify-webinspect-dastapi-integration.md)
+- [HCL AppScan Enterprise DAST/API Integration](https://docs.kondukto.io/docs/hcl-appscan-enterprise-dastapi-integration.md)
+- [HCL AppScan Standard DAST/API Integration](https://docs.kondukto.io/docs/hcl-appscan-standard-dastapi-integration.md)
+- [Invicti Enterprise DAST/API Integration](https://docs.kondukto.io/docs/invicti-enterprise-dastapi-integration.md)
+- [Invicti Platform DAST/API Integration](https://docs.kondukto.io/docs/invicti-platform-dastapi-integration.md)
+- [Nuclei DAST/API Integration](https://docs.kondukto.io/docs/nuclei-dastapi-integration.md)
+- [OWASP ZAP Headless DAST/API Integration](https://docs.kondukto.io/docs/owasp-zap-headless-dastapi-integration.md)
+- [OWASP ZAP DAST/API Integration](https://docs.kondukto.io/docs/owasp-zap-dastapi-integration.md)
+- [Qualys WAS DAST/API Integration](https://docs.kondukto.io/docs/qualys-was-dastapi-integration.md)
+- [Rapid7 InsightAppSec DAST/API Integration](https://docs.kondukto.io/docs/rapid7-insightappsec-dastapi-integration.md)
+- [Salt Security DAST/API Integration](https://docs.kondukto.io/docs/salt-security-dastapi-integration.md)
+- [Tenable.io WAS DAST/API Integration](https://docs.kondukto.io/docs/tenableio-was-dastapi-integration.md)
+- [Veracode DAST Integration](https://docs.kondukto.io/docs/veracode-dast-integration.md)
+- [SCA (Software Composition Analysis)](https://docs.kondukto.io/docs/sca-software-composition-analysis.md)
+- [SCA overview](https://docs.kondukto.io/docs/sca-overview.md)
+- [Snyk SCA](https://docs.kondukto.io/docs/snyk-sca-integration.md)
+- [Dependency-Check SCA](https://docs.kondukto.io/docs/dependency-check-integration.md)
+- [SBOM Radar](https://docs.kondukto.io/docs/sbom-radar-integration.md)
+- [Mend SCA](https://docs.kondukto.io/docs/mend-sca-integration.md)
+- [JFrog Xray SCA](https://docs.kondukto.io/docs/jfrog-xray-sca-integration.md)
+- [OSV](https://docs.kondukto.io/docs/osv.md)
+- [Black Duck](https://docs.kondukto.io/docs/black-duck.md)
+- [Checkmarx One](https://docs.kondukto.io/docs/checkmarx-one.md)
+- [Checkmarx SCA Cloud](https://docs.kondukto.io/docs/checkmarx-sca-cloud.md)
+- [Contrast SCA](https://docs.kondukto.io/docs/contrast-sca.md)
+- [Dependabot](https://docs.kondukto.io/docs/dependabot.md)
+- [Dependency-Track](https://docs.kondukto.io/docs/dependency-track.md)
+- [Nancy SCA](https://docs.kondukto.io/docs/nancy-sca.md)
+- [OSV-Scanner SCA](https://docs.kondukto.io/docs/osv-scanner-sca.md)
+- [Polaris fAST SCA](https://docs.kondukto.io/docs/polaris-fast-sca.md)
+- [Semgrep Enterprise SCA](https://docs.kondukto.io/docs/semgrep-enterprise-sca.md)
+- [Snyk SCA](https://docs.kondukto.io/docs/snyk-sca.md)
+- [Veracode SCA](https://docs.kondukto.io/docs/veracode-sca.md)
+- [Sonatype Nexus Lifecycle SCA](https://docs.kondukto.io/docs/sonatype-nexus-lifecycle-sca.md)
+- [CS (Container Scans)](https://docs.kondukto.io/docs/container-scans-cs.md)
+- [Container scanning overview](https://docs.kondukto.io/docs/container-scanning-overview.md)
+- [Trivy Operator Integration](https://docs.kondukto.io/docs/trivy-operator-integration.md)
+- [Trivy Integration](https://docs.kondukto.io/docs/trivy-integration.md)
+- [Snyk CS Integration](https://docs.kondukto.io/docs/snyk-cs-integration.md)
+- [Amazon Inspector CS Integration](https://docs.kondukto.io/docs/amazon-inspector-cs-integration.md)
+- [Armo Security](https://docs.kondukto.io/docs/armo-security.md)
+- [CrowdStrike Falcon Container Security](https://docs.kondukto.io/docs/crowdstrike-falcon-container-security.md)
+- [Lacework Container Security](https://docs.kondukto.io/docs/lacework-container-security.md)
+- [Prisma Cloud Compute CS](https://docs.kondukto.io/docs/prisma-cloud-compute-cs.md)
+- [Qualys CS](https://docs.kondukto.io/docs/qualys-cs.md)
+- [Red Hat Advanced Cluster Security](https://docs.kondukto.io/docs/red-hat-advanced-cluster-security.md)
+- [CSPM (Cloud Security Posture Management)](https://docs.kondukto.io/docs/cspm.md)
+- [CSPM overview](https://docs.kondukto.io/docs/cspm-overview.md)
+- [Wiz Integration](https://docs.kondukto.io/docs/wiz-integration.md)
+- [Amazon Inspector CSPM Integration](https://docs.kondukto.io/docs/amazon-inspector-cspm-integration.md)
+- [Amazon Security Hub CSPM Integration](https://docs.kondukto.io/docs/amazon-security-hub-cspm-integration.md)
+- [Microsoft Defender for Cloud Integration](https://docs.kondukto.io/docs/microsoft-defender-for-cloud-integration.md)
+- [Orca Security CSPM Integration](https://docs.kondukto.io/docs/orca-security-cspm-integration.md)
+- [Sysdig CSPM Integration](https://docs.kondukto.io/docs/sysdig-cspm-integration.md)
+- [Prowler CSPM Integration](https://docs.kondukto.io/docs/prowler-cspm-integration.md)
+- [Lacework CSPM Integration](https://docs.kondukto.io/docs/lacework-cspm-integration.md)
+- [CrowdStrike CSPM Integration](https://docs.kondukto.io/docs/crowdstrike-cspm-integration.md)
+- [Prisma Cloud CSPM Integration](https://docs.kondukto.io/docs/prisma-cloud-cspm-integration.md)
+- [Infra](https://docs.kondukto.io/docs/infra.md)
+- [Infrastructure scanning overview](https://docs.kondukto.io/docs/infrastructure-scanning-overview.md)
+- [Nessus Pro (Professional) Integration](https://docs.kondukto.io/docs/nessus-proprofessional-integration.md)
+- [Qualys VMDR](https://docs.kondukto.io/docs/qualys-vmdr.md)
+- [Tenable.sc](https://docs.kondukto.io/docs/tenablesc.md)
+- [Tenable.io VM](https://docs.kondukto.io/docs/tenableio-vm.md)
+- [Rapid7 Insight VM / Nexpose](https://docs.kondukto.io/docs/rapid7-insight-vm-nexpose.md)
+- [Lacework Infra](https://docs.kondukto.io/docs/lacework-infra.md)
+- [CrowdStrike Infra](https://docs.kondukto.io/docs/crowdstrike-infra.md)
+- [Rapid7 InsightVM Cloud](https://docs.kondukto.io/docs/rapid7-insightvm-cloud.md)
+- [Bug Bounty](https://docs.kondukto.io/docs/bug-bounty.md)
+- [HackerOne integration](https://docs.kondukto.io/docs/hackerone-integration.md)
+- [Infrastructure as code](https://docs.kondukto.io/docs/infrastructure-as-code.md)
+- [IaC overview](https://docs.kondukto.io/docs/iac-overview.md)
+- [Checkmarx One IaC/KICS](https://docs.kondukto.io/docs/checkmarx-one-iackics.md)
+- [Semgrep CE Config](https://docs.kondukto.io/docs/semgrep-ce-config.md)
+- [Snyk IaC](https://docs.kondukto.io/docs/snyk-iac.md)
+- [Trivy IaC](https://docs.kondukto.io/docs/trivy-iac.md)
+- [MAST](https://docs.kondukto.io/docs/mast.md)
+- [eShard esChecker](https://docs.kondukto.io/docs/eshard-eschecker.md)
+- [IAST](https://docs.kondukto.io/docs/iast.md)
+- [Contrast IAST](https://docs.kondukto.io/docs/contrast-iast.md)
+- [Seeker](https://docs.kondukto.io/docs/seeker.md)
+- [Application Lifecycle Management Tools](https://docs.kondukto.io/docs/application-lifecycle-management-tools.md)
+- [GitHub](https://docs.kondukto.io/docs/github.md)
+- [Github Enterprise Integration](https://docs.kondukto.io/docs/github-enterprise-integration.md)
+- [GitLab](https://docs.kondukto.io/docs/gitlab.md)
+- [GitLab On-Prem](https://docs.kondukto.io/docs/gitlab-on-prem.md)
+- [Bitbucket Server](https://docs.kondukto.io/docs/bitbucket-server.md)
+- [Issue Managers](https://docs.kondukto.io/docs/issue-managers.md)
+- [GitHub Issue Manager](https://docs.kondukto.io/docs/github-issue-manager.md)
+- [Jira Integration](https://docs.kondukto.io/docs/jira-integration.md)
+- [GitLab Issue Manager](https://docs.kondukto.io/docs/gitlab-issue-manager.md)
+- [GitLab On-Prem Issue Manager](https://docs.kondukto.io/docs/gitlab-on-prem-issue-manager.md)
+- [Trello](https://docs.kondukto.io/docs/trello.md)
+- [4me](https://docs.kondukto.io/docs/4me.md)
+- [Ivanti](https://docs.kondukto.io/docs/ivanti.md)
+- [ServiceNow](https://docs.kondukto.io/docs/servicenow.md)
+- [Webhook](https://docs.kondukto.io/docs/webhook.md)
+- [Servicecore](https://docs.kondukto.io/docs/servicecore.md)
+- [Single-Sign-On Tools](https://docs.kondukto.io/docs/single-sign-on-tools.md)
+- [Okta Integration](https://docs.kondukto.io/docs/okta.md)
+- [Azure AD with SAML 2.0](https://docs.kondukto.io/docs/saml-20-azure-ad-integration.md)
+- [Google SSO with SAML 2.0](https://docs.kondukto.io/docs/saml-20-google-workspace-integration.md)
+- [Custom threat intelligence](https://docs.kondukto.io/docs/custom-threat-intelligence.md)
+- [Custom threat intelligence databases integration](https://docs.kondukto.io/docs/custom-threat-intelligence-databases-integration.md)
+- [Mandiant](https://docs.kondukto.io/docs/mandiant.md)
+- [CISA KEV + EPSS](https://docs.kondukto.io/docs/cisa-kev-epss.md)
+- [AI Recommendation](https://docs.kondukto.io/docs/ai-recommendation.md)
+- [OpenAI](https://docs.kondukto.io/docs/openai.md)
+- [LLM Providers](https://docs.kondukto.io/docs/llm-providers.md)
+- [Anthropic](https://docs.kondukto.io/docs/anthropic.md)
+- [Azure OpenAI](https://docs.kondukto.io/docs/azure-openai.md)
+- [Google Gemini](https://docs.kondukto.io/docs/google-gemini.md)
+- [Groq](https://docs.kondukto.io/docs/groq.md)
+- [Mistral AI](https://docs.kondukto.io/docs/mistral-ai.md)
+- [Ollama](https://docs.kondukto.io/docs/ollama.md)
+- [OpenAI](https://docs.kondukto.io/docs/openai-1.md)
+- [OpenRouter](https://docs.kondukto.io/docs/openrouter.md)
+- [Team lead integrations](https://docs.kondukto.io/docs/team-lead-integrations-1.md)
+- [Team lead integration](https://docs.kondukto.io/docs/team-lead-integration.md)
+- [Notification tools](https://docs.kondukto.io/docs/notification-tools.md)
+- [Microsoft Teams](https://docs.kondukto.io/docs/microsoft-teams.md)
+- [Email](https://docs.kondukto.io/docs/email.md)
+- [Slack](https://docs.kondukto.io/docs/slack.md)
+- [Mattermost](https://docs.kondukto.io/docs/mattermost.md)
+- [Microsoft Azure Mail](https://docs.kondukto.io/docs/microsoft-azure-mail.md)
+- [Webhook integrations](https://docs.kondukto.io/docs/webhook-integrations.md)
+- [Webhook integration with audit log events](https://docs.kondukto.io/docs/webhook-integration-capturing-audit-log-events.md): Capturing Audit Log Events
+- [Integrating with Webhooks](https://docs.kondukto.io/docs/integrating-with-webhooks.md)
+- [Webhook Issue Manager - API Reference](https://docs.kondukto.io/docs/webhook-issue-manager-api.md)
+
+## API Reference
+- [Starting with Kondukto API](https://docs.kondukto.io/reference/starting-with-kondukto-api.md)
+- [Get API Token via UI](https://docs.kondukto.io/reference/get-api-token-via-ui.md)
+- [Health Check](https://docs.kondukto.io/reference/health-check.md): Api health check
+- [Get Users](https://docs.kondukto.io/reference/get-users.md): Return users. Query users by username or email
+- [Get User Details](https://docs.kondukto.io/reference/get-user-details.md): Returns a user's details
+- [Get Teams](https://docs.kondukto.io/reference/get-teams.md): Return teams. Query teams by team name.
+- [Get Teams With Members](https://docs.kondukto.io/reference/get-teams-with-members.md): Returns teams with members. Query teams by team name.
+- [Get Team Details](https://docs.kondukto.io/reference/get-team-details.md): Returns a team's details
+- [Get Team Members](https://docs.kondukto.io/reference/get-team-members.md): Returns a team's members
+- [Create a Team](https://docs.kondukto.io/reference/create-a-team.md): Create a team through API
+- [Update a Team](https://docs.kondukto.io/reference/update-a-team.md): Update a team through API
+- [Delete a Team](https://docs.kondukto.io/reference/delete-a-team.md): Delete a team by id
+- [Update Team Members](https://docs.kondukto.io/reference/update-team-members.md): Update members of a team
+- [Get Labels](https://docs.kondukto.io/reference/get-labels.md): Return labels. Query labels by label name.
+- [Create Label](https://docs.kondukto.io/reference/create-label.md): Create a label
+- [Delete Label](https://docs.kondukto.io/reference/delete-label.md): Delete a label by ID
+- [Get Business Unit Tags](https://docs.kondukto.io/reference/get-business-unit-tags.md): Return business unit tags. Query business unit tags by business unit tag name.
+- [Create a Product](https://docs.kondukto.io/reference/create-a-product.md): This endpoint lets you create a new product. The product name should be unique and should not contain any spaces.
+- [Update a Product](https://docs.kondukto.io/reference/update-a-product.md): Overwrites the projects of a product by the given values.
+- [Get Products](https://docs.kondukto.io/reference/get-products.md): Returns the list of products.
+- [Get Product Details](https://docs.kondukto.io/reference/get-a-product-details.md): Returns the details of a product.
+- [Create a Project](https://docs.kondukto.io/reference/create-a-project.md): This endpoint lets you create a project with the given parameters. To create a project on Kondukto, you can use ALM (Application Lifecycle Management) URL or ALM ID.  The ALM ID or the ALM URL can be easily retrieved from the CI/CD tools.
+- [Update a Project](https://docs.kondukto.io/reference/update-a-project.md): This endpoint lets you update a project with the given parameters.
+- [Get Project List](https://docs.kondukto.io/reference/get-project-list.md): This endpoint returns project list in a paginated format.
+- [Check if ALM Project exists on Kondukto](https://docs.kondukto.io/reference/check-alm-if-it-exists.md): This endpoint checks if an ALM project has been created on Kondukto
+- [Get Project Detail](https://docs.kondukto.io/reference/get-project-detail.md): This endpoint returns details of a specific project.
+- [Get Project Scans](https://docs.kondukto.io/reference/get-project-scans.md): This endpoint retrieves scans of the given project.
+- [Project Security Criteria Status](https://docs.kondukto.io/reference/project-security-criteria-status.md): This endpoint retrieves security creteria of the specific project.
+- [Get Project Vulnerabilities](https://docs.kondukto.io/reference/get-project-vulnerabilities.md): This endpoint retrieves vulnerabilities of the specific project.
+- [Create Project Scan Configuration](https://docs.kondukto.io/reference/create-project-scan-configuration.md): This endpoint creates a scan parameter to project.
+- [Get Project Scan Configuration](https://docs.kondukto.io/reference/get-project-scan-configuration.md): This endpoint retrieves security creteria of the specific project.
+- [Create New Scan](https://docs.kondukto.io/reference/create-new-scan.md): This endpoint allows you to create a new scan with specified parameters for a project. You can access the "custom" information in the body parameters from the Scanner details.
+- [Image Scan](https://docs.kondukto.io/reference/image-scan.md): This endpoint allows you to create a new scan for a container image with specified parameters for a project. The scan details and configurations are included in the request body.
+- [Import Scan Result](https://docs.kondukto.io/reference/import-scan-result.md): This endpoint allows you to import scan results for a specified project. The scan details and configurations are included in the form parameters.
+- [Restart A Scan](https://docs.kondukto.io/reference/restart-a-scan.md): This endpoint creates a scan event on Kondukto. To trigger a scan, the project should exist on Kondukto, and the scanner should be already configured.
+- [Get Scan Details](https://docs.kondukto.io/reference/get-scan-detail.md): This endpoint returns scan details of the given scan.
+- [Get Scan Security Criteria](https://docs.kondukto.io/reference/get-scan-release-status.md): This endpoint returns the security criteria of a specific scan.
+- [Get Scans in the Queue](https://docs.kondukto.io/reference/get-scans-in-the-queue.md): This endpoint returns scans in the queue.
+- [Get Completed Scans](https://docs.kondukto.io/reference/get-scans-that-completed.md): This endpoint returns scans that completed.
+- [Get Failed Scans](https://docs.kondukto.io/reference/get-scans-that-failed.md): This endpoint returns scans that failed.
+- [Get Imported Scans](https://docs.kondukto.io/reference/get-scans-that-imported.md): This endpoint returns scans that imported.
+- [Get Vulnerabilities](https://docs.kondukto.io/reference/get-vulnerabilities.md): This endpoint retrieves a list of vulnerabilities from the Kondukto. It supports pagination and various filters to streamline the search and retrieval of vulnerability data. Clients can specify parameters to filter results based on severity, branch, type, status, and other relevant criteria.
+- [Get Vulnerability Details](https://docs.kondukto.io/reference/get-vulnerability-details.md)
+- [Create a SAST Vulnerability](https://docs.kondukto.io/reference/create-a-sast-vulnerability.md): This endpoint allows you to create SAST vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body.
+- [Create a DAST Vulnerability](https://docs.kondukto.io/reference/create-a-dast-vulnerability.md): This endpoint allows you to create DAST vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body.
+- [Create a SCA Vulnerability](https://docs.kondukto.io/reference/create-a-sca-vulnerability.md): This endpoint allows you to create SCA vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body.
+- [Create a PENTEST Vulnerability](https://docs.kondukto.io/reference/create-a-pentest-vulnerability.md): This endpoint allows you to create PENTEST vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body.
+- [Create an Infra Vulnerability](https://docs.kondukto.io/reference/create-an-infra-vulnerability.md): This endpoint allows you to create INFRA vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body.
+- [Upload Attachments](https://docs.kondukto.io/reference/upload-screenshots.md): Upload multiple attachments to a vulnerability. Attachment should be in base64 format. Supported file formats are "pdf", "html", "jpg", "png", "avi", "txt" and "mp4".
+- [Delete An Attachment](https://docs.kondukto.io/reference/delete-a-screenshot.md): Delete an attachment of a vulnerability by attachment id
+- [Get Active Scanners](https://docs.kondukto.io/reference/get-active-scanners.md): Return active scanners
+- [Get Event Status](https://docs.kondukto.io/reference/get-event-status.md): Returns status of an event
+- [Get Active Authorization Managers](https://docs.kondukto.io/reference/get-active-auth-managers.md): Return active authorization managers
+
+## Recipes
+- [Azure](https://docs.kondukto.io/recipes/azure.md)
+- [Github](https://docs.kondukto.io/recipes/github.md)
+- [Gitlab](https://docs.kondukto.io/recipes/gitlab.md)
+- [Jenkins](https://docs.kondukto.io/recipes/jenkins.md)
+- [Shell](https://docs.kondukto.io/recipes/shell.md)
+
+## Pages
+- [Metadata](https://docs.kondukto.io/metadata.md)
+
+## Changelog
+- [Invicti ASPM Release v1.112.0 27th May, 2026](https://docs.kondukto.io/changelog/invicti-aspm-release-v11120.md)
+- [Invicti ASPM Release v1.111 6th April, 2026](https://docs.kondukto.io/changelog/invicti-aspm-release-v1111-6th-april-2026.md)
+- [Invicti ASPM Release v1.110 27th February, 2026](https://docs.kondukto.io/changelog/invicti-aspm-release-v1110-27th-february-2026.md)
+- [Invicti ASPM Release v1.109 27th Jan, 2026](https://docs.kondukto.io/changelog/invicti-aspm-release-v1109-27th-jan-2026.md)
+- [Invicti ASPM Release v1.108 15th Dec, 2025](https://docs.kondukto.io/changelog/invicti-aspm-release-v1108-15th-dec-2025.md)
