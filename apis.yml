@@ -1,25 +1,405 @@
 aid: kondukto
 name: Kondukto
-description: Kondukto is a company surfaced as a portfolio company of 500-global and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Kondukto — now shipped as Invicti ASPM following Invicti Security's acquisition of the company — is
+  an Application Security Posture Management platform that centralizes and automates the AppSec
+  vulnerability management lifecycle. It ingests, deduplicates and correlates findings from more than
+  eighty security scanners across SAST, DAST, SCA, container, infrastructure and pentest testing,
+  enriches them with CWE, CVSS, EPSS, CISA KEV, EUVD threat intelligence and VEX exploitability data,
+  and routes them to owning teams through Jira, GitLab, ServiceNow and webhook issue managers.
+  Kondukto publishes a documented REST API v2 covering projects, products, teams, labels, scans and
+  vulnerabilities, an open-source Go command-line client (KDT) that drives the same API from CI/CD
+  pipelines, and a webhook surface for both outbound platform events and customer-hosted issue
+  managers. The platform is deployed per customer, so the API host is deployment-specific.
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://cdn.kondukto.io/img/logo/a990cbe5-f31f-49a0-a135-2ea0b7abb0ec.png
 url: https://raw.githubusercontent.com/api-evangelist/kondukto/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - 500-global
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-status: acquired
+x-acquired-by: Invicti Security
+x-product-name: Invicti ASPM
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Application Security
+- ASPM
+- Vulnerability Management
+- DevSecOps
+- Security Orchestration
+- SAST
+- DAST
+- SCA
+- Software Composition Analysis
+- Container Security
+- SBOM
+- Security Testing
+- CI/CD
+- Security
+apis:
+- aid: kondukto:kondukto-authorization-managers-api
+  name: Kondukto Authorization Managers API
+  description: >-
+    The Authorization Managers API from Kondukto — 1 operation(s) for authorization managers.
+  humanURL: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  baseURL: https://api.kondukto.io/api/v2
+  tags:
+  - Authorization Managers
+  properties:
+  - type: OpenAPI
+    url: openapi/kondukto-authorization-managers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kondukto.io/docs
+  - type: APIReference
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  - type: GettingStarted
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  - type: Authentication
+    url: authentication/kondukto-authentication.yml
+  - type: ErrorCatalog
+    url: errors/kondukto-problem-types.yml
+  - type: DataModel
+    url: data-model/kondukto-data-model.yml
+  - type: Conventions
+    url: conventions/kondukto-conventions.yml
+- aid: kondukto:kondukto-events-api
+  name: Kondukto Events API
+  description: The Events API from Kondukto — 1 operation(s) for events.
+  humanURL: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  baseURL: https://api.kondukto.io/api/v2
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/kondukto-events-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kondukto.io/docs
+  - type: APIReference
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  - type: GettingStarted
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  - type: Authentication
+    url: authentication/kondukto-authentication.yml
+  - type: ErrorCatalog
+    url: errors/kondukto-problem-types.yml
+  - type: DataModel
+    url: data-model/kondukto-data-model.yml
+  - type: Conventions
+    url: conventions/kondukto-conventions.yml
+- aid: kondukto:kondukto-health-api
+  name: Kondukto Health API
+  description: The Health API from Kondukto — 1 operation(s) for health.
+  humanURL: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  baseURL: https://api.kondukto.io/api/v2
+  tags:
+  - Health
+  properties:
+  - type: OpenAPI
+    url: openapi/kondukto-health-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kondukto.io/docs
+  - type: APIReference
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  - type: GettingStarted
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  - type: Authentication
+    url: authentication/kondukto-authentication.yml
+  - type: ErrorCatalog
+    url: errors/kondukto-problem-types.yml
+  - type: DataModel
+    url: data-model/kondukto-data-model.yml
+  - type: Conventions
+    url: conventions/kondukto-conventions.yml
+- aid: kondukto:kondukto-labels-api
+  name: Kondukto Labels API
+  description: The Labels API from Kondukto — 3 operation(s) for labels.
+  humanURL: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  baseURL: https://api.kondukto.io/api/v2
+  tags:
+  - Labels
+  properties:
+  - type: OpenAPI
+    url: openapi/kondukto-labels-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kondukto.io/docs
+  - type: APIReference
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  - type: GettingStarted
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  - type: Authentication
+    url: authentication/kondukto-authentication.yml
+  - type: ErrorCatalog
+    url: errors/kondukto-problem-types.yml
+  - type: DataModel
+    url: data-model/kondukto-data-model.yml
+  - type: Conventions
+    url: conventions/kondukto-conventions.yml
+- aid: kondukto:kondukto-products-api
+  name: Kondukto Products API
+  description: The Products API from Kondukto — 2 operation(s) for products.
+  humanURL: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  baseURL: https://api.kondukto.io/api/v2
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/kondukto-products-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kondukto.io/docs
+  - type: APIReference
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  - type: GettingStarted
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  - type: Authentication
+    url: authentication/kondukto-authentication.yml
+  - type: ErrorCatalog
+    url: errors/kondukto-problem-types.yml
+  - type: DataModel
+    url: data-model/kondukto-data-model.yml
+  - type: Conventions
+    url: conventions/kondukto-conventions.yml
+- aid: kondukto:kondukto-projects-api
+  name: Kondukto Projects API
+  description: The Projects API from Kondukto — 7 operation(s) for projects.
+  humanURL: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  baseURL: https://api.kondukto.io/api/v2
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/kondukto-projects-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kondukto.io/docs
+  - type: APIReference
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  - type: GettingStarted
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  - type: Authentication
+    url: authentication/kondukto-authentication.yml
+  - type: ErrorCatalog
+    url: errors/kondukto-problem-types.yml
+  - type: DataModel
+    url: data-model/kondukto-data-model.yml
+  - type: Conventions
+    url: conventions/kondukto-conventions.yml
+- aid: kondukto:kondukto-scanners-api
+  name: Kondukto Scanners API
+  description: The Scanners API from Kondukto — 1 operation(s) for scanners.
+  humanURL: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  baseURL: https://api.kondukto.io/api/v2
+  tags:
+  - Scanners
+  properties:
+  - type: OpenAPI
+    url: openapi/kondukto-scanners-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kondukto.io/docs
+  - type: APIReference
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  - type: GettingStarted
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  - type: Authentication
+    url: authentication/kondukto-authentication.yml
+  - type: ErrorCatalog
+    url: errors/kondukto-problem-types.yml
+  - type: DataModel
+    url: data-model/kondukto-data-model.yml
+  - type: Conventions
+    url: conventions/kondukto-conventions.yml
+- aid: kondukto:kondukto-scans-api
+  name: Kondukto Scans API
+  description: The Scans API from Kondukto — 10 operation(s) for scans.
+  humanURL: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  baseURL: https://api.kondukto.io/api/v2
+  tags:
+  - Scans
+  properties:
+  - type: OpenAPI
+    url: openapi/kondukto-scans-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kondukto.io/docs
+  - type: APIReference
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  - type: GettingStarted
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  - type: Authentication
+    url: authentication/kondukto-authentication.yml
+  - type: ErrorCatalog
+    url: errors/kondukto-problem-types.yml
+  - type: DataModel
+    url: data-model/kondukto-data-model.yml
+  - type: Conventions
+    url: conventions/kondukto-conventions.yml
+- aid: kondukto:kondukto-teams-api
+  name: Kondukto Teams API
+  description: The Teams API from Kondukto — 5 operation(s) for teams.
+  humanURL: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  baseURL: https://api.kondukto.io/api/v2
+  tags:
+  - Teams
+  properties:
+  - type: OpenAPI
+    url: openapi/kondukto-teams-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kondukto.io/docs
+  - type: APIReference
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  - type: GettingStarted
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  - type: Authentication
+    url: authentication/kondukto-authentication.yml
+  - type: ErrorCatalog
+    url: errors/kondukto-problem-types.yml
+  - type: DataModel
+    url: data-model/kondukto-data-model.yml
+  - type: Conventions
+    url: conventions/kondukto-conventions.yml
+- aid: kondukto:kondukto-users-api
+  name: Kondukto Users API
+  description: The Users API from Kondukto — 2 operation(s) for users.
+  humanURL: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  baseURL: https://api.kondukto.io/api/v2
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/kondukto-users-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kondukto.io/docs
+  - type: APIReference
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  - type: GettingStarted
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  - type: Authentication
+    url: authentication/kondukto-authentication.yml
+  - type: ErrorCatalog
+    url: errors/kondukto-problem-types.yml
+  - type: DataModel
+    url: data-model/kondukto-data-model.yml
+  - type: Conventions
+    url: conventions/kondukto-conventions.yml
+- aid: kondukto:kondukto-vulnerabilities-api
+  name: Kondukto Vulnerabilities API
+  description: The Vulnerabilities API from Kondukto — 9 operation(s) for vulnerabilities.
+  humanURL: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  baseURL: https://api.kondukto.io/api/v2
+  tags:
+  - Vulnerabilities
+  properties:
+  - type: OpenAPI
+    url: openapi/kondukto-vulnerabilities-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kondukto.io/docs
+  - type: APIReference
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  - type: GettingStarted
+    url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+  - type: Authentication
+    url: authentication/kondukto-authentication.yml
+  - type: ErrorCatalog
+    url: errors/kondukto-problem-types.yml
+  - type: DataModel
+    url: data-model/kondukto-data-model.yml
+  - type: Conventions
+    url: conventions/kondukto-conventions.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/kondukto/overview
 - type: Website
   url: https://kondukto.io
+- type: DeveloperPortal
+  url: https://docs.kondukto.io/docs
+- type: Documentation
+  url: https://docs.kondukto.io/docs
+- type: APIReference
+  url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+- type: GettingStarted
+  url: https://docs.kondukto.io/reference/starting-with-kondukto-api
+- type: GitHubOrganization
+  url: https://github.com/kondukto-io
+- type: Blog
+  url: https://www.invicti.com/blog
+- type: Support
+  url: https://docs.invicti.com/
+- type: Pricing
+  url: https://www.invicti.com/pricing
+- type: SignUp
+  url: https://www.invicti.com/get-demo
+- type: TermsOfService
+  url: https://www.invicti.com/legal/terms
+- type: PrivacyPolicy
+  url: https://www.invicti.com/compliance/privacy-policy
+- type: StatusPage
+  url: https://status.invicti.com
+- type: Security
+  url: https://www.invicti.com/.well-known/security.txt
+- type: Compliance
+  url: https://www.invicti.com/compliance
+- type: TrustCenter
+  url: security/kondukto-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/kondukto-vulnerability-disclosure.yml
+- type: SecurityTxt
+  url: well-known/kondukto-security.txt
+- type: WellKnown
+  url: well-known/kondukto-well-known.yml
+- type: DomainSecurity
+  url: security/kondukto-domain-security.yml
+- type: Authentication
+  url: authentication/kondukto-authentication.yml
+- type: Conventions
+  url: conventions/kondukto-conventions.yml
+- type: ErrorCatalog
+  url: errors/kondukto-problem-types.yml
+- type: DataModel
+  url: data-model/kondukto-data-model.yml
+- type: Lifecycle
+  url: lifecycle/kondukto-lifecycle.yml
+- type: ChangeLog
+  url: changelog/kondukto-changelog.yml
+- type: Conformance
+  url: conformance/kondukto-conformance.yml
+- type: Packages
+  url: packages/kondukto-packages.yml
+- type: SDKs
+  url: packages/kondukto-packages.yml
+- type: CLI
+  url: cli/kondukto-cli.yml
+- type: Plans
+  url: plans/kondukto-plans.yml
+- type: Webhooks
+  url: asyncapi/kondukto-webhooks.yml
+- type: MCPServer
+  url: mcp/kondukto-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/kondukto-llms.txt
+- type: AgenticAccess
+  url: agentic-access/kondukto-agentic-access.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
