@@ -33,7 +33,7 @@ x-backed-by:
 x-status: acquired
 x-acquired-by: Invicti Security
 x-product-name: Invicti ASPM
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-07-19'
 tags:
