@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Invicti ASPM (Kondukto) REST API v2 Authorization Managers Users API",
+    "version": "3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Cookie",
+      "value": "{{X-Cookie}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{hostname}/api/v2/users/",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many records will return"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Username or email (Contains)"
+              }
+            ]
+          },
+          "docs": "Return users. Query users by username or email"
+        },
+        {
+          "info": {
+            "name": "Get User Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{hostname}/api/v2/users/:userID",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "userD",
+                "value": "",
+                "type": "path",
+                "description": "User ID"
+              }
+            ]
+          },
+          "docs": "Returns a user's details"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

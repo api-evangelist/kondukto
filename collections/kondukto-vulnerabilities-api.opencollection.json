@@ -1,0 +1,415 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Invicti ASPM (Kondukto) REST API v2 Authorization Managers Vulnerabilities API",
+    "version": "3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Cookie",
+      "value": "{{X-Cookie}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Vulnerabilities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Vulnerabilities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{hostname}/api/v2/vulnerabilities/",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of vulnerabilities to return per request. Default is 30. Max. value can be 30."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "The starting index of the vulnerabilities list. Default is 0."
+              },
+              {
+                "name": "woe",
+                "value": "",
+                "type": "query",
+                "description": "Filters vulnerabilities by their window of exposure. Acceptable operators are eq, gt, and lt, followed by the number of days (e.g., woe=eq:15, woe=gt:4, woe=lt:3)."
+              },
+              {
+                "name": "branch",
+                "value": "",
+                "type": "query",
+                "description": "Performs a search on the branch names of the application's source code. Entering a partial string will return all branches containing that substring."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the type of scan, such as \"sast\", \"dast\", \"sca\", \"cs\", \"infra\", etc."
+              },
+              {
+                "name": "fp",
+                "value": "",
+                "type": "query",
+                "description": "Filters out vulnerabilities when set to \"false\" or includes only fp when set to \"true\"."
+              },
+              {
+                "name": "cvss",
+                "value": "",
+                "type": "query",
+                "description": "Filters vulnerabilities based on the CVSS v3 score."
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Filters vulnerabilities based on the path or target URL. Entering a partial string will return all vulnerabilities associated with matching paths or URLs."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filters vulnerabilities by their status. Possible values are \"new\", \"recurrent\", and \"closed\". Multiple statuses can be specified, separated by commas (e.g., status=new,recurrent)."
+              },
+              {
+                "name": "cwe_name",
+                "value": "",
+                "type": "query",
+                "description": "Filters vulnerabilities based on the name of the CWE. Entering a partial string will return all vulnerabilities associated with matching CWE names."
+              },
+              {
+                "name": "cwe_no",
+                "value": "",
+                "type": "query",
+                "description": "Filters vulnerabilities based on CWE numbers. Multiple CWE numbers can be specified, separated by commas (e.g., cwe_no=79,89,20)."
+              },
+              {
+                "name": "tool_name",
+                "value": "",
+                "type": "query",
+                "description": "Filters vulnerabilities by the exact name of the tool that identified them. This parameter requires an exact match. If no alphanumeric value is entered, this parameter will not work."
+              },
+              {
+                "name": "issue_status",
+                "value": "",
+                "type": "query",
+                "description": "Filters vulnerabilities based on the status of any associated issue. This parameter requires an exact match and can take values like \"open\", \"closed\"."
+              },
+              {
+                "name": "committers",
+                "value": "",
+                "type": "query",
+                "description": "Filters vulnerabilities based on the email of committers. This is a searchable parameter that accepts multiple values. Each value can be a part of the full string, separated by commas (e.g., committers=john@kondukto.io, appsec_user)"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Filters vulnerabilities based on the date and time they were first seen, starting from the specified ISO 8601 date (e.g., 2024-05-08T12:20:57.588Z)."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Filters vulnerabilities based on the date and time they were first seen, up to the specified ISO 8601 date (e.g., 2024-05-08T12:20:57.588Z)."
+              },
+              {
+                "name": "tp",
+                "value": "",
+                "type": "query",
+                "description": "Filters out vulnerabilities marked as true positives when set to \"false\" or includes only true positives when set to \"true\"."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filters vulnerabilities by their unique identification number. This parameter allows for direct access to specific vulnerability."
+              },
+              {
+                "name": "teams",
+                "value": "",
+                "type": "query",
+                "description": "Filters vulnerabilities based on the names of teams the vulnerabilities. Multiple team names can be specified, separated by commas (e.g., teams=security,development)."
+              },
+              {
+                "name": "vuln_name",
+                "value": "",
+                "type": "query",
+                "description": "Filters vulnerabilities based on their name. This is a searchable parameter that supports partial matching. Entering a partial name will return all vulnerabilities containing that substring."
+              },
+              {
+                "name": "project_name",
+                "value": "",
+                "type": "query",
+                "description": "Filters vulnerabilities based on the name of the project. This is a searchable parameter that supports partial matching. Entering a partial project name will return all vulnerabilities containing that substring."
+              },
+              {
+                "name": "product_name",
+                "value": "",
+                "type": "query",
+                "description": "Filters vulnerabilities by the exact name of the product that identified them. This parameter requires an exact match."
+              },
+              {
+                "name": "team_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filters vulnerabilities based on the identifiers of the teams involved. Multiple team IDs can be specified, separated by commas (e.g., team_ids=661e36fbb3bdf42202f9eb12,65a78ae2710eb82e835b78c8)."
+              },
+              {
+                "name": "label_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filters vulnerabilities based on the identifiers of the labels involved. Multiple label IDs can be specified, separated by commas (e.g., label_ids=661e36fbb3bdf42202f9eb12,65a78ae2710eb82e835b78c8)."
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "Filters vulnerabilities by specified severity levels. Multiple severities can be specified, separated by commas (e.g., severity=1,2)."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "Filters vulnerabilities based on the names of the labels involved. Multiple labels can be specified, separated by commas (e.g., labels=appsec,infrasecurity)."
+              },
+              {
+                "name": "overdue",
+                "value": "",
+                "type": "query",
+                "description": "Filters out vulnerabilities when set to \"false\" or includes only overdue when set to \"true\"."
+              },
+              {
+                "name": "wf",
+                "value": "",
+                "type": "query",
+                "description": "Filters out vulnerabilities when set to \"false\" or includes only Won't Fix when set to \"true\"."
+              },
+              {
+                "name": "mitigated",
+                "value": "",
+                "type": "query",
+                "description": "Filters out vulnerabilities when set to \"false\" or includes only Mitigated when set to \"true\"."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a list of vulnerabilities from the Kondukto. It supports pagination and various filters to streamline the search and retrieval of vulnerability data. Clients can specify parameters to filter results based on severity, branch, type, status, and other relevant criteria."
+        },
+        {
+          "info": {
+            "name": "Create a DAST Vulnerability",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{hostname}/api/v2/vulnerabilities/import/dast",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to create DAST vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body."
+        },
+        {
+          "info": {
+            "name": "Create an Infra Vulnerability",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{hostname}/api/v2/vulnerabilities/import/infra",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to create INFRA vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body."
+        },
+        {
+          "info": {
+            "name": "Create a PENTEST Vulnerability",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{hostname}/api/v2/vulnerabilities/import/pentest",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to create PENTEST vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body."
+        },
+        {
+          "info": {
+            "name": "Create a SAST Vulnerability",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{hostname}/api/v2/vulnerabilities/import/sast",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to create SAST vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body."
+        },
+        {
+          "info": {
+            "name": "Create a SCA Vulnerability",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{hostname}/api/v2/vulnerabilities/import/sca",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to create SCA vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body."
+        },
+        {
+          "info": {
+            "name": "Get Vulnerability Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{hostname}/api/v2/vulnerabilities/:vulnerabilityID",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "vulnerabilityID",
+                "value": "",
+                "type": "path",
+                "description": "Vulnerability ID"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the type of scan, such as \"sast\", \"dast\", \"sca\", \"cs\", \"infra\", etc. The \"type\" param is required for infra vulnerabilities."
+              }
+            ]
+          },
+          "docs": "Get Vulnerability Details"
+        },
+        {
+          "info": {
+            "name": "Upload Attachments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{hostname}/api/v2/vulnerabilities/:vulnerabilityID/screenshots",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "vulnerabilityID",
+                "value": "",
+                "type": "path",
+                "description": "Vulnerability ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upload multiple attachments to a vulnerability. Attachment should be in base64 format. Supported file formats are \"pdf\", \"html\", \"jpg\", \"png\", \"avi\", \"txt\" and \"mp4\"."
+        },
+        {
+          "info": {
+            "name": "Delete An Attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{hostname}/api/v2/vulnerabilities/:vulnerabilityID/screenshots/:attachmentID",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "vulnerabilityID",
+                "value": "",
+                "type": "path",
+                "description": "Vulnerability ID"
+              },
+              {
+                "name": "attachmentID",
+                "value": "",
+                "type": "path",
+                "description": "Attachment ID"
+              }
+            ]
+          },
+          "docs": "Delete an attachment of a vulnerability by attachment id"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

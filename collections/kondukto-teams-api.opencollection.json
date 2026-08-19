@@ -1,0 +1,271 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Invicti ASPM (Kondukto) REST API v2 Authorization Managers Teams API",
+    "version": "3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Cookie",
+      "value": "{{X-Cookie}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Teams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{hostname}/api/v2/teams/",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many records will return"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Team Name (Contains)"
+              }
+            ]
+          },
+          "docs": "Return teams. Query teams by team name."
+        },
+        {
+          "info": {
+            "name": "Create a Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{hostname}/api/v2/teams/",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a team through API"
+        },
+        {
+          "info": {
+            "name": "Get Teams With Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{hostname}/api/v2/teams/members/",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many records will return"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Team Name (Contains)"
+              }
+            ]
+          },
+          "docs": "Returns teams with members. Query teams by team name."
+        },
+        {
+          "info": {
+            "name": "Get Team Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{hostname}/api/v2/teams/:teamID",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "Team ID"
+              }
+            ]
+          },
+          "docs": "Returns a team's details"
+        },
+        {
+          "info": {
+            "name": "Update a Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{hostname}/api/v2/teams/:teamID",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a team through API"
+        },
+        {
+          "info": {
+            "name": "Delete a Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{hostname}/api/v2/teams/:teamID",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "Team ID"
+              }
+            ]
+          },
+          "docs": "Delete a team by id"
+        },
+        {
+          "info": {
+            "name": "Update Team Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{hostname}/api/v2/teams/:teamID/members",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "Team ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update members of a team"
+        },
+        {
+          "info": {
+            "name": "Get Team Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{hostname}/api/v2/teams/:teamID/members/",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "Team ID"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many records will return"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Username or email (Contains)"
+              }
+            ]
+          },
+          "docs": "Returns a team's members"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,570 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Invicti ASPM (Kondukto) REST API v2 Authorization Managers Projects API",
+    "version": "3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Cookie",
+      "value": "{{X-Cookie}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Project List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{hostname}/api/v2/projects/",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many records will return"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Project name"
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "Labels to filter"
+              },
+              {
+                "name": "playbook",
+                "value": "",
+                "type": "query",
+                "description": "Playbook stands for security criteria pass/fail information"
+              },
+              {
+                "name": "team",
+                "value": "",
+                "type": "query",
+                "description": "Team name to filter"
+              }
+            ]
+          },
+          "docs": "This endpoint returns project list in a paginated format."
+        },
+        {
+          "info": {
+            "name": "Create a Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{hostname}/api/v2/projects/",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint lets you create a project with the given parameters. To create a project on Kondukto, you can use ALM (Application Lifecycle Management) URL or ALM ID.\n\nThe ALM ID or the ALM URL can be easily retrieved from the CI/CD tools."
+        },
+        {
+          "info": {
+            "name": "Check if ALM Project exists on Kondukto",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{hostname}/api/v2/projects/check/:alm/:repositoryID",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "{alm}",
+                "value": "",
+                "type": "path",
+                "description": "ALM name. Supported: azurecloud, azureserver, github, gitlabcloud, gitlabonprem, bitbucket, bitbucketserver, githubenterprise"
+              },
+              {
+                "name": "{repositoryID}",
+                "value": "",
+                "type": "path",
+                "description": "Repository ID of ALM project"
+              }
+            ]
+          },
+          "docs": "This endpoint checks if an ALM project has been created on Kondukto"
+        },
+        {
+          "info": {
+            "name": "Get Project Detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{hostname}/api/v2/projects/:projectID",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "projectID",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the project to retrieve details"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a specific project."
+        },
+        {
+          "info": {
+            "name": "Update a Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{hostname}/api/v2/projects/:projectID",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "{projectID}",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Project"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint lets you update a project with the given parameters."
+        },
+        {
+          "info": {
+            "name": "Project Security Criteria Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{hostname}/api/v2/projects/:projectID/release",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "{projectID}",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the project to retrieve scan criteria"
+              },
+              {
+                "name": "branch",
+                "value": "",
+                "type": "query",
+                "description": "The branch of the project to retrieve security criteria status. When not provided, the security criteria status of the project default branch will be returned."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves security creteria of the specific project."
+        },
+        {
+          "info": {
+            "name": "Get Project Scan Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{hostname}/api/v2/projects/:projectID/scanparams",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "{projectID}",
+                "value": "",
+                "type": "path",
+                "description": "ID of the project"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start of the pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit of the pagination"
+              },
+              {
+                "name": "manual",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "meta_data",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tool_id",
+                "value": "",
+                "type": "query",
+                "description": "Tool ID of scan param"
+              },
+              {
+                "name": "branch",
+                "value": "",
+                "type": "query",
+                "description": "Branch of the scan"
+              },
+              {
+                "name": "fork_scan",
+                "value": "",
+                "type": "query",
+                "description": "Check scan param is a fork scan. Compares with project's main branch. If you compare with another branch, you must specify branch with `fork_source_branch` query parameter"
+              },
+              {
+                "name": "target",
+                "value": "",
+                "type": "query",
+                "description": "Target ALM of the scan param. You must to set `pr` query parameter as true."
+              },
+              {
+                "name": "agent",
+                "value": "",
+                "type": "query",
+                "description": "Agent of the scan param"
+              },
+              {
+                "name": "pr",
+                "value": "",
+                "type": "query",
+                "description": "Check scan param is a PR"
+              },
+              {
+                "name": "environment",
+                "value": "",
+                "type": "query",
+                "description": "Environment of scan param. Accepts: production, feature, staging, development"
+              },
+              {
+                "name": "fork_source_branch",
+                "value": "",
+                "type": "query",
+                "description": "Custom branch name for `fork_scan` query parameter"
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves security creteria of the specific project."
+        },
+        {
+          "info": {
+            "name": "Create Project Scan Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{hostname}/api/v2/projects/:projectID/scanparams",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "{projectID}",
+                "value": "",
+                "type": "path",
+                "description": "ID of the project"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a scan parameter to project."
+        },
+        {
+          "info": {
+            "name": "Get Project Scans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{hostname}/api/v2/projects/:projectID/scans",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "{projectID}",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the project to retrieve details"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many records will return"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "tool",
+                "value": "",
+                "type": "query",
+                "description": "Tool name for exact match"
+              },
+              {
+                "name": "branch",
+                "value": "",
+                "type": "query",
+                "description": "Branch of the application"
+              },
+              {
+                "name": "manual",
+                "value": "",
+                "type": "query",
+                "description": "If this scan imported manually or not"
+              },
+              {
+                "name": "fork_scan",
+                "value": "",
+                "type": "query",
+                "description": "Get only forked scans"
+              },
+              {
+                "name": "meta_data",
+                "value": "",
+                "type": "query",
+                "description": "Meta name for scan -- can be used to distinguish different presets"
+              },
+              {
+                "name": "target",
+                "value": "",
+                "type": "query",
+                "description": "Target ALM"
+              },
+              {
+                "name": "agent_id",
+                "value": "",
+                "type": "query",
+                "description": "Agent ID of scan"
+              },
+              {
+                "name": "pr",
+                "value": "",
+                "type": "query",
+                "description": "Check if scan have PR"
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves scans of the given project."
+        },
+        {
+          "info": {
+            "name": "Get Project Vulnerabilities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{hostname}/api/v2/projects/:projectID/vulnerabilities",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "{projectID}",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the project to retrieve scan criteria"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "ID of vulnerability"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many records will return"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "fp",
+                "value": "",
+                "type": "query",
+                "description": "False/positive"
+              },
+              {
+                "name": "tp",
+                "value": "",
+                "type": "query",
+                "description": "True/Positive"
+              },
+              {
+                "name": "woe",
+                "value": "",
+                "type": "query",
+                "description": "Window of Exposure (WOE) -- how many days this vulnerability exsis on the system"
+              },
+              {
+                "name": "branch",
+                "value": "",
+                "type": "query",
+                "description": "Branch of the application"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of the scan. (dast, sast, sca, cs)"
+              },
+              {
+                "name": "cvss",
+                "value": "",
+                "type": "query",
+                "description": "CVSS v3 score"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Path or target URL of the vulnerability"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Vulnerability status"
+              },
+              {
+                "name": "cwe_name",
+                "value": "",
+                "type": "query",
+                "description": "CWE name for exact match"
+              },
+              {
+                "name": "cwe_no",
+                "value": "",
+                "type": "query",
+                "description": "CWE Number"
+              },
+              {
+                "name": "committers",
+                "value": "",
+                "type": "query",
+                "description": "Committer of the vulnerability."
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "Severity level of the vulnerability in number. [Critical: 4, High: 3, Medium: 2, Low: 1]"
+              },
+              {
+                "name": "tool_name",
+                "value": "",
+                "type": "query",
+                "description": "Scanner tool name"
+              },
+              {
+                "name": "vuln_name",
+                "value": "",
+                "type": "query",
+                "description": "Name of the vulnerability"
+              },
+              {
+                "name": "issue_status",
+                "value": "",
+                "type": "query",
+                "description": "Issue status. Accepts: open, closed, undefined"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves vulnerabilities of the specific project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

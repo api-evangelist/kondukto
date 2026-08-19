@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Invicti ASPM (Kondukto) REST API v2 Authorization Managers Scanners API",
+    "version": "3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Cookie",
+      "value": "{{X-Cookie}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scanners",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Active Scanners",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{hostname}/api/v2/scanners/active/",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Scanner Name (Contains)"
+              },
+              {
+                "name": "types",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated scanner types"
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated scanner labels"
+              }
+            ]
+          },
+          "docs": "Return active scanners"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

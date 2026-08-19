@@ -1,0 +1,288 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Invicti ASPM (Kondukto) REST API v2 Authorization Managers Scans API",
+    "version": "3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Cookie",
+      "value": "{{X-Cookie}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Completed Scans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{hostname}/api/v2/scans/completed",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many records will return"
+              }
+            ]
+          },
+          "docs": "This endpoint returns scans that completed."
+        },
+        {
+          "info": {
+            "name": "Create New Scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{hostname}/api/v2/scans/create",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to create a new scan with specified parameters for a project. You can access the \"custom\" information in the body parameters from the Scanner details."
+        },
+        {
+          "info": {
+            "name": "Get Failed Scans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{hostname}/api/v2/scans/failed",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many records will return"
+              }
+            ]
+          },
+          "docs": "This endpoint returns scans that failed."
+        },
+        {
+          "info": {
+            "name": "Image Scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{hostname}/api/v2/scans/image",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to create a new scan for a container image with specified parameters for a project. The scan details and configurations are included in the request body."
+        },
+        {
+          "info": {
+            "name": "Import Scan Result",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{hostname}/api/v2/scans/import",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to import scan results for a specified project. The scan details and configurations are included in the form parameters."
+        },
+        {
+          "info": {
+            "name": "Get Imported Scans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{hostname}/api/v2/scans/imported",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many records will return"
+              }
+            ]
+          },
+          "docs": "This endpoint returns scans that imported."
+        },
+        {
+          "info": {
+            "name": "Get Scans in the Queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{hostname}/api/v2/scans/queue",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many records will return"
+              }
+            ]
+          },
+          "docs": "This endpoint returns scans in the queue."
+        },
+        {
+          "info": {
+            "name": "Get Scan Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{hostname}/api/v2/scans/:scan_id",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "scan_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the scan to retrieve details."
+              }
+            ]
+          },
+          "docs": "This endpoint returns scan details of the given scan."
+        },
+        {
+          "info": {
+            "name": "Restart A Scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{hostname}/api/v2/scans/:scan_id/restart",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "scan_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the scan to create a scan event."
+              }
+            ]
+          },
+          "docs": "This endpoint creates a scan event on Kondukto. To trigger a scan, the project should exist on Kondukto, and the scanner should be already configured."
+        },
+        {
+          "info": {
+            "name": "Get Scan Security Criteria",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{hostname}/api/v2/scans/:scan_id/status",
+            "headers": [
+              {
+                "name": "X-Cookie",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "scan_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the scan to retrieve security criteria."
+              }
+            ]
+          },
+          "docs": "This endpoint returns the security criteria of a specific scan."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,2507 @@
+{
+  "item": [
+    {
+      "id": "491789b5-d7ad-4dec-a5a6-55555866c9df",
+      "name": "Vulnerabilities",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0f003d77-e4d7-409c-9be1-ef86ac73a63a",
+          "name": "Get Vulnerabilities",
+          "request": {
+            "name": "Get Vulnerabilities",
+            "description": {
+              "content": "This endpoint retrieves a list of vulnerabilities from the Kondukto. It supports pagination and various filters to streamline the search and retrieval of vulnerability data. Clients can specify parameters to filter results based on severity, branch, type, status, and other relevant criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "vulnerabilities",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "30",
+                  "description": "The maximum number of vulnerabilities to return per request. Default is 30. Max. value can be 30."
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "0",
+                  "description": "The starting index of the vulnerabilities list. Default is 0."
+                },
+                {
+                  "disabled": false,
+                  "key": "woe",
+                  "value": "eq:15",
+                  "description": "Filters vulnerabilities by their window of exposure. Acceptable operators are eq, gt, and lt, followed by the number of days (e.g., woe=eq:15, woe=gt:4, woe=lt:3)."
+                },
+                {
+                  "disabled": false,
+                  "key": "branch",
+                  "value": "<string>",
+                  "description": "Performs a search on the branch names of the application's source code. Entering a partial string will return all branches containing that substring."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Specifies the type of scan, such as \"sast\", \"dast\", \"sca\", \"cs\", \"infra\", etc."
+                },
+                {
+                  "disabled": false,
+                  "key": "fp",
+                  "value": "<boolean>",
+                  "description": "Filters out vulnerabilities when set to \"false\" or includes only fp when set to \"true\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "cvss",
+                  "value": "<float>",
+                  "description": "Filters vulnerabilities based on the CVSS v3 score."
+                },
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "Filters vulnerabilities based on the path or target URL. Entering a partial string will return all vulnerabilities associated with matching paths or URLs."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filters vulnerabilities by their status. Possible values are \"new\", \"recurrent\", and \"closed\". Multiple statuses can be specified, separated by commas (e.g., status=new,recurrent)."
+                },
+                {
+                  "disabled": false,
+                  "key": "cwe_name",
+                  "value": "<string>",
+                  "description": "Filters vulnerabilities based on the name of the CWE. Entering a partial string will return all vulnerabilities associated with matching CWE names."
+                },
+                {
+                  "disabled": false,
+                  "key": "cwe_no",
+                  "value": "<integer>",
+                  "description": "Filters vulnerabilities based on CWE numbers. Multiple CWE numbers can be specified, separated by commas (e.g., cwe_no=79,89,20)."
+                },
+                {
+                  "disabled": false,
+                  "key": "tool_name",
+                  "value": "<string>",
+                  "description": "Filters vulnerabilities by the exact name of the tool that identified them. This parameter requires an exact match. If no alphanumeric value is entered, this parameter will not work."
+                },
+                {
+                  "disabled": false,
+                  "key": "issue_status",
+                  "value": "<string>",
+                  "description": "Filters vulnerabilities based on the status of any associated issue. This parameter requires an exact match and can take values like \"open\", \"closed\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "committers",
+                  "value": "<string>",
+                  "description": "Filters vulnerabilities based on the email of committers. This is a searchable parameter that accepts multiple values. Each value can be a part of the full string, separated by commas (e.g., committers=john@kondukto.io, appsec_user)"
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<date>",
+                  "description": "Filters vulnerabilities based on the date and time they were first seen, starting from the specified ISO 8601 date (e.g., 2024-05-08T12:20:57.588Z)."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<date>",
+                  "description": "Filters vulnerabilities based on the date and time they were first seen, up to the specified ISO 8601 date (e.g., 2024-05-08T12:20:57.588Z)."
+                },
+                {
+                  "disabled": false,
+                  "key": "tp",
+                  "value": "<boolean>",
+                  "description": "Filters out vulnerabilities marked as true positives when set to \"false\" or includes only true positives when set to \"true\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "Filters vulnerabilities by their unique identification number. This parameter allows for direct access to specific vulnerability."
+                },
+                {
+                  "disabled": false,
+                  "key": "teams",
+                  "value": "<string>",
+                  "description": "Filters vulnerabilities based on the names of teams the vulnerabilities. Multiple team names can be specified, separated by commas (e.g., teams=security,development)."
+                },
+                {
+                  "disabled": false,
+                  "key": "teams",
+                  "value": "<string>",
+                  "description": "Filters vulnerabilities based on the names of teams the vulnerabilities. Multiple team names can be specified, separated by commas (e.g., teams=security,development)."
+                },
+                {
+                  "disabled": false,
+                  "key": "vuln_name",
+                  "value": "<string>",
+                  "description": "Filters vulnerabilities based on their name. This is a searchable parameter that supports partial matching. Entering a partial name will return all vulnerabilities containing that substring."
+                },
+                {
+                  "disabled": false,
+                  "key": "project_name",
+                  "value": "<string>",
+                  "description": "Filters vulnerabilities based on the name of the project. This is a searchable parameter that supports partial matching. Entering a partial project name will return all vulnerabilities containing that substring."
+                },
+                {
+                  "disabled": false,
+                  "key": "product_name",
+                  "value": "<string>",
+                  "description": "Filters vulnerabilities by the exact name of the product that identified them. This parameter requires an exact match."
+                },
+                {
+                  "disabled": false,
+                  "key": "team_ids",
+                  "value": "<string>",
+                  "description": "Filters vulnerabilities based on the identifiers of the teams involved. Multiple team IDs can be specified, separated by commas (e.g., team_ids=661e36fbb3bdf42202f9eb12,65a78ae2710eb82e835b78c8)."
+                },
+                {
+                  "disabled": false,
+                  "key": "team_ids",
+                  "value": "<string>",
+                  "description": "Filters vulnerabilities based on the identifiers of the teams involved. Multiple team IDs can be specified, separated by commas (e.g., team_ids=661e36fbb3bdf42202f9eb12,65a78ae2710eb82e835b78c8)."
+                },
+                {
+                  "disabled": false,
+                  "key": "label_ids",
+                  "value": "<string>",
+                  "description": "Filters vulnerabilities based on the identifiers of the labels involved. Multiple label IDs can be specified, separated by commas (e.g., label_ids=661e36fbb3bdf42202f9eb12,65a78ae2710eb82e835b78c8)."
+                },
+                {
+                  "disabled": false,
+                  "key": "label_ids",
+                  "value": "<string>",
+                  "description": "Filters vulnerabilities based on the identifiers of the labels involved. Multiple label IDs can be specified, separated by commas (e.g., label_ids=661e36fbb3bdf42202f9eb12,65a78ae2710eb82e835b78c8)."
+                },
+                {
+                  "disabled": false,
+                  "key": "severity",
+                  "value": "<integer>",
+                  "description": "Filters vulnerabilities by specified severity levels. Multiple severities can be specified, separated by commas (e.g., severity=1,2)."
+                },
+                {
+                  "disabled": false,
+                  "key": "severity",
+                  "value": "<integer>",
+                  "description": "Filters vulnerabilities by specified severity levels. Multiple severities can be specified, separated by commas (e.g., severity=1,2)."
+                },
+                {
+                  "disabled": false,
+                  "key": "labels",
+                  "value": "<string>",
+                  "description": "Filters vulnerabilities based on the names of the labels involved. Multiple labels can be specified, separated by commas (e.g., labels=appsec,infrasecurity)."
+                },
+                {
+                  "disabled": false,
+                  "key": "labels",
+                  "value": "<string>",
+                  "description": "Filters vulnerabilities based on the names of the labels involved. Multiple labels can be specified, separated by commas (e.g., labels=appsec,infrasecurity)."
+                },
+                {
+                  "disabled": false,
+                  "key": "overdue",
+                  "value": "<boolean>",
+                  "description": "Filters out vulnerabilities when set to \"false\" or includes only overdue when set to \"true\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "wf",
+                  "value": "",
+                  "description": "Filters out vulnerabilities when set to \"false\" or includes only Won't Fix when set to \"true\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "mitigated",
+                  "value": "",
+                  "description": "Filters out vulnerabilities when set to \"false\" or includes only Mitigated when set to \"true\"."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname of your Invicti ASPM instance.",
+                  "type": "any",
+                  "value": "{{hostname}}",
+                  "key": "hostname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Personal Access Token",
+                "key": "X-Cookie",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e72ff40c-ae97-4da5-a473-3e9484c1d4c8",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vulnerabilities",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "30"
+                    },
+                    {
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "key": "woe",
+                      "value": "eq:15"
+                    },
+                    {
+                      "key": "branch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fp",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "cvss",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cwe_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cwe_no",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tool_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issue_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "committers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "tp",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "teams",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "teams",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vuln_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "product_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "team_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "team_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "label_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "label_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "labels",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "labels",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "overdue",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "wf",
+                      "value": ""
+                    },
+                    {
+                      "key": "mitigated",
+                      "value": ""
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname of your Invicti ASPM instance.",
+                      "type": "any",
+                      "value": "{{hostname}}",
+                      "key": "hostname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Cookie",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Personal Access Token",
+                    "key": "X-Cookie",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"limit\": 1,\n  \"start\": 0,\n  \"total\": 7,\n  \"vulnerabilities\": [\n    {\n      \"id\": \"60a7c9be9f9d339dd28e0583\",\n      \"last_seen\": \"2021-05-27T07:43:10.085Z\",\n      \"first_seen\": \"2021-05-21T14:54:21.364Z\",\n      \"woe\": 6,\n      \"name\": \"go.lang.security.audit.crypto.bad_imports.insecure-module-used\",\n      \"is_fp\": false,\n      \"status\": \"recurrent\",\n      \"cwe_id\": 327,\n      \"cvss_v3\": 6,\n      \"cwe_name\": \"Use of a Broken or Risky Cryptographic Algorithm\",\n      \"severity\": 2,\n      \"path\": \"user/user.go\",\n      \"issue_status\": \"\",\n      \"committer_name\": \"storm@localhost.localdomain\",\n      \"language\": \"go\",\n      \"issue_assigned\": false,\n      \"scanparams\": {\n        \"id\": \"60a7c9909f9d339dd28e057d\",\n        \"tool\": {\n          \"id\": \"60a7c9769f9d339dd28e057c\",\n          \"name\": \"semgrep\",\n          \"type\": \"sast\"\n        },\n        \"project\": {\n          \"id\": \"60a7c9699f9d339dd28e0578\",\n          \"name\": \"govwa\",\n          \"labels\": []\n        },\n        \"created_by\": \"\",\n        \"bind_name\": \"\",\n        \"branch\": \"master\",\n        \"scan_type\": \"scheduled\",\n        \"meta_data\": \"\",\n        \"pr\": {\n          \"ok\": false,\n          \"target\": \"\"\n        },\n        \"manual\": false\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5869aeb3-62f4-4c13-91f9-7e07c07de85d",
+              "name": "401",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vulnerabilities",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "30"
+                    },
+                    {
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "key": "woe",
+                      "value": "eq:15"
+                    },
+                    {
+                      "key": "branch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fp",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "cvss",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cwe_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cwe_no",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tool_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issue_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "committers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "tp",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "teams",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "teams",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vuln_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "product_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "team_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "team_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "label_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "label_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "labels",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "labels",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "overdue",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "wf",
+                      "value": ""
+                    },
+                    {
+                      "key": "mitigated",
+                      "value": ""
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname of your Invicti ASPM instance.",
+                      "type": "any",
+                      "value": "{{hostname}}",
+                      "key": "hostname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Cookie",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Personal Access Token",
+                    "key": "X-Cookie",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"failed to authorize\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42627d25-4f6c-49ca-a69d-fd6de2ebe515",
+          "name": "Create a DAST Vulnerability",
+          "request": {
+            "name": "Create a DAST Vulnerability",
+            "description": {
+              "content": "This endpoint allows you to create DAST vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "vulnerabilities",
+                "import",
+                "dast"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of your Invicti ASPM instance.",
+                  "type": "any",
+                  "value": "{{hostname}}",
+                  "key": "hostname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Personal Access Token",
+                "key": "X-Cookie",
+                "value": "Token"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"discovered_by\": \"<string>\",\n    \"meta_data\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"dast\": {\n      \"target\": \"<string>\",\n      \"http_request\": \"<string>\",\n      \"http_response\": \"<string>\",\n      \"method\": \"<string>\",\n      \"references\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a2751fdb-df1b-49c5-b5b6-b116f2a2e5e2",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vulnerabilities",
+                    "import",
+                    "dast"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of your Invicti ASPM instance.",
+                      "type": "any",
+                      "value": "{{hostname}}",
+                      "key": "hostname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Cookie",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Personal Access Token",
+                    "key": "X-Cookie",
+                    "value": "Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"discovered_by\": \"<string>\",\n    \"meta_data\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"dast\": {\n      \"target\": \"<string>\",\n      \"http_request\": \"<string>\",\n      \"http_response\": \"<string>\",\n      \"method\": \"<string>\",\n      \"references\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"event_id\": \"{eventID}\",\n  \"message\": \"vulnerabilities have been uploaded and analyze event has been started successfully\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1055c54c-bb8b-4790-8194-6648eeed74b2",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vulnerabilities",
+                    "import",
+                    "dast"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of your Invicti ASPM instance.",
+                      "type": "any",
+                      "value": "{{hostname}}",
+                      "key": "hostname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Cookie",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Personal Access Token",
+                    "key": "X-Cookie",
+                    "value": "Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"discovered_by\": \"<string>\",\n    \"meta_data\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"dast\": {\n      \"target\": \"<string>\",\n      \"http_request\": \"<string>\",\n      \"http_response\": \"<string>\",\n      \"method\": \"<string>\",\n      \"references\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"bad request error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aab66228-d558-42bd-8ee7-0c13ea5a90a3",
+          "name": "Create an Infra Vulnerability",
+          "request": {
+            "name": "Create an Infra Vulnerability",
+            "description": {
+              "content": "This endpoint allows you to create INFRA vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "vulnerabilities",
+                "import",
+                "infra"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of your Invicti ASPM instance.",
+                  "type": "any",
+                  "value": "{{hostname}}",
+                  "key": "hostname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Personal Access Token",
+                "key": "X-Cookie",
+                "value": "Token"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"meta_data\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"discovered_by\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"infra\": {\n      \"ok\": \"<string>\",\n      \"protocol\": \"<string>\",\n      \"port\": \"<string>\",\n      \"proof\": \"<string>\",\n      \"service\": \"<string>\",\n      \"ip\": \"<integer>\",\n      \"cve\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bc1b5a44-9a7c-4f6f-afc2-27fa5acae6b0",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vulnerabilities",
+                    "import",
+                    "infra"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of your Invicti ASPM instance.",
+                      "type": "any",
+                      "value": "{{hostname}}",
+                      "key": "hostname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Cookie",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Personal Access Token",
+                    "key": "X-Cookie",
+                    "value": "Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"meta_data\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"discovered_by\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"infra\": {\n      \"ok\": \"<string>\",\n      \"protocol\": \"<string>\",\n      \"port\": \"<string>\",\n      \"proof\": \"<string>\",\n      \"service\": \"<string>\",\n      \"ip\": \"<integer>\",\n      \"cve\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"event_id\": \"{eventID}\",\n  \"message\": \"vulnerabilities have been uploaded and analyze event has been started successfully\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a302284-e00d-474c-b438-03b4e0c7f5a7",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vulnerabilities",
+                    "import",
+                    "infra"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of your Invicti ASPM instance.",
+                      "type": "any",
+                      "value": "{{hostname}}",
+                      "key": "hostname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Cookie",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Personal Access Token",
+                    "key": "X-Cookie",
+                    "value": "Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"meta_data\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"discovered_by\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"infra\": {\n      \"ok\": \"<string>\",\n      \"protocol\": \"<string>\",\n      \"port\": \"<string>\",\n      \"proof\": \"<string>\",\n      \"service\": \"<string>\",\n      \"ip\": \"<integer>\",\n      \"cve\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"bad request error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0da357c6-1859-42bc-a20f-6cdee52536e5",
+          "name": "Create a PENTEST Vulnerability",
+          "request": {
+            "name": "Create a PENTEST Vulnerability",
+            "description": {
+              "content": "This endpoint allows you to create PENTEST vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "vulnerabilities",
+                "import",
+                "pentest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of your Invicti ASPM instance.",
+                  "type": "any",
+                  "value": "{{hostname}}",
+                  "key": "hostname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Personal Access Token",
+                "key": "X-Cookie",
+                "value": "Token"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"tool_type\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"environment\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"discovered_by\": \"<string>\",\n    \"meta_data\": \"<string>\",\n    \"fork_scan\": \"<boolean>\",\n    \" fork_source_branch\": \"<string>\",\n    \"engagement\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \" discovered_by\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"path\": \"<string>\",\n    \" committer_name\": \"<string>\",\n    \"link\": \"<string>\",\n    \" recommendation\": \"<string>\",\n    \" pentest\": {\n      \" target\": \"<string>\"\n    },\n    \"pentest\": {\n      \" http_request\": \"<string>\",\n      \"http_response\": \"<string>\",\n      \"method\": \"<string>\",\n      \" references\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8a65a542-fb9e-47ca-b5b0-9a980819d17b",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vulnerabilities",
+                    "import",
+                    "pentest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of your Invicti ASPM instance.",
+                      "type": "any",
+                      "value": "{{hostname}}",
+                      "key": "hostname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Cookie",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Personal Access Token",
+                    "key": "X-Cookie",
+                    "value": "Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"tool_type\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"environment\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"discovered_by\": \"<string>\",\n    \"meta_data\": \"<string>\",\n    \"fork_scan\": \"<boolean>\",\n    \" fork_source_branch\": \"<string>\",\n    \"engagement\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \" discovered_by\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"path\": \"<string>\",\n    \" committer_name\": \"<string>\",\n    \"link\": \"<string>\",\n    \" recommendation\": \"<string>\",\n    \" pentest\": {\n      \" target\": \"<string>\"\n    },\n    \"pentest\": {\n      \" http_request\": \"<string>\",\n      \"http_response\": \"<string>\",\n      \"method\": \"<string>\",\n      \" references\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"event_id\": \"{eventID}\",\n  \"message\": \"vulnerabilities have been uploaded and analyze event has been started successfully\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "746f9a3f-57d8-4e0d-8de4-8f21fde8cde1",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vulnerabilities",
+                    "import",
+                    "pentest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of your Invicti ASPM instance.",
+                      "type": "any",
+                      "value": "{{hostname}}",
+                      "key": "hostname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Cookie",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Personal Access Token",
+                    "key": "X-Cookie",
+                    "value": "Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"tool_type\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"environment\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"discovered_by\": \"<string>\",\n    \"meta_data\": \"<string>\",\n    \"fork_scan\": \"<boolean>\",\n    \" fork_source_branch\": \"<string>\",\n    \"engagement\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \" discovered_by\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"path\": \"<string>\",\n    \" committer_name\": \"<string>\",\n    \"link\": \"<string>\",\n    \" recommendation\": \"<string>\",\n    \" pentest\": {\n      \" target\": \"<string>\"\n    },\n    \"pentest\": {\n      \" http_request\": \"<string>\",\n      \"http_response\": \"<string>\",\n      \"method\": \"<string>\",\n      \" references\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"bad request error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5984e152-5b7c-40e8-87a3-19392ffaf792",
+          "name": "Create a SAST Vulnerability",
+          "request": {
+            "name": "Create a SAST Vulnerability",
+            "description": {
+              "content": "This endpoint allows you to create SAST vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "vulnerabilities",
+                "import",
+                "sast"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of your Invicti ASPM instance.",
+                  "type": "any",
+                  "value": "{{hostname}}",
+                  "key": "hostname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Personal Access Token",
+                "key": "X-Cookie",
+                "value": "Token"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"meta_data\": \"<string>\",\n    \"discovered_by\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"discovered_by\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"path\": \"<string>\",\n    \"description\": \"<string>\",\n    \"recommendation\": \"<string>\",\n    \"link\": \"<string>\",\n    \"sast\": {\n      \"committer\": \"<string>\",\n      \"file_name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"line_number\": \"<integer>\",\n      \"language\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c66d4918-022f-4ab4-a78d-ed9ba524dd40",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vulnerabilities",
+                    "import",
+                    "sast"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of your Invicti ASPM instance.",
+                      "type": "any",
+                      "value": "{{hostname}}",
+                      "key": "hostname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Cookie",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Personal Access Token",
+                    "key": "X-Cookie",
+                    "value": "Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"meta_data\": \"<string>\",\n    \"discovered_by\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"discovered_by\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"path\": \"<string>\",\n    \"description\": \"<string>\",\n    \"recommendation\": \"<string>\",\n    \"link\": \"<string>\",\n    \"sast\": {\n      \"committer\": \"<string>\",\n      \"file_name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"line_number\": \"<integer>\",\n      \"language\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"event_id\": \"{eventID}\",\n  \"message\": \"vulnerabilities have been uploaded and analyze event has been started successfully\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e7d6e73a-d0b8-43e4-9d48-36ca0921c544",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vulnerabilities",
+                    "import",
+                    "sast"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of your Invicti ASPM instance.",
+                      "type": "any",
+                      "value": "{{hostname}}",
+                      "key": "hostname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Cookie",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Personal Access Token",
+                    "key": "X-Cookie",
+                    "value": "Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"meta_data\": \"<string>\",\n    \"discovered_by\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"discovered_by\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"path\": \"<string>\",\n    \"description\": \"<string>\",\n    \"recommendation\": \"<string>\",\n    \"link\": \"<string>\",\n    \"sast\": {\n      \"committer\": \"<string>\",\n      \"file_name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"line_number\": \"<integer>\",\n      \"language\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"bad request error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1cf1d48c-c8e7-45c6-a064-b2475cd7276e",
+          "name": "Create a SCA Vulnerability",
+          "request": {
+            "name": "Create a SCA Vulnerability",
+            "description": {
+              "content": "This endpoint allows you to create SCA vulnerabilities for a specific project. The scan details and vulnerabilities identified during the scan are included in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "vulnerabilities",
+                "import",
+                "sca"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of your Invicti ASPM instance.",
+                  "type": "any",
+                  "value": "{{hostname}}",
+                  "key": "hostname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Personal Access Token",
+                "key": "X-Cookie",
+                "value": "Token"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"discovered_by\": \"<string>\",\n    \"meta_data\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"sca\": {\n      \"file_name\": \"<string>\",\n      \"license\": \"<string>\",\n      \"references\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"packages\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "700e32b2-4f1e-4e05-9aed-98622d29e4b1",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vulnerabilities",
+                    "import",
+                    "sca"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of your Invicti ASPM instance.",
+                      "type": "any",
+                      "value": "{{hostname}}",
+                      "key": "hostname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Cookie",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Personal Access Token",
+                    "key": "X-Cookie",
+                    "value": "Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"discovered_by\": \"<string>\",\n    \"meta_data\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"sca\": {\n      \"file_name\": \"<string>\",\n      \"license\": \"<string>\",\n      \"references\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"packages\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"event_id\": \"{eventID}\",\n  \"message\": \"vulnerabilities have been uploaded and analyze event has been started successfully\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5c8cd7e-ae20-4d19-ab38-3a1625780a98",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vulnerabilities",
+                    "import",
+                    "sca"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of your Invicti ASPM instance.",
+                      "type": "any",
+                      "value": "{{hostname}}",
+                      "key": "hostname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Cookie",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Personal Access Token",
+                    "key": "X-Cookie",
+                    "value": "Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project\": {\n    \"id\": \"<string>\"\n  },\n  \"scan_details\": {\n    \"tool\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"date_discovered\": \"<string>\",\n    \"discovered_by\": \"<string>\",\n    \"meta_data\": \"<string>\"\n  },\n  \"vulnerabilities\": {\n    \"name\": \"<string>\",\n    \"cwe_id\": \"<integer>\",\n    \"cvss_v3\": \"<float>\",\n    \"severity\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"sca\": {\n      \"file_name\": \"<string>\",\n      \"license\": \"<string>\",\n      \"references\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"packages\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"bad request error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1472fdaf-7240-4bb0-8afc-4222c0fac1df",
+          "name": "Get Vulnerability Details",
+          "request": {
+            "name": "Get Vulnerability Details",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "vulnerabilities",
+                ":vulnerabilityID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Specifies the type of scan, such as \"sast\", \"dast\", \"sca\", \"cs\", \"infra\", etc. The \"type\" param is required for infra vulnerabilities."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vulnerabilityID",
+                  "description": "(Required) Vulnerability ID"
+                },
+                {
+                  "description": "Hostname of your Invicti ASPM instance.",
+                  "type": "any",
+                  "value": "{{hostname}}",
+                  "key": "hostname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Personal Access Token",
+                "key": "X-Cookie",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eee9da87-b466-41b2-b17d-6d9f17b67c45",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vulnerabilities",
+                    ":vulnerabilityID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vulnerabilityID",
+                      "description": "(Required) Vulnerability ID"
+                    },
+                    {
+                      "description": "Hostname of your Invicti ASPM instance.",
+                      "type": "any",
+                      "value": "{{hostname}}",
+                      "key": "hostname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Cookie",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Personal Access Token",
+                    "key": "X-Cookie",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"vulnerability\": {\n      \"id\": \"663ca27ecb6c77d3c5fd0d3a\",\n      \"last_seen\": \"0001-01-01T00:00:00Z\",\n      \"first_seen\": \"2024-05-09T10:15:48.987Z\",\n      \"woe\": 4,\n      \"name\": \"CVE-2024-28182 | libnghttp2-14:1.52.0-1+deb12u1\",\n      \"is_fp\": false,\n      \"is_wf\": false,\n      \"is_mitigated\": false,\n      \"status\": \"new\",\n      \"cwe\": {\n        \"_id\": \"000000000000000000000000\",\n        \"cwe_id\": 0,\n        \"name\": \"unknown\",\n        \"classification\": {\n          \"pci_dss\": {},\n          \"owasp_2017\": {},\n          \"owasp_2021\": {},\n          \"nist\": {},\n          \"sans\": {}\n        }\n      },\n      \"cvss_v3\": 6,\n      \"severity\": 2,\n      \"path\": \"-\",\n      \"issue_status\": \"\",\n      \"committer_name\": \"\",\n      \"language\": \"\",\n      \"issue_assigned\": false,\n      \"scanparams\": {\n        \"id\": \"663ca25418c5b94e0d9afcb7\",\n        \"tool\": {\n          \"id\": \"62deba6979809254769c0891\",\n          \"name\": \"grype\",\n          \"type\": \"cs\"\n        },\n        \"project\": {\n          \"id\": \"663ca22218c5b94e0d9afcb6\",\n          \"name\": \"project\",\n          \"labels\": null\n        },\n        \"agent\": {\n          \"id\": \"000000000000000000000000\"\n        },\n        \"bind_name\": \"-\",\n        \"branch\": \"master\",\n        \"scan_type\": \"scheduled\",\n        \"meta_data\": \"\",\n        \"pr\": {\n          \"ok\": false,\n          \"target\": \"\",\n          \"pr_number\": \"\",\n          \"no_decoration\": false\n        },\n        \"manual\": false,\n        \"custom\": {\n          \"type\": 1420,\n          \"params\": {\n            \"image_docker_registry_path\": \"nginx:latest\",\n            \"image_tag\": \"latest\"\n          }\n        }\n      },\n      \"issue_created_date\": \"0001-01-01T00:00:00Z\",\n      \"issue_wip_date\": \"0001-01-01T00:00:00Z\",\n      \"issue_closed_date\": \"0001-01-01T00:00:00Z\",\n      \"fp_mark_date\": \"0001-01-01T00:00:00Z\",\n      \"infra_group_id\": null,\n      \"cwe_id\": 0,\n      \"cwe_name\": \"unknown\"\n    },\n    \"issue\": {\n      \"assignees\": \"\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d932eec-5866-4a29-83dd-ff754ecced98",
+              "name": "401",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vulnerabilities",
+                    ":vulnerabilityID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vulnerabilityID",
+                      "description": "(Required) Vulnerability ID"
+                    },
+                    {
+                      "description": "Hostname of your Invicti ASPM instance.",
+                      "type": "any",
+                      "value": "{{hostname}}",
+                      "key": "hostname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Cookie",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Personal Access Token",
+                    "key": "X-Cookie",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"failed to authorize\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c044e31-e23e-4c20-96cc-9a1278c4bc2a",
+          "name": "Upload Attachments",
+          "request": {
+            "name": "Upload Attachments",
+            "description": {
+              "content": "Upload multiple attachments to a vulnerability. Attachment should be in base64 format. Supported file formats are \"pdf\", \"html\", \"jpg\", \"png\", \"avi\", \"txt\" and \"mp4\".",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "vulnerabilities",
+                ":vulnerabilityID",
+                "screenshots"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vulnerabilityID",
+                  "description": "(Required) Vulnerability ID"
+                },
+                {
+                  "description": "Hostname of your Invicti ASPM instance.",
+                  "type": "any",
+                  "value": "{{hostname}}",
+                  "key": "hostname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Personal Access Token",
+                "key": "X-Cookie",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"screenshots\": [\n    {\n      \"image\": \"data:image/png;base64,{base64Image}\",\n      \"description\": \"<string>\",\n      \"file_detail\": {\n        \"name\": \"<string>\",\n        \"extension\": \"<string>\"\n      }\n    },\n    {\n      \"image\": \"data:image/png;base64,{base64Image}\",\n      \"description\": \"<string>\",\n      \"file_detail\": {\n        \"name\": \"<string>\",\n        \"extension\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b8cda3af-845d-4f9c-a1a0-a93f27bc107e",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vulnerabilities",
+                    ":vulnerabilityID",
+                    "screenshots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vulnerabilityID",
+                      "description": "(Required) Vulnerability ID"
+                    },
+                    {
+                      "description": "Hostname of your Invicti ASPM instance.",
+                      "type": "any",
+                      "value": "{{hostname}}",
+                      "key": "hostname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Cookie",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Personal Access Token",
+                    "key": "X-Cookie",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"screenshots\": [\n    {\n      \"image\": \"data:image/png;base64,{base64Image}\",\n      \"description\": \"<string>\",\n      \"file_detail\": {\n        \"name\": \"<string>\",\n        \"extension\": \"<string>\"\n      }\n    },\n    {\n      \"image\": \"data:image/png;base64,{base64Image}\",\n      \"description\": \"<string>\",\n      \"file_detail\": {\n        \"name\": \"<string>\",\n        \"extension\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4cc3f69e-dc2b-4303-a886-62a6bd76f04d",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vulnerabilities",
+                    ":vulnerabilityID",
+                    "screenshots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vulnerabilityID",
+                      "description": "(Required) Vulnerability ID"
+                    },
+                    {
+                      "description": "Hostname of your Invicti ASPM instance.",
+                      "type": "any",
+                      "value": "{{hostname}}",
+                      "key": "hostname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Cookie",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Personal Access Token",
+                    "key": "X-Cookie",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"screenshots\": [\n    {\n      \"image\": \"data:image/png;base64,{base64Image}\",\n      \"description\": \"<string>\",\n      \"file_detail\": {\n        \"name\": \"<string>\",\n        \"extension\": \"<string>\"\n      }\n    },\n    {\n      \"image\": \"data:image/png;base64,{base64Image}\",\n      \"description\": \"<string>\",\n      \"file_detail\": {\n        \"name\": \"<string>\",\n        \"extension\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    “error”: “failed to parse base64 data for screenshot”\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "908f445e-da01-4d21-97d4-06005879e758",
+              "name": "401",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vulnerabilities",
+                    ":vulnerabilityID",
+                    "screenshots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vulnerabilityID",
+                      "description": "(Required) Vulnerability ID"
+                    },
+                    {
+                      "description": "Hostname of your Invicti ASPM instance.",
+                      "type": "any",
+                      "value": "{{hostname}}",
+                      "key": "hostname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Cookie",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Personal Access Token",
+                    "key": "X-Cookie",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"screenshots\": [\n    {\n      \"image\": \"data:image/png;base64,{base64Image}\",\n      \"description\": \"<string>\",\n      \"file_detail\": {\n        \"name\": \"<string>\",\n        \"extension\": \"<string>\"\n      }\n    },\n    {\n      \"image\": \"data:image/png;base64,{base64Image}\",\n      \"description\": \"<string>\",\n      \"file_detail\": {\n        \"name\": \"<string>\",\n        \"extension\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"failed to authorize\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d235e4d-f77e-4e66-83e5-63bfe9d81927",
+          "name": "Delete An Attachment",
+          "request": {
+            "name": "Delete An Attachment",
+            "description": {
+              "content": "Delete an attachment of a vulnerability by attachment id",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "vulnerabilities",
+                ":vulnerabilityID",
+                "screenshots",
+                ":attachmentID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vulnerabilityID",
+                  "description": "(Required) Vulnerability ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "attachmentID",
+                  "description": "(Required) Attachment ID"
+                },
+                {
+                  "description": "Hostname of your Invicti ASPM instance.",
+                  "type": "any",
+                  "value": "{{hostname}}",
+                  "key": "hostname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Personal Access Token",
+                "key": "X-Cookie",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e3e20193-444a-41a9-823c-46d8e9b31638",
+              "name": "204",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vulnerabilities",
+                    ":vulnerabilityID",
+                    "screenshots",
+                    ":attachmentID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vulnerabilityID",
+                      "description": "(Required) Vulnerability ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attachmentID",
+                      "description": "(Required) Attachment ID"
+                    },
+                    {
+                      "description": "Hostname of your Invicti ASPM instance.",
+                      "type": "any",
+                      "value": "{{hostname}}",
+                      "key": "hostname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Cookie",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Personal Access Token",
+                    "key": "X-Cookie",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bc1e2c7f-d6c0-47fc-a8bb-7a0c461f5ac3",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vulnerabilities",
+                    ":vulnerabilityID",
+                    "screenshots",
+                    ":attachmentID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vulnerabilityID",
+                      "description": "(Required) Vulnerability ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attachmentID",
+                      "description": "(Required) Attachment ID"
+                    },
+                    {
+                      "description": "Hostname of your Invicti ASPM instance.",
+                      "type": "any",
+                      "value": "{{hostname}}",
+                      "key": "hostname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Cookie",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Personal Access Token",
+                    "key": "X-Cookie",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"failed to delete screenshot\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e8618d3-f7de-4c2a-9374-a06c7fd164a8",
+              "name": "401",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vulnerabilities",
+                    ":vulnerabilityID",
+                    "screenshots",
+                    ":attachmentID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vulnerabilityID",
+                      "description": "(Required) Vulnerability ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attachmentID",
+                      "description": "(Required) Attachment ID"
+                    },
+                    {
+                      "description": "Hostname of your Invicti ASPM instance.",
+                      "type": "any",
+                      "value": "{{hostname}}",
+                      "key": "hostname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Cookie",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Personal Access Token",
+                    "key": "X-Cookie",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"failed to authorize\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname of your Invicti ASPM instance.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "api.kondukto.io",
+      "key": "hostname"
+    },
+    {
+      "type": "string",
+      "value": "https://{{hostname}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Cookie"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2950e953-08e0-4ac4-b5fa-83bf4c59eca7",
+    "name": "Invicti ASPM (Kondukto) REST API v2 Authorization Managers Vulnerabilities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public REST API v2 for the Invicti ASPM platform (formerly Kondukto), an Application Security Posture Management platform that centralizes SAST, DAST, SCA, container and pentest findings from more than eighty scanners. The API manages projects, products, teams, labels, scans and vulnerabilities, and is the same public API the open-source KDT command-line client uses. Assembled by API Evangelist from the per-operation OpenAPI 3.1 definitions Kondukto publishes on each page of its API reference.\n\nContact Support:\n Name: Kondukto Support\n Email: support@kondukto.io",
+      "type": "text/plain"
+    }
+  }
+}

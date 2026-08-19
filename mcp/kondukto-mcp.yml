@@ -333,3 +333,9 @@ related:
   authentication: authentication/kondukto-authentication.yml
   skills: skills/_index.yml
   cli: cli/kondukto-cli.yml
+deployment:
+  mode: none
+  verified: derived
+  tools: 51
+  checked: '2026-08-12'
+  source: catalog MCP census
