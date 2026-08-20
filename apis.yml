@@ -84,6 +84,8 @@ apis:
   humanURL: https://docs.kondukto.io/reference/starting-with-kondukto-api
   baseURL: https://api.kondukto.io/api/v2
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -156,6 +158,8 @@ apis:
   humanURL: https://docs.kondukto.io/reference/starting-with-kondukto-api
   baseURL: https://api.kondukto.io/api/v2
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
@@ -180,6 +184,8 @@ apis:
   humanURL: https://docs.kondukto.io/reference/starting-with-kondukto-api
   baseURL: https://api.kondukto.io/api/v2
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
@@ -252,6 +258,8 @@ apis:
   humanURL: https://docs.kondukto.io/reference/starting-with-kondukto-api
   baseURL: https://api.kondukto.io/api/v2
   tags:
+  - Team
+  tags_raw:
   - Teams
   properties:
   - type: OpenAPI
@@ -276,6 +284,8 @@ apis:
   humanURL: https://docs.kondukto.io/reference/starting-with-kondukto-api
   baseURL: https://api.kondukto.io/api/v2
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
