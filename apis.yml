@@ -11,6 +11,18 @@ description: >-
   vulnerabilities, an open-source Go command-line client (KDT) that drives the same API from CI/CD
   pipelines, and a webhook surface for both outbound platform events and customer-hosted issue
   managers. The platform is deployed per customer, so the API host is deployment-specific.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
