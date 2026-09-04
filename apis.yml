@@ -25,16 +25,18 @@ deliveryModel:
   method: derived
 accessModel:
   pricing: paid
-  onboarding: self-serve
+  onboarding: approval
   trial: false
   try_now: false
   public: false
-  label: Paid · Self-serve signup
-  confidence: high
+  label: Paid · Requires approval
+  confidence: medium
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - security
+  - {url: 'https://kondukto.io', status: 301, note: 'declared website redirects to https://www.invicti.com/ — a different registrable domain (kondukto.io -> invicti.com), possible rename or acquisition (probed 2026-09-03, roadmap#169)'}
+  generated: '2026-09-03'
   method: derived
 image: https://cdn.kondukto.io/img/logo/a990cbe5-f31f-49a0-a135-2ea0b7abb0ec.png
 url: https://raw.githubusercontent.com/api-evangelist/kondukto/refs/heads/main/apis.yml
@@ -414,8 +416,9 @@ common:
   url: plans/kondukto-plans.yml
 - type: Webhooks
   url: asyncapi/kondukto-webhooks.yml
-- type: MCPServer
+- type: X-MCPServerCandidate
   url: mcp/kondukto-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
 - type: AgentSkill
   url: skills/_index.yml
 - type: LLMsTxt
