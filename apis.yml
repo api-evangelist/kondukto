@@ -66,6 +66,7 @@ tags:
 - Security Testing
 - CI/CD
 - Security
+- Developer Tools
 apis:
 - aid: kondukto:kondukto-authorization-managers-api
   name: Kondukto Authorization Managers API
