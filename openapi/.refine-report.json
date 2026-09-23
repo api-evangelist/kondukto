@@ -1,17 +1,7 @@
 {
   "provider": "kondukto",
   "sources": [
-    "kondukto-authorization-managers-api-openapi.yml",
-    "kondukto-events-api-openapi.yml",
-    "kondukto-health-api-openapi.yml",
-    "kondukto-labels-api-openapi.yml",
-    "kondukto-products-api-openapi.yml",
-    "kondukto-projects-api-openapi.yml",
-    "kondukto-scanners-api-openapi.yml",
-    "kondukto-scans-api-openapi.yml",
-    "kondukto-teams-api-openapi.yml",
-    "kondukto-users-api-openapi.yml",
-    "kondukto-vulnerabilities-api-openapi.yml"
+    "_original/kondukto-aspm-openapi.yml"
   ],
   "outputs": [
     "kondukto-authorization-managers-api-openapi.yml",
@@ -29,6 +19,22 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "kondukto-aspm-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "kondukto-authorization-managers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kondukto-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kondukto-health-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kondukto-labels-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kondukto-products-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kondukto-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kondukto-scanners-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kondukto-scans-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kondukto-teams-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kondukto-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kondukto-vulnerabilities-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
