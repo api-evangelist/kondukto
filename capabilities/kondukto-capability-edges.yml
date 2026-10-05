@@ -1,0 +1,46 @@
+slug: kondukto
+provider: Kondukto
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Vulnerabilities
+  spec_file: kondukto-vulnerabilities-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.95
+  evidence: GET /api/v2/vulnerabilities/  Get Vulnerabilities; POST /api/v2/vulnerabilities/import/sast  Create
+    a SAST Vulnerability
+  reason: Operations create, retrieve and attach evidence to SAST/DAST/SCA/pentest/infra vulnerability
+    findings — plainly vulnerability management.
+- tag: Scans
+  spec_file: kondukto-scans-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.92
+  evidence: POST /api/v2/scans/create  Create New Scan; POST /api/v2/scans/image  Image Scan; POST /api/v2/scans/import  Import
+    Scan Result
+  reason: Operations create, queue, restart and import security scans and their results — core vulnerability
+    scanning lifecycle.
+- tag: Projects
+  spec_file: kondukto-projects-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.8
+  evidence: GET /api/v2/projects/{projectID}/vulnerabilities  Get Project Vulnerabilities; POST .../scanparams
+    Create Project Scan Configuration; GET .../release Project Security Criteria Status
+  reason: Project operations are centred on configuring security scans and retrieving vulnerabilities
+    and security release criteria for application repositories — vulnerability management, not generic
+    project management.
