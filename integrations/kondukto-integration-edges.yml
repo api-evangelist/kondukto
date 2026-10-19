@@ -1,9 +1,16 @@
 generated: '2026-10-13'
 method: searched
 checked:
+- https://api.nuget.org/v3
 - https://azuremarketplace.microsoft.com/
+- https://crates.io/api/v1
 - https://cyclonedx.org/tool-center/
+- https://proxy.golang.org
+- https://pypi.org/pypi
 - https://raw.githubusercontent.com/ossf/ossf-landscape/0c5085851606608158f3adb796e5c22265ee174d/landscape.yml
+- https://registry.npmjs.org
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
 - https://spdx.dev/use/spdx-tools/
 - https://www.openchainproject.org/community-of-conformance
 marketplace_apps: []
@@ -50,6 +57,36 @@ edges:
     detected_by: sweep-software-supply-chain.py
     detected: '2026-10-18'
   detected_by: sweep-software-supply-chain.py
+  first_seen: '2026-10-18'
+- partner_name: Go module proxy
+  partner: null
+  partner_match: null
+  type: register
+  direction: provider-built
+  category: official SDK (Go)
+  evidence: https://pkg.go.dev/github.com/kondukto-io/kdt
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Go module proxy (public registry JSON)
+    spec_file: null
+    language: Go
+    packages:
+    - name: github.com/kondukto-io/kdt
+      version: v1.46.4
+      released: '2026-07-13'
+      released_field: Time
+      lapsed: false
+      page: https://pkg.go.dev/github.com/kondukto-io/kdt
+      repo_leg: github-org:kondukto-io
+      publisher_leg: org:kondukto-io
+      matched_by: github-org
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
   first_seen: '2026-10-18'
 source:
 - https://raw.githubusercontent.com/ossf/ossf-landscape/0c5085851606608158f3adb796e5c22265ee174d/landscape.yml
