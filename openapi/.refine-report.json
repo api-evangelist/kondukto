@@ -1,19 +1,11 @@
 {
   "provider": "kondukto",
   "sources": [
-    "_original/kondukto-aspm-openapi.yml"
+    "_original/kondukto-openapi.json"
   ],
   "outputs": [
-    "kondukto-authorization-managers-api-openapi.yml",
-    "kondukto-events-api-openapi.yml",
-    "kondukto-health-api-openapi.yml",
-    "kondukto-labels-api-openapi.yml",
-    "kondukto-products-api-openapi.yml",
-    "kondukto-projects-api-openapi.yml",
-    "kondukto-scanners-api-openapi.yml",
-    "kondukto-scans-api-openapi.yml",
-    "kondukto-teams-api-openapi.yml",
-    "kondukto-users-api-openapi.yml",
+    "kondukto-import-api-openapi.yml",
+    "kondukto-screenshots-api-openapi.yml",
     "kondukto-vulnerabilities-api-openapi.yml"
   ],
   "archived": [],
@@ -21,20 +13,20 @@
   "warnings": [],
   "notes": [
     "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
-    "kondukto-aspm-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "apis.yml register: already-registered"
+    "kondukto-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "kondukto-openapi.json: tagged paths GET / -> Vulnerabilities",
+    "kondukto-openapi.json: tagged paths GET /{vulnerabilityID} -> Vulnerabilities",
+    "kondukto-openapi.json: tagged paths POST /import/sast -> Import",
+    "kondukto-openapi.json: tagged paths POST /import/dast -> Import",
+    "kondukto-openapi.json: tagged paths POST /import/sca -> Import",
+    "kondukto-openapi.json: tagged paths POST /import/pentest -> Import",
+    "kondukto-openapi.json: tagged paths POST /import/infra -> Import",
+    "kondukto-openapi.json: tagged paths POST /{vulnerabilityID}/screenshots -> Screenshots",
+    "kondukto-openapi.json: tagged paths DELETE /{vulnerabilityID}/screenshots/{attachmentID} -> Screenshots",
+    "kondukto-openapi.json: declared missing tag: Import",
+    "kondukto-openapi.json: declared missing tag: Screenshots",
+    "kondukto-openapi.json: declared missing tag: Vulnerabilities",
+    "apis.yml register: written (+2 apis, 3 total)"
   ],
-  "skipped": [
-    "kondukto-authorization-managers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "kondukto-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "kondukto-health-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "kondukto-labels-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "kondukto-products-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "kondukto-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "kondukto-scanners-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "kondukto-scans-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "kondukto-teams-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "kondukto-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "kondukto-vulnerabilities-api-openapi.yml: previously refined output, superseded by openapi/_original/"
-  ]
+  "skipped": []
 }

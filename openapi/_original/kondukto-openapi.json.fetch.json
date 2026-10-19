@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.kondukto.io/openapi/vulnerabilities.json",
+ "final": "https://docs.kondukto.io/openapi/vulnerabilities.json",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 48962,
+ "sha256": "2259e53b4a371fd4f27aa0753b1998b74f738fb2d140ab69db66868ae57961f5",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "re-archived: the provider's current document replaced a stale archive (roadmap#793); the old files are in openapi/_superseded/2026-10-19-stale"
+}

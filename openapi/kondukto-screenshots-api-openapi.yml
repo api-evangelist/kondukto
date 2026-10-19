@@ -1,0 +1,179 @@
+openapi: 3.2.0
+info:
+  title: vulnerabilities Screenshots API
+  version: '2.0'
+servers:
+- url: https://{hostname}/api/v2/vulnerabilities
+  variables:
+    hostname:
+      default: hostname
+security:
+- {}
+tags:
+- name: Screenshots
+paths:
+  /{vulnerabilityID}/screenshots:
+    post:
+      summary: Upload Attachments
+      description: Upload multiple attachments to a vulnerability. Attachment should be in base64 format. Supported file formats are "pdf", "html", "jpg", "png", "avi", "txt" and "mp4".
+      operationId: upload-screenshots
+      parameters:
+      - name: vulnerabilityID
+        in: path
+        description: Vulnerability ID
+        schema:
+          type: string
+        required: true
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - screenshots
+              properties:
+                screenshots:
+                  type: array
+                  items:
+                    properties:
+                      image:
+                        type: string
+                        description: Attachment as base64
+                        default: data:image/png;base64,{base64Image}
+                      description:
+                        type: string
+                        description: Description of attachment
+                      file_detail:
+                        type: object
+                        description: Detail of file. It is not necessary for image formats.
+                        properties:
+                          name:
+                            type: string
+                            description: Name of the file.
+                          extension:
+                            type: string
+                            description: Extension type of the file. It has to begin with `.` (Exp. ".avi", ".pdf")
+                    required:
+                    - image
+                    - description
+                    type: object
+      responses:
+        '200':
+          description: '200'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: ''
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    “error”: “failed to parse base64 data for screenshot”\n}"
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"error\": \"failed to authorize\"\n}"
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location --request POST 'http(s)://{hostname}/api/v2/vulnerabilities/{vulnerabilityID}/screenshots' \\\n--header 'X-Cookie: {token}' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n  \"screenshots\": [\n    {\n      \"description\": \"Description Text\",\n      \"image\": \"data:image/png;base64,{base64Image}\"\n      \"file_detail\": {\n        \"name\": \"image\",\n        \"extension\": \".png\"\n      },\n    },\n    {\n      \"description\": \"Description Text 2\",\n      \"image\": \"data:video/x-msvideo;base64,{base64Video}\"\n      \"file_detail\": {\n        \"name\": \"video\",\n        \"extension\": \".avi\"\n      },\n    }\n  ]\n}'"
+        - language: python
+          code: "import requests\nimport json\n\nurl = \"http(s)://{hostname}/api/v2/vulnerabilities/{vulnerabilityID}/screenshots\"\n\npayload = json.dumps({\n  \"screenshots\": [\n    {\n      \"description\": \"Description Text\",\n      \"image\": \"data:image/png;base64,{base64Image}\"\n      \"file_detail\": {\n        \"name\": \"image\",\n        \"extension\": \".png\"\n      },\n    },\n    {\n      \"description\": \"Description Text 2\",\n      \"image\": \"data:image/png;base64,{base64Image2}\"\n      \"file_detail\": {\n        \"name\": \"video\",\n        \"extension\": \".avi\"\n      },\n    }\n  ]\n})\nheaders = {\n  'X-Cookie': '{token}',\n  'Content-Type': 'application/json'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+        samples-languages:
+        - curl
+        - python
+      tags:
+      - Screenshots
+  /{vulnerabilityID}/screenshots/{attachmentID}:
+    delete:
+      summary: Delete An Attachment
+      description: Delete an attachment of a vulnerability by attachment id
+      operationId: delete-a-screenshot
+      parameters:
+      - name: vulnerabilityID
+        in: path
+        description: Vulnerability ID
+        schema:
+          type: string
+        required: true
+      - name: attachmentID
+        in: path
+        description: Attachment ID
+        schema:
+          type: string
+        required: true
+      - name: X-Cookie
+        in: header
+        description: Personal Access Token
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: '204'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: ''
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"error\": \"failed to delete screenshot\"\n}"
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to delete screenshot
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"error\": \"failed to authorize\"\n}"
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: failed to authorize
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: 'curl --location --request DELETE ''http(s)://{hostname}/api/v2/vulnerabilities/{vulnerabilityID}/screenshots/{screenshotID}'' \
+
+            --header ''X-Cookie: {token}'''
+        samples-languages:
+        - curl
+      tags:
+      - Screenshots
+x-readme:
+  headers: []
+  explorer-enabled: false
+  proxy-enabled: true
+x-readme-fauxas: true
